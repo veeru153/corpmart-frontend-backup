@@ -30,10 +30,9 @@
 
 .frame {
     flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-rows: 1.6fr 0.4fr 2fr;
+    max-width: 240px;
 }
 
 .frameImgContainer {
@@ -86,7 +85,14 @@
         grid-template-rows: 1fr 1.5fr;
         height: 80vh;
     }
+    .frame {
+        grid-template-rows: 2fr 1fr 2fr;
+    }
     .frames {
         grid-template-columns: repeat(4, minmax(104px, 1fr));
+        column-gap: 32px;
+    }
+    .frameDesc {
+        font-size: clamp(12px, 1.4vw, 18px);
     }
 }
