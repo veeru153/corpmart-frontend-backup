@@ -6,12 +6,14 @@ import BusinessShowcase from './BusinessShowcase/BusinessShowcase';
 import Testimonials from './Testimonials/Testimonials';
 import Blogs from './Blogs/Blogs';
 import Footer from './Footer/Footer';
-import NavbarMobile from '../../components/Navbar/Mobile/NavbarMobile';
+import NavbarMobile from '../../components/Navbar/NavbarMobile';
+import Navbar from '../../components/Navbar/Navbar';
 
 const Landing = () => {
     return (
         <div className={styles.Landing}>
             <NavbarMobile />
+            <Navbar />
             <Main />
             <WhyCorpmart />
             <BusinessShowcase />

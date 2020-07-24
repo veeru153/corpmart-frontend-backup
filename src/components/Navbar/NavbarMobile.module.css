@@ -1,7 +1,7 @@
 .Navbar {
     display: grid;
-    position: fixed;
     grid-template-columns: 1fr 8fr 1fr;
+    position: fixed;
     left: 0;
     top: 0;
     width: 100%;
@@ -14,4 +14,10 @@
     all: unset;
     height: 64px;
     z-index: 99999;
+}
+
+@media only screen and (min-width: 769px) {
+    .Navbar {
+        display: none;
+    }
 }

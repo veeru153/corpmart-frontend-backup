@@ -1,22 +1,19 @@
 import React from 'react';
+import styles from './Button.module.css';
 
 const Button = (props) => {
     const { color, type, label } = props;
 
     const btnStyle = {
-        all: 'unset',
         backgroundColor: type == 'blue' ? '#4AB9CA' : type == 'orange' ? '#FF9900' : type,
         color: color ?? 'white',
-        textTransform: 'uppercase',
-        fontWeight: 600,
-        borderRadius: 10
     }
 
     return (
         <button 
             onClick={props.pressed}
             style={{...btnStyle, ...props.style}} 
-            className={props.className}
+            className={[styles.btn, props.className].join(' ')}
         >
             <p style={{ margin: 0, ...props.textStyle }}>{label}</p>
         </button>

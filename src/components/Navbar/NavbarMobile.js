@@ -6,7 +6,7 @@ const NavbarMobile = () => {
     const [transparent, setTransparent] = useState(true);
 
     const handleScroll = () => {
-        if(window.scrollY > window.screen.height*0.8 - 32) {
+        if(window.scrollY > 64) {
             setTransparent(false);
         } else {
             setTransparent(true)
@@ -15,7 +15,6 @@ const NavbarMobile = () => {
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
-        console.log(transparent);
     })
 
     return (

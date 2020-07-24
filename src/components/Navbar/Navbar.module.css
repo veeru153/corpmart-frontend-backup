@@ -1,0 +1,61 @@
+.navbarContainer {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 64px;
+    z-index: 99999;
+    transition: all 0.4s ease-in-out;
+}
+
+.Navbar {
+    display: grid;
+    grid-template-columns: 1.25fr 1.5fr 1.25fr 1fr 1fr;
+    text-transform: uppercase;
+    height: 100%;
+}
+
+.navBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+}
+
+.signupBtn {
+    padding: 12px clamp(4px, 1.6vw, 40px);
+    transition: all 0.2s ease-in-out;
+}
+
+@media only screen and (max-width: 768px) {
+    .navbarContainer {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 960px) {
+    .signupBtn {
+        padding: 12px clamp(20px, 2.4vw, 40px);
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .Navbar {
+        width: 92.5%;   
+        grid-template-columns: 1.25fr 1fr 1.5fr 0.64fr 0.64fr;
+    }
+    .homeBtn {
+        justify-content: flex-end;
+        margin-right: 16px;
+    }
+    .signupBtn {
+        padding: 12px clamp(20px, 2.7vw, 40px);
+    }
+}
+
+@media only screen and (min-width: 1148px) {
+    .Navbar {
+        grid-template-columns: 1.8fr 1fr 1.5fr 0.7fr 0.7fr;
+    }
+}
+
