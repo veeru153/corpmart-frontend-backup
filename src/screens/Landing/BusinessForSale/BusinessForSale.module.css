@@ -1,0 +1,28 @@
+.BusinessForSale {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    background: #4AB9CA;
+}
+
+.header {
+    color: white;
+}
+
+.title {
+    font-weight: 600;
+    font-size: clamp(24px, 6.4vw, 48px);
+}
+
+.subtitle {
+    font-size: clamp(16px, 4.28vw, 24px);
+    margin: 16px 20px;
+}
+
+.carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

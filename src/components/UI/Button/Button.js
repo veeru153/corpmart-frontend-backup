@@ -14,7 +14,7 @@ const Button = (props) => {
 
     return (
         <button style={{...btnStyle, ...props.style}} className={props.className}>
-            <p>{label}</p>
+            <p style={{ ...props.textStyle }}>{label}</p>
         </button>
     )
 }
