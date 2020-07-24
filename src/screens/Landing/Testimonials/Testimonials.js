@@ -11,14 +11,14 @@ const Testimonials = () => {
         <div className={styles.Testimonials}>
             <div className={styles.header}>
                 <p className={styles.title}>Testimonials</p>
-                <p className={styles.subtitle}>Here's what our happy clients have to say about their experience</p>
+                <p className={styles.subtitle}>Here's what our happy clients have to say about their experience.</p>
             </div>
             <div className={styles.carousel}>
                 <TestimonialSlide 
                     // img
                     name="Shubham Ahujha"
                     meta="Something idk"
-                    blogText={dummyBlogText}
+                    testimonialText={dummyBlogText}
                 />
             </div>
             <div className={styles.btnContainer}>

@@ -4,6 +4,7 @@ import Main from './Main/Main';
 import WhyCorpmart from './WhyCorpmart/WhyCorpmart';
 import BusinessShowcase from './BusinessShowcase/BusinessShowcase';
 import Testimonials from './Testimonials/Testimonials';
+import Blogs from './Blogs/Blogs';
 
 const Landing = () => {
     return (
@@ -12,6 +13,7 @@ const Landing = () => {
             <WhyCorpmart />
             <BusinessShowcase />
             <Testimonials />
+            <Blogs />
         </div>
     )
 }
