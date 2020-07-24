@@ -15,9 +15,13 @@ const Main = () => {
                     <p className={styles.optionLabel}>Want to sell your business?</p>
                     <Button label="List Your Business" type="orange" className={styles.optionBtn}/>
                 </div>
-                <div className={styles.option}>
+                <div className={styles.option} style={{ marginBottom: 8 }}>
                     <p className={styles.optionLabel}>Want to aquire a business?</p>
-                    <Button label="Explore Businesses" type="blue" className={styles.optionBtn}/>
+                    <Button 
+                        label="Explore Businesses" 
+                        type="blue" 
+                        className={styles.optionBtn}
+                    />
                 </div>
             </div>
         </div>

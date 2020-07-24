@@ -5,15 +5,19 @@ import WhyCorpmart from './WhyCorpmart/WhyCorpmart';
 import BusinessShowcase from './BusinessShowcase/BusinessShowcase';
 import Testimonials from './Testimonials/Testimonials';
 import Blogs from './Blogs/Blogs';
+import Footer from './Footer/Footer';
+import NavbarMobile from '../../components/Navbar/Mobile/NavbarMobile';
 
 const Landing = () => {
     return (
         <div className={styles.Landing}>
+            <NavbarMobile />
             <Main />
             <WhyCorpmart />
             <BusinessShowcase />
             <Testimonials />
             <Blogs />
+            <Footer />
         </div>
     )
 }

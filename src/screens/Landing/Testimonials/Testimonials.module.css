@@ -29,6 +29,9 @@
 
 @media only screen and (min-width: 600px) {
     .title {
-        font-size: clamp(24px, 6vw, 48px);
+        font-size: clamp(24px, 6vw, 44px);
+    }
+    .subtitle {
+        font-size: clamp(16px, 4.28vw, 20px);
     }
 }

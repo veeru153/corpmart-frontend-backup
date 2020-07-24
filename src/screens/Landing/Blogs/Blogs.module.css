@@ -15,7 +15,7 @@
 
 .subtitle {
     font-size: clamp(16px, 4.28vw, 24px);
-    margin: 7.5px 20px 44px 20px;
+    margin: 7.5px 20px 22px 20px;
 }
 
 .carousel {
@@ -30,6 +30,9 @@
 
 @media only screen and (min-width: 600px) {
     .title {
-        font-size: clamp(24px, 6vw, 48px);
+        font-size: clamp(24px, 6vw, 44px);
+    }
+    .subtitle {
+        font-size: clamp(16px, 4.28vw, 20px);
     }
 }
