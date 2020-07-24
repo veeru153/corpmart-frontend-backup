@@ -7,7 +7,7 @@ import BusinessSlide from './BusinessSlide/BusinessSlide';
 
 const BusinessForSale = () => {
     return (
-        <div className={styles.BusinessForSale}>
+        <div className={styles.BusinessShowcase}>
             <div className={styles.header}>
                 <p className={styles.title}>Businesses for Sale</p>
                 <p className={styles.subtitle}>Explore the extensive range of options across various industries.</p>

@@ -3,6 +3,7 @@ import styles from './Landing.module.css';
 import Main from './Main/Main';
 import WhyCorpmart from './WhyCorpmart/WhyCorpmart';
 import BusinessShowcase from './BusinessShowcase/BusinessShowcase';
+import Testimonials from './Testimonials/Testimonials';
 
 const Landing = () => {
     return (
@@ -10,6 +11,7 @@ const Landing = () => {
             <Main />
             <WhyCorpmart />
             <BusinessShowcase />
+            <Testimonials />
         </div>
     )
 }

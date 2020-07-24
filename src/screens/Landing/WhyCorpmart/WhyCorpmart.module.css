@@ -82,7 +82,6 @@
 @media only screen and (min-width: 748px) {
     .frameDesc {
         font-size: clamp(12px, 2vw, 16px);
-        /* font-size: 2vw; */
     }
 }
 
@@ -90,10 +89,10 @@
     .WhyCorpmart {
         display: grid;
         grid-template-rows: 1fr 1.5fr;
-        height: 80vh;
+        height: 100vh;
     }
     .frame {
-        grid-template-rows: 2fr 1fr 2fr;
+        grid-template-rows: 1fr 1fr 2.8fr;
     }
     .frames {
         grid-template-columns: repeat(4, minmax(104px, 1fr));
