@@ -13,7 +13,13 @@ const BusinessForSale = () => {
                 <p className={styles.subtitle}>Explore the extensive range of options across various industries.</p>
             </div>
             <div className={styles.carousel}>
-                <BusinessSlide />
+                <BusinessSlide 
+                    type="Pvt. Ltd."
+                    subtype="Pvt. Ltd."
+                    industry="Pharmaceutical"
+                    state="Haryana"
+                    price="INR 40 lakh"
+                />
             </div>
             <div className={styles.btnContainer}>
                 <Button 

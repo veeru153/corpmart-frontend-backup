@@ -2,30 +2,31 @@ import React from 'react';
 import styles from './BusinessSlide.module.css';
 import Button from '../../../../components/UI/Button/Button';
 
-const BusinessSlide = () => {
+const BusinessSlide = (props) => {
+    const { type, subtype, industry, state, price } = props;
     return (
         <div className={styles.slide}>
             <p className={styles.businessDesc}>A textile manufacturing Pvt. Ltd. company based in Surat.</p>
             <div className={styles.businessInfo}>
                 <div className={styles.businessInfoRow}>
                     <div className={styles.businessInfoLabel}>Type</div>
-                    <div className={styles.businessInfoValue}>Pvt. Ltd.</div>
+                    <div className={styles.businessInfoValue}>{type}</div>
                 </div>
                 <div className={styles.businessInfoRow}>
                     <div className={styles.businessInfoLabel}>Sub Type</div>
-                    <div className={styles.businessInfoValue}>Pvt. Ltd.</div>
+                    <div className={styles.businessInfoValue}>{subtype}</div>
                 </div>
                 <div className={styles.businessInfoRow}>
                     <div className={styles.businessInfoLabel}>Industry</div>
-                    <div className={styles.businessInfoValue}>Pharmaceutical</div>
+                    <div className={styles.businessInfoValue}>{industry}</div>
                 </div>
                 <div className={styles.businessInfoRow}>
                     <div className={styles.businessInfoLabel}>State</div>
-                    <div className={styles.businessInfoValue}>Haryana</div>
+                    <div className={styles.businessInfoValue}>{state}</div>
                 </div>
                 <div className={styles.businessInfoRow}>
                     <div className={styles.businessInfoLabel}>Asking Price</div>
-                    <div className={styles.businessInfoValue} style={{ fontWeight: 'normal' }}>INR 40 lakh</div>
+                    <div className={styles.businessInfoValue} style={{ fontWeight: 'normal' }}>{price}</div>
                 </div>
             </div>
             <div className={styles.btnContainer}>
