@@ -58,7 +58,7 @@
 
 .optionBtn {
     margin: 5px auto !important ; 
-    padding: 0 16px !important;
+    padding: 12px 28px !important;
 }
 
 @media only screen and (min-width: 540px) and (max-width: 571px) {

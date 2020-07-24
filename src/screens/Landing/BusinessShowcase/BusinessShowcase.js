@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './BusinessForSale.module.css';
+import styles from './BusinessShowcase.module.css';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import Button from '../../../components/UI/Button/Button';
@@ -14,6 +14,14 @@ const BusinessForSale = () => {
             </div>
             <div className={styles.carousel}>
                 <BusinessSlide />
+            </div>
+            <div className={styles.btnContainer}>
+                <Button 
+                    label="View More" 
+                    type="orange" 
+                    style={{ padding: '12px 56px' }} 
+                    textStyle={{ margin: 0 }}
+                />
             </div>
         </div>
     )

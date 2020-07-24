@@ -9,12 +9,16 @@ const Button = (props) => {
         color: color ?? 'white',
         textTransform: 'uppercase',
         fontWeight: 600,
-        borderRadius: 15
+        borderRadius: 10
     }
 
     return (
-        <button style={{...btnStyle, ...props.style}} className={props.className}>
-            <p style={{ ...props.textStyle }}>{label}</p>
+        <button 
+            onClick={props.pressed}
+            style={{...btnStyle, ...props.style}} 
+            className={props.className}
+        >
+            <p style={{ margin: 0, ...props.textStyle }}>{label}</p>
         </button>
     )
 }
