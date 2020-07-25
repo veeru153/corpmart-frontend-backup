@@ -4,6 +4,9 @@ import { Filter } from 'react-feather';
 import Sort from '@material-ui/icons/Sort'
 import State from './filterOptions/State/State';
 import Country from './filterOptions/Country';
+import TypeOfCompany from './filterOptions/TypeOfCompany';
+import SubType from './filterOptions/SubType';
+import Industry from './filterOptions/Industry';
 
 const FilterSort = () => {
     const [expanded, setExpanded] = useState(true);
@@ -46,6 +49,9 @@ const FilterSort = () => {
                 >
                     <State />
                     <Country />
+                    <TypeOfCompany />
+                    <SubType />
+                    <Industry />
                 </div>
                 <div 
                     className={styles.sortExp}

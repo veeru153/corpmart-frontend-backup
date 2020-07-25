@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from '../filterOptions.module.css';
 import { ChevronDown, ChevronUp } from 'react-feather';
-import { CheckBoxOutlined, CheckBoxOutlineBlank } from '@material-ui/icons'
+import { CheckBoxOutlined, CheckBoxOutlineBlank } from '@material-ui/icons';
 import defaultStateList from './stateList';
 
 const State = () => {

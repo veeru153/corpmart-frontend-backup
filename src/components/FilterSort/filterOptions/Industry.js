@@ -3,23 +3,24 @@ import styles from './filterOptions.module.css';
 import { ChevronDown, ChevronUp } from 'react-feather';
 import { CheckBoxOutlined, CheckBoxOutlineBlank } from '@material-ui/icons';
 
-const Country = () => {
+// TODO: Add Other in industryList
+
+const Industry = () => {
     const [expanded, setExpanded] = useState(false);
-    const [countryList, setCountryList] = useState([
-        { name: 'India', checked: false},
-        { name: 'Other', checked: false},
+    const [industryList, setIndustryList] = useState([
+        { name: 'Waiting for List...', checked: false},
     ])
 
-    const handleCountry = (index) => {
-        const tempCountry = [...countryList];
-        tempCountry[index] = { ...tempCountry[index], checked: !countryList[index].checked };
-        setCountryList(tempCountry);
+    const handleCompanyType = (index) => {
+        const tempIndustry = [...industryList];
+        tempIndustry[index] = { ...tempIndustry[index], checked: !industryList[index].checked };
+        setIndustryList(tempIndustry);
     }
 
     return (
         <div>
             <button className={styles.header} onClick={() => setExpanded(!expanded)}>
-                <p>Country</p>
+                <p>Industry</p>
                 <div className={styles.headerIcon}>
                     {expanded ? <ChevronUp size={16} rotate={180}/> : <ChevronDown size={16} />}
                 </div>
@@ -27,13 +28,13 @@ const Country = () => {
             <div style={{ 
                 height: expanded ? '100%' : '0', 
                 overflow: expanded ? 'scroll' : "hidden", 
-                maxHeight: 'calc(31px * 2)',
+                maxHeight: 'calc(31px * 8)',
             }}>
-                {countryList.map((country, index) => (
-                    <button className={styles.option} onClick={() => handleCountry(index)}>
-                        <p className={styles.optionExpLabel}>{country.name}</p>
+                {industryList.map((industry, index) => (
+                    <button className={styles.option} onClick={() => handleCompanyType(index)}>
+                        <p className={styles.optionExpLabel}>{industry.name}</p>
                         <div>
-                            { country.checked
+                            { industry.checked
                                 ?   <CheckBoxOutlined />
                                 :   <CheckBoxOutlineBlank />
                             }
@@ -45,4 +46,4 @@ const Country = () => {
     )
 }
 
-export default Country;
+export default Industry;
