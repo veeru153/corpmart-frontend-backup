@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from './Testimonials.module.css';
 import Button from '../../../components/UI/Button/Button';
-import TestimonialSlide from './TestimonialSlide/TestimonialSlide';
+// import TestimonialSlide from './TestimonialSlide/TestimonialSlide';
+import TestimonialSlide from '../../../components/TestimonialSlide/TestimonialSlide';
 
 const Testimonials = () => {
 

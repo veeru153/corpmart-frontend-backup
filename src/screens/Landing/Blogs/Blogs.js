@@ -11,7 +11,7 @@ const Blogs = () => {
         <div className={styles.Blogs}>
             <div className={styles.header}>
                 <p className={styles.title}>Blogs</p>
-                <p className={styles.subtitle}>Here's what our happy clients have to say about their experience.</p>
+                <p className={styles.subtitle}>Read our weekly dose of business advice and empower yourself with the right tools!</p>
             </div>
             <div className={styles.carousel}>
                 <BlogSlide 
