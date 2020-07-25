@@ -1,0 +1,30 @@
+.FilterSort {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: white;
+}
+
+.tabs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.tab {
+    all: unset;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.tab p {
+    font-size: 16px;
+    margin: 12px 4px;
+}
+
+.expanded {
+    max-height: 50vh;
+    overflow: scroll;
+}

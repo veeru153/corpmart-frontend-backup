@@ -3,6 +3,7 @@ import styles from './BusinessesForSale.module.css';
 import NavbarMobile from '../../components/Navbar/NavbarMobile';
 import Navbar from '../../components/Navbar/Navbar';
 import BusinessSlide from '../../components/BusinessSlide/BusinessSlide';
+import FilterSort from '../../components/FilterSort/FilterSort';
 
 // TODO: Get Businesses from API
 
@@ -50,6 +51,7 @@ const BusinessesForSale = () => {
                         className={styles.card}
                     />
                 </div>
+                <FilterSort />
             </div>
         </div>
     )

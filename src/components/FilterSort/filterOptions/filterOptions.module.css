@@ -1,0 +1,36 @@
+.header {
+    all: unset;
+    display: grid;
+    grid-template-columns: 9fr 1fr;
+    width: 100%;
+}
+
+.header p {
+    margin: 0 8px;
+    text-align: left;
+}
+
+.headerIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.option {
+    all: unset;
+    display: grid;
+    grid-template-columns: 9fr 1fr;
+    width: 84%;
+}
+
+.optionExpLabel {
+    font-weight: 300;
+    font-size: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    margin: 0 10px;
+    text-align: left;
+}
