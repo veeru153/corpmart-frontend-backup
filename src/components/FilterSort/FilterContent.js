@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './FilterSort.module.css';
+import styles from './FilterSortMobile.module.css';
 import { CheckBoxOutlined, CheckBoxOutlineBlank,  } from '@material-ui/icons';
 import State from './filterOptions/State/State';
 import Country from './filterOptions/Country';

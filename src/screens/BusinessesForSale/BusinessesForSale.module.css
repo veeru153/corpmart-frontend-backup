@@ -4,6 +4,10 @@
     background: #E5E5E5;
 }
 
+.container {
+    display: block;
+}
+
 .content {
     margin: 0 20px;
     padding: 64px 0;
@@ -36,4 +40,11 @@
 
 .card {
     justify-self: center;
+}
+
+@media only screen and (min-width: 1024px) {
+    .container {
+        display: grid;
+        grid-template-columns: 1.5fr 5fr;
+    }
 }

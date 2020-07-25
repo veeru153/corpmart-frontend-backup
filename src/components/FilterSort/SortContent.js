@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './FilterSort.module.css';
+import styles from './FilterSortMobile.module.css';
 
 // TODO: Implement rather than having placeholders
 

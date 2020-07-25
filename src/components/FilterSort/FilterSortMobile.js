@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './FilterSort.module.css';
+import styles from './FilterSortMobile.module.css';
 import { Filter } from 'react-feather';
 import Sort from '@material-ui/icons/Sort';
 import FilterContent from './FilterContent';
@@ -7,7 +7,7 @@ import SortContent from './SortContent';
 
 // TODO: Add Backdrop
 
-const FilterSort = () => {
+const FilterSortMobile = () => {
     const [expanded, setExpanded] = useState(true);
     const [type, setType] = useState('');
     const [filterOps, setFilterOps] = useState([
@@ -72,4 +72,4 @@ const FilterSort = () => {
     )
 }
 
-export default FilterSort;
+export default FilterSortMobile;
