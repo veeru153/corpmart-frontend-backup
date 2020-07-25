@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import styles from './NavbarMobile.module.css';
 import { Menu, Search } from 'react-feather'
 
-const NavbarMobile = () => {
+const NavbarMobile = (props) => {
     const [transparent, setTransparent] = useState(true);
     const [expanded, setExpanded] = useState(false);
+    const { dynamic } = props;
 
     document.body.style.overflowY = expanded ? "hidden" : "scroll";
 
@@ -24,11 +25,11 @@ const NavbarMobile = () => {
         <>
             <div 
                 className={styles.Navbar} 
-                style={{ backgroundColor: transparent ? 'rgba(0,0,0,0)' : 'white'}}
+                style={{ backgroundColor: transparent && dynamic ? 'rgba(0,0,0,0)' : 'white'}}
             >
                 <button className={styles.navBtn} onClick={() => setExpanded(true)}>
                     <Menu 
-                        color={transparent ? "white" : "black"}
+                        color={transparent && dynamic ? "white" : "black"}
                         size={28} 
                         style={{ padding: '20px 18px 16px 18px', transition: 'all 0.4s ease-in-out' }}
                     />
@@ -36,7 +37,7 @@ const NavbarMobile = () => {
                 <div></div> {/* Search Bar */}
                 <div className={styles.navBtn}>
                     <Search 
-                        color={transparent ? "white" : "black"} 
+                        color={transparent && dynamic ? "white" : "black"} 
                         size={28} 
                         style={{ padding: '20px 18px 16px 18px', transition: 'all 0.4s ease-in-out' }} 
                     />

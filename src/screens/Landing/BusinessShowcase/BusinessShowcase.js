@@ -3,7 +3,7 @@ import styles from './BusinessShowcase.module.css';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import Button from '../../../components/UI/Button/Button';
-import BusinessSlide from './BusinessSlide/BusinessSlide';
+import BusinessSlide from '../../../components/BusinessSlide/BusinessSlide';
 
 const BusinessForSale = () => {
     return (

@@ -12,8 +12,8 @@ import Navbar from '../../components/Navbar/Navbar';
 const Landing = () => {
     return (
         <div className={styles.Landing}>
-            <NavbarMobile />
-            <Navbar />
+            <NavbarMobile dynamic/>
+            <Navbar dynamic/>
             <Main />
             <WhyCorpmart />
             <BusinessShowcase />

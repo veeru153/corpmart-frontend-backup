@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './BusinessSlide.module.css';
-import Button from '../../../../components/UI/Button/Button';
+import Button from '../UI/Button/Button';
 
 const BusinessSlide = (props) => {
     const { type, subtype, industry, state, price } = props;

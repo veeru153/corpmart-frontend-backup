@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Blogs.module.css';
 import Button from '../../../components/UI/Button/Button';
-import BlogSlide from './BlogSlide/BlogSlide';
+import BlogSlide from '../../../components/BlogSlide/BlogSlide';
 
 const Blogs = () => {
 
