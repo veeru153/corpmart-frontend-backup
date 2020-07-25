@@ -1,0 +1,112 @@
+.ListingForm {
+    display: flex;
+    background-color: rgba(0,0,0,0.5);
+    /* background-color: #E5E5E5; */
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0;
+}
+
+.ListingForm p {
+    margin: 0;
+}
+
+.header {
+    margin: 15px 6%;
+}
+
+.title {
+    font-weight: 600;
+    font-size: clamp(24px, 6.4vw, 36px);
+}
+
+.title2 {
+    font-weight: 600;
+    font-size: clamp(18px, 4.8vw, 24px);
+}
+
+.subtitle {
+    font-weight: 300;
+    font-size: clamp(12px, 3.2vw, 16px);
+}
+
+.subtitle2 {
+    font-weight: 300;
+    font-size: clamp(14px, 3.8vw, 18px);
+}
+
+.orText {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.form {
+    background-color: white;
+    width: 88%;
+    margin: 48px 0;
+    border-radius: 10px;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 7.5px 30px;
+    text-align: left;
+}
+
+.inputLabel {
+    font-size: clamp(14px, 3.8vw, 18px);
+    margin: 2.5px 0;
+}
+
+.inputField {
+    border: 2px solid #000000;
+    box-sizing: border-box;
+    border-radius: 10px;
+    min-height: 40px;
+    margin: 2.5px 0;
+}
+
+.inputField:focus {
+    outline: none;
+}
+
+.saleDesc {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 4px 2px;
+    resize: none;
+}
+
+.tos {
+    font-weight: 300;
+    font-size: 12px;
+    margin: 15px 8.8%;
+}
+
+.submitBtn {
+    padding: 10px 20px;
+    margin: 15px 0; 
+}
+
+@media only screen and (min-width: 768px) {
+    .nameFields {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .yearAgeFields {
+        display: grid;
+        grid-template-columns: 2fr 0.1fr 2fr;
+    }
+    .orText {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .form {
+        width: 64%;
+    }
+}
