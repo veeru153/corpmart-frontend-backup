@@ -21,7 +21,7 @@ const Navbar = (props) => {
     return (
         <div 
             className={styles.navbarContainer}
-            style={{ backgroundColor: transparent ? 'transparent' : 'white' }}
+            style={{ backgroundColor: transparent && dynamic ? 'transparent' : 'white' }}
         >
             <div 
                 className={styles.Navbar}

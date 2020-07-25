@@ -15,7 +15,7 @@ const State = () => {
     }
 
     return (
-        <div>
+        <div className={styles.section}>
             <button className={styles.header} onClick={() => setExpanded(!expanded)}>
                 <p>State</p>
                 <div className={styles.headerIcon}>
@@ -26,6 +26,7 @@ const State = () => {
                 height: expanded ? '100%' : '0', 
                 overflow: expanded ? 'scroll' : "hidden", 
                 maxHeight: 'calc(31px * 8)',
+                backgroundColor: '#E8EAED',
             }}>
                 {stateList.map((state, index) => (
                     <button className={styles.option} onClick={() => handleState(index)}>

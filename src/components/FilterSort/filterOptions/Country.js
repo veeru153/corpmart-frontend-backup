@@ -17,7 +17,7 @@ const Country = () => {
     }
 
     return (
-        <div>
+        <div className={styles.section}>
             <button className={styles.header} onClick={() => setExpanded(!expanded)}>
                 <p>Country</p>
                 <div className={styles.headerIcon}>
@@ -28,6 +28,7 @@ const Country = () => {
                 height: expanded ? '100%' : '0', 
                 overflow: expanded ? 'scroll' : "hidden", 
                 maxHeight: 'calc(31px * 2)',
+                backgroundColor: '#E8EAED',
             }}>
                 {countryList.map((country, index) => (
                     <button className={styles.option} onClick={() => handleCountry(index)}>

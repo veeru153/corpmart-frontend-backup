@@ -1,3 +1,7 @@
+.section {
+    padding: 4px 0;
+}
+
 .header {
     all: unset;
     display: grid;

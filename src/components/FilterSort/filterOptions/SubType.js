@@ -25,7 +25,7 @@ const SubType = () => {
     }
 
     return (
-        <div>
+        <div className={styles.section}>
             <button className={styles.header} onClick={() => setExpanded(!expanded)}>
                 <p>Sub - type</p>
                 <div className={styles.headerIcon}>
@@ -36,6 +36,7 @@ const SubType = () => {
                 height: expanded ? '100%' : '0', 
                 overflow: expanded ? 'scroll' : "hidden", 
                 maxHeight: 'calc(31px * 8)',
+                backgroundColor: '#E8EAED',
             }}>
                 {companyList.map((company, index) => (
                     <button className={styles.option} onClick={() => handleCompanyType(index)}>

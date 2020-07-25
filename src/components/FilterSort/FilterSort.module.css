@@ -28,3 +28,29 @@
     max-height: 50vh;
     overflow: scroll;
 }
+
+.option {
+    all: unset;
+    display: grid;
+    grid-template-columns: 9fr 1fr;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.optionExpLabel {
+    font-weight: 300;
+    font-size: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    margin: 0 10px;
+    text-align: left;
+}
+
+.sortExp p {
+    text-align: left;
+    margin: 7.5px 10px;
+}

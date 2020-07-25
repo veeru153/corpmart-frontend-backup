@@ -18,7 +18,7 @@ const Industry = () => {
     }
 
     return (
-        <div>
+        <div className={styles.section}>
             <button className={styles.header} onClick={() => setExpanded(!expanded)}>
                 <p>Industry</p>
                 <div className={styles.headerIcon}>
@@ -29,6 +29,7 @@ const Industry = () => {
                 height: expanded ? '100%' : '0', 
                 overflow: expanded ? 'scroll' : "hidden", 
                 maxHeight: 'calc(31px * 8)',
+                backgroundColor: '#E8EAED',
             }}>
                 {industryList.map((industry, index) => (
                     <button className={styles.option} onClick={() => handleCompanyType(index)}>
