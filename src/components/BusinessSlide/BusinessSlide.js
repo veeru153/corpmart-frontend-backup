@@ -5,7 +5,7 @@ import Button from '../UI/Button/Button';
 const BusinessSlide = (props) => {
     const { type, subtype, industry, state, price } = props;
     return (
-        <div className={styles.slide}>
+        <div className={[styles.slide, props.className].join(' ')}>
             <p className={styles.businessDesc}>A textile manufacturing Pvt. Ltd. company based in Surat.</p>
             <div className={styles.businessInfo}>
                 <div className={styles.businessInfoRow}>

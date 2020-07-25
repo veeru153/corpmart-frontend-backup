@@ -23,6 +23,7 @@ const BusinessesForSale = () => {
                         industry="Pharmaceutical"
                         state="Haryana"
                         price="INR 40 lakh"
+                        className={styles.card}
                     />
                     <BusinessSlide
                         type="Pvt. Ltd."
@@ -30,6 +31,7 @@ const BusinessesForSale = () => {
                         industry="Pharmaceutical"
                         state="Haryana"
                         price="INR 40 lakh"
+                        className={styles.card}
                     />
                     <BusinessSlide
                         type="Pvt. Ltd."
@@ -37,6 +39,7 @@ const BusinessesForSale = () => {
                         industry="Pharmaceutical"
                         state="Haryana"
                         price="INR 40 lakh"
+                        className={styles.card}
                     />
                     <BusinessSlide
                         type="Pvt. Ltd."
@@ -44,6 +47,7 @@ const BusinessesForSale = () => {
                         industry="Pharmaceutical"
                         state="Haryana"
                         price="INR 40 lakh"
+                        className={styles.card}
                     />
                 </div>
             </div>

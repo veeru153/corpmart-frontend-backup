@@ -30,5 +30,10 @@
 .showcase {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 330px));
-    /* row-gap: 30px; */
+    row-gap: 30px;
+    justify-content: center;
+}
+
+.card {
+    justify-self: center;
 }
