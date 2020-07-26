@@ -1,0 +1,90 @@
+.RegistrationSuccess {
+    display: flex;
+    background-color: rgba(0,0,0,0.5);
+    /* background-color: #E5E5E5; */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.card {
+    display: grid;
+    grid-template-rows: 1fr 1.2fr 0.8fr;
+    background-color: white;
+    width: 88%;
+    margin: 48px 0;
+    border-radius: 10px;
+    padding: 20px 0;
+}
+
+.title {
+    font-weight: 600;
+    font-size: clamp(24px, 6.4vw, 36px);
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.text {
+    font-size: clamp(14px, 3.73vw, 20px);
+    margin: 0 clamp(20px, 5.2vw, 120px);
+}
+
+.btns {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+}
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.listBtn, .continueBtn {
+    font-size: 14px;
+    font-weight: 600;
+}
+.continueBtn {
+    padding: 10px 16px;
+}
+
+@media only screen and (min-width: 330px) {
+    .card {
+        grid-template-rows: 1fr 2.4fr 0.8fr;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .listBtn, .continueBtn {
+        font-size: 18px;
+    }
+    .continueBtn {
+        padding: 12px 30px;
+    }
+    .card {
+        grid-template-rows: 1fr 2fr 0.8fr;
+    }
+    .btns {
+        grid-template-columns: 1.4fr 0.6fr;
+    }
+    .btn:nth-of-type(1) {
+        justify-content: flex-end;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .text {
+        margin: 0 120px;
+    }
+    .card {
+        width: 64%;
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+    .card {
+        width: 64%;
+        grid-template-rows: 1fr 3.2fr 0.8fr;
+    }
+}
