@@ -1,0 +1,101 @@
+.Verification {
+    display: flex;
+    background-color: rgba(0,0,0,0.5);
+    /* background-color: #E5E5E5; */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.header {
+    margin: 15px 6%;
+}
+
+.title {
+    font-weight: 600;
+    font-size: clamp(24px, 6.4vw, 36px);
+    margin: 10px 0;
+}
+
+.subtitle {
+    font-weight: 300;
+    font-size: clamp(12px, 3.2vw, 16px);
+    margin: 10px 0;
+}
+
+.form {
+    background-color: white;
+    width: 88%;
+    margin: 48px 0;
+    border-radius: 10px;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 55px;
+    margin-bottom: 80px;
+    margin-left: clamp(30px, 8vw, 240px);
+    margin-right: clamp(30px, 8vw, 240px);
+}
+
+.inputLabel {
+    font-size: clamp(14px, 3.8vw, 18px);
+    margin: 2.5px 0;
+}
+
+.inputField {
+    border: 2px solid #000000;
+    box-sizing: border-box;
+    border-radius: 10px;
+    min-height: 40px;
+    margin: 2.5px 0;
+    text-align: center;
+}
+
+.inputField:focus {
+    outline: none;
+}
+
+.submitBtn {
+    padding: 10px 20px;
+    margin: 20px 0; 
+}
+
+@media only screen and (min-width: 768px) {
+    .formGroup {
+        margin-left: clamp(30px, 12vw, 240px);
+        margin-right: clamp(30px, 12vw, 240px);
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .title {
+        font-size: clamp(32px, 2.4vw, 36px);
+        margin: 25px 0;
+    }
+    .subtitle {
+        font-size: clamp(18px, 1.38vw, 20px);
+        margin: 20px 120px;
+    }
+    .form {
+        width: 64%;
+    }
+    .formGroup {
+        margin-top: 76px;
+        margin-bottom: 100px;
+        margin-left: clamp(30px, 16vw, 240px);
+        margin-right: clamp(30px, 16vw, 240px);
+    }
+    .inputLabel {
+        font-size: clamp(16px, 1.4vw, 22px);
+    }
+    .inputField {
+        font-size: clamp(18px, 1.2vw, 20px);
+        margin: 15px 0;
+    }
+    .submitBtn {
+        margin: 20px 0 50px 0;
+    }
+}

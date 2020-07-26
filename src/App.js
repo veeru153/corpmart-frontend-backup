@@ -6,6 +6,7 @@ import BusinessesForSale from './screens/BusinessesForSale/BusinessesForSale';
 import Testimonials from './screens/Testimonials/Testimonials';
 import Blogs from './screens/Blogs/Blogs';
 import ListingForm from './screens/ListingForm/ListingForm';
+import Verification from './screens/Verification/Verification';
 
 function App() {
     return (
@@ -14,7 +15,8 @@ function App() {
             {/* <BusinessesForSale /> */}
             {/* <Testimonials /> */}
             {/* <Blogs /> */}
-            <ListingForm />
+            {/* <ListingForm /> */}
+            <Verification />
         </div>
     );
 }

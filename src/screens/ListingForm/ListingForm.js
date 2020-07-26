@@ -3,6 +3,8 @@ import styles from './ListingForm.module.css'
 import { Formik } from 'formik';
 import Button from '../../components/UI/Button/Button';
 
+// TODO: Implement Dropdowns and Checkboxes
+
 const ListingForm = () => {
     return (
         <div className={styles.ListingForm}>
