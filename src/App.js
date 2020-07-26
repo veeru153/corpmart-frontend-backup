@@ -10,6 +10,7 @@ import Verification from './screens/Verification/Verification';
 import Login from './screens/Login/Login';
 import Signup from './screens/Signup/Signup';
 import RegistrationSuccess from './screens/RegistrationSuccess/RegistrationSuccess';
+import ContactUs from './screens/ContactUs/ContactUs';
 
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
@@ -27,6 +28,7 @@ function App() {
                     <Route path="/login" component={Login} />
                     <Route path="/signup" component={Signup} />
                     <Route path="/welcome" component={RegistrationSuccess} />
+                    <Route path="/contact-us" component={ContactUs} />
                 </div>
             </Switch>
         </BrowserRouter>

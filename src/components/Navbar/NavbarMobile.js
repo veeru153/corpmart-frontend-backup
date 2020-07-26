@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './NavbarMobile.module.css';
-import { Menu, Search } from 'react-feather'
+import { Menu, Search } from 'react-feather';
+import { Link } from 'react-router-dom';
 
 const NavbarMobile = (props) => {
     const [transparent, setTransparent] = useState(true);
@@ -57,14 +58,14 @@ const NavbarMobile = (props) => {
                     onClick={(e) => e.stopPropagation()}
                 >
                     <p className={styles.navName}>Shubham Ahuja</p>
-                    <p>My Dashboard</p>
-                    <p>Home</p>
-                    <p>Businesses for Sale</p>
-                    <p>FAQs</p>
-                    <p>Contact Us</p>
+                    <Link to="/dashboard" className={styles.navLink}><p>My Dashboard</p></Link>
+                    <Link to="/" className={styles.navLink}><p>Home</p></Link>
+                    <Link to="/explore" className={styles.navLink}><p>Businesses for Sale</p></Link>
+                    <Link to="/faq" className={styles.navLink}><p>FAQs</p></Link>
+                    <Link to="/contact-us" className={styles.navLink}><p>Contact Us</p></Link>
                     <p>Logout</p>
-                    {/* <p>Login</p>
-                    <p>Sign up</p> */}
+                    <Link to="/login" className={styles.navLink}><p>Login</p></Link>
+                    <Link to="/signup" className={styles.navLink}><p>Sign up</p></Link>
                 </div>
             </div>
         </>
