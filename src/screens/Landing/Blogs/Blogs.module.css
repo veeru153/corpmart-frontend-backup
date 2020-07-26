@@ -27,6 +27,10 @@
 .btnContainer {
     margin-top: 30px;
 }
+.btnContainer a {
+    text-decoration: none;
+    color: inherit;
+}
 
 @media only screen and (min-width: 600px) {
     .title {

@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Blogs.module.css';
 import Button from '../../../components/UI/Button/Button';
 import BlogSlide from '../../../components/BlogSlide/BlogSlide';
+import { Link } from 'react-router-dom';
 
 const Blogs = () => {
 
@@ -22,12 +23,14 @@ const Blogs = () => {
                 />
             </div>
             <div className={styles.btnContainer}>
-                <Button 
-                    label="View More" 
-                    type="orange" 
-                    style={{ padding: '12px 56px' }} 
-                    textStyle={{ margin: 0 }}
-                />
+                <Link to="/blogs">
+                    <Button 
+                        label="View More" 
+                        type="orange" 
+                        style={{ padding: '12px 56px' }} 
+                        textStyle={{ margin: 0 }}
+                    />
+                </Link>
             </div>
         </div>
     )

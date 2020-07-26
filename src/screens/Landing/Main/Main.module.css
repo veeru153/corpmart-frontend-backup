@@ -50,6 +50,11 @@
     padding: 0 10px;
 }
 
+.option a {
+    text-decoration: none;
+    color: inherit;
+}
+
 .optionLabel {
     font-weight: 500;
     font-size: clamp(18px, 1.2vw, 24px);

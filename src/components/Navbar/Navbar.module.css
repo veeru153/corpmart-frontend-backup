@@ -22,6 +22,11 @@
     font-weight: 600;
 }
 
+.navBtn a {
+    text-decoration: none;
+    color: inherit;
+}
+
 .signupBtn {
     padding: 12px clamp(4px, 1.6vw, 40px);
     transition: all 0.2s ease-in-out;

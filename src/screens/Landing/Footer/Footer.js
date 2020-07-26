@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Footer.module.css';
-import { Facebook, LinkedIn, Twitter, Instagram } from '@material-ui/icons'
+import { Facebook, LinkedIn, Twitter, Instagram } from '@material-ui/icons';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
@@ -9,67 +10,107 @@ const Footer = () => {
                 <div className={styles.showcaseCorpmart}>
                     <div className={styles.showcase}>
                         <p className={styles.sectionHeader}>Businesses for Sale</p>
-                        <p className={styles.links}>List your business</p>
-                        <p className={styles.links}>Acquire a business</p>
+                        <p className={styles.links}>
+                            <Link to="/list-your-business">List your business</Link>
+                        </p>
+                        <p className={styles.links}>
+                            <Link to="/explore">Acquire a business</Link>
+                        </p>
                     </div>
                     <div className={styles.corpmart}>
                         <p className={styles.sectionHeader}>CorpMart</p>
                         <div className={styles.links}>
-                            <Facebook />
-                            <p style={{ margin: '0 12px' }}>Facebook</p>
+                            <a href="https://www.facebook.com" target="_blank">
+                                <Facebook />
+                                <p style={{ margin: '0 12px' }}>Facebook</p>
+                            </a>
                         </div>
                         <div className={styles.links}>
-                            <LinkedIn />
-                            <p style={{ margin: '0 12px' }}>LinkedIn</p>
+                            <a href="https://www.linkedin.com" target="_blank">
+                                <LinkedIn />
+                                <p style={{ margin: '0 12px' }}>LinkedIn</p>
+                            </a>
                         </div>
                         <div className={styles.links}>
-                            <Twitter />
-                            <p style={{ margin: '0 12px' }}>Twitter</p>
+                            <a href="https://www.twitter.com" target="_blank">
+                                <Twitter />
+                                <p style={{ margin: '0 12px' }}>Twitter</p>
+                            </a>
                         </div>
                         <div className={styles.links}>
-                            <Instagram />
-                            <p style={{ margin: '0 12px' }}>Instagram</p>
+                            <a href="https://www.instagram.com" target="_blank">
+                                <Instagram />
+                                <p style={{ margin: '0 12px' }}>Instagram</p>
+                            </a>
                         </div>
                     </div>
                 </div>
                 <div className={styles.company}>
                     <p className={styles.sectionHeader}>Company</p>
-                    <p className={styles.links}>Contact us</p>
-                    <p className={styles.links}>Blogs</p>
-                    <p className={styles.links}>Testimonials</p>
-                    <p className={styles.links}>FAQs</p>
+                    <p className={styles.links}>
+                        <Link to="/contact-us">Contact us</Link>
+                    </p>
+                    <p className={styles.links}>
+                        <Link to="/blogs">Blogs</Link>
+                    </p>
+                    <p className={styles.links}>
+                        <Link to="/testimonials">Testimonials</Link>
+                    </p>
+                    <p className={styles.links}>
+                        <Link to="/faq">FAQs</Link>
+                    </p>
                 </div>
             </div>
             <div className={styles.Footer}>
                 <div className={styles.showcase}>
                     <p className={styles.sectionHeader}>Businesses for Sale</p>
-                    <p className={styles.links}>List your business</p>
-                    <p className={styles.links}>Acquire a business</p>
+                    <p className={styles.links}>
+                        <Link to="/list-your-business">List your business</Link>
+                    </p>
+                    <p className={styles.links}>
+                        <Link to="/explore">Acquire a business</Link>
+                    </p>
                 </div>
                 <div className={styles.company}>
                     <p className={styles.sectionHeader}>Company</p>
-                    <p className={styles.links}>Contact us</p>
-                    <p className={styles.links}>Blogs</p>
-                    <p className={styles.links}>Testimonials</p>
-                    <p className={styles.links}>FAQs</p>
+                    <p className={styles.links}>
+                        <Link to="/contact-us">Contact us</Link>
+                    </p>
+                    <p className={styles.links}>
+                        <Link to="/blogs">Blogs</Link>
+                    </p>
+                    <p className={styles.links}>
+                        <Link to="/testimonials">Testimonials</Link>
+                    </p>
+                    <p className={styles.links}>
+                        <Link to="/faq">FAQs</Link>
+                    </p>
                 </div>
                 <div className={styles.corpmart}>
                     <p className={styles.sectionHeader}>CorpMart</p>
                     <div className={styles.links}>
-                        <Facebook />
-                        <p style={{ margin: '0 12px' }}>Facebook</p>
+                        <a href="https://www.facebook.com" target="_blank">
+                            <Facebook />
+                            <p style={{ margin: '0 12px' }}>Facebook</p>
+                        </a>
                     </div>
                     <div className={styles.links}>
-                        <LinkedIn />
-                        <p style={{ margin: '0 12px' }}>LinkedIn</p>
+                        <a href="https://www.linkedin.com" target="_blank">
+                            <LinkedIn />
+                            <p style={{ margin: '0 12px' }}>LinkedIn</p>
+                        </a>
                     </div>
                     <div className={styles.links}>
-                        <Twitter />
-                        <p style={{ margin: '0 12px' }}>Twitter</p>
+                        <a href="https://www.twitter.com" target="_blank">
+                            <Twitter />
+                            <p style={{ margin: '0 12px' }}>Twitter</p>
+                        </a>
                     </div>
                     <div className={styles.links}>
-                        <Instagram />
-                        <p style={{ margin: '0 12px' }}>Instagram</p>
+                        <a href="https://www.instagram.com" target="_blank">
+                            <Instagram />
+                            <p style={{ margin: '0 12px' }}>Instagram</p>
+                        </a>
                     </div>
                 </div>
             </div>

@@ -4,6 +4,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from 'react-responsive-carousel';
 import Button from '../../../components/UI/Button/Button';
 import BusinessSlide from '../../../components/BusinessSlide/BusinessSlide';
+import { Link } from 'react-router-dom';
 
 const BusinessForSale = () => {
     return (
@@ -22,12 +23,14 @@ const BusinessForSale = () => {
                 />
             </div>
             <div className={styles.btnContainer}>
-                <Button 
-                    label="View More" 
-                    type="orange" 
-                    style={{ padding: '12px 56px' }} 
-                    textStyle={{ margin: 0 }}
-                />
+                <Link to="/explore">
+                    <Button 
+                        label="View More" 
+                        type="orange" 
+                        style={{ padding: '12px 56px' }} 
+                        textStyle={{ margin: 0 }}
+                    />
+                </Link>
             </div>
         </div>
     )

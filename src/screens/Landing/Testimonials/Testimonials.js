@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './Testimonials.module.css';
 import Button from '../../../components/UI/Button/Button';
-// import TestimonialSlide from './TestimonialSlide/TestimonialSlide';
 import TestimonialSlide from '../../../components/TestimonialSlide/TestimonialSlide';
+import { Link } from 'react-router-dom';
 
 const Testimonials = () => {
 
@@ -23,12 +23,14 @@ const Testimonials = () => {
                 />
             </div>
             <div className={styles.btnContainer}>
-                <Button 
-                    label="View More" 
-                    type="orange" 
-                    style={{ padding: '12px 56px' }} 
-                    textStyle={{ margin: 0 }}
-                />
+                <Link to="/testimonials">
+                    <Button 
+                        label="View More" 
+                        type="orange" 
+                        style={{ padding: '12px 56px' }} 
+                        textStyle={{ margin: 0 }}
+                    />
+                </Link>
             </div>
         </div>
     )
