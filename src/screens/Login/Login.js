@@ -1,13 +1,13 @@
 import React from 'react';
-import styles from './Verification.module.css'
+import styles from './Login.module.css'
 import { Formik } from 'formik';
 import Button from '../../components/UI/Button/Button';
 
-const Verification = () => {
+const Login = () => {
     return (
-        <div className={styles.Verification}>
+        <div className={styles.Login}>
         <Formik
-            initialValues={{ otp: '' }}
+            initialValues={{ loginId: '' }}
             onSubmit={(values, actions) => {
                 console.log(values);
             }}
@@ -15,20 +15,20 @@ const Verification = () => {
             {(props) => (
                 <form className={styles.form}>
                     <div className={styles.header}>
-                        <p className={styles.title}>Verification</p>
-                        <p className={styles.subtitle}>A One-Time-Password ( OTP ) has been sent to your Mobile number and Email ID.</p>
+                        <p className={styles.title}>Log In</p>
                     </div>
                     <div>
                         <div className={styles.formGroup}>
-                            <p className={styles.inputLabel}>Enter OTP</p>
+                            <p className={styles.inputLabel}>Enter Mobile number OR Email ID</p>
                             <input
-                                id="otp"
-                                onChange={props.handleChange('otp')}
-                                value={props.values.otp}
+                                id="loginId"
+                                onChange={props.handleChange('loginId')}
+                                value={props.values.loginId}
                                 className={styles.inputField}
                             />
                         </div>  
                     </div>
+                    <p className={styles.subtitle}>Don’t have an account? Sign Up.</p>
                     <Button label="Submit" type="blue" pressed={props.handleSubmit} className={styles.submitBtn}/>
                 </form>
             )}
@@ -37,4 +37,4 @@ const Verification = () => {
     )
 }
 
-export default Verification;
+export default Login;
