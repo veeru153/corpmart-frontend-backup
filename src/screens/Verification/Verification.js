@@ -29,7 +29,9 @@ const Verification = () => {
                             />
                         </div>  
                     </div>
-                    <Button label="Submit" type="blue" pressed={props.handleSubmit} className={styles.submitBtn}/>
+                    <div>
+                        <Button label="Submit" type="blue" pressed={props.handleSubmit} className={styles.submitBtn}/>
+                    </div>
                 </form>
             )}
         </Formik>

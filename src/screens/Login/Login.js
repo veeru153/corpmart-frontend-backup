@@ -28,8 +28,10 @@ const Login = () => {
                             />
                         </div>  
                     </div>
-                    <p className={styles.subtitle}>Don’t have an account? Sign Up.</p>
-                    <Button label="Submit" type="blue" pressed={props.handleSubmit} className={styles.submitBtn}/>
+                    <div>
+                        <p className={styles.subtitle}>Don’t have an account? Sign Up.</p>
+                        <Button label="Submit" type="blue" pressed={props.handleSubmit} className={styles.submitBtn}/>
+                    </div>
                 </form>
             )}
         </Formik>

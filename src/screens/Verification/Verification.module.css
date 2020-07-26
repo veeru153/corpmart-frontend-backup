@@ -28,7 +28,9 @@
     width: 88%;
     margin: 48px 0;
     border-radius: 10px;
-    padding: 20px;
+    padding: 20px 0;
+    display: grid;
+    grid-template-rows: 0.5fr 0.5fr 0.5fr;
 }
 
 .formGroup {
@@ -74,18 +76,15 @@
 @media only screen and (min-width: 1024px) {
     .title {
         font-size: clamp(32px, 2.4vw, 36px);
-        margin: 25px 0;
     }
     .subtitle {
         font-size: clamp(18px, 1.38vw, 20px);
-        margin: 20px 120px;
     }
     .form {
         width: 64%;
+        grid-template-rows: 0.1fr 0.1fr 0.1fr;
     }
     .formGroup {
-        margin-top: 76px;
-        margin-bottom: 100px;
         margin-left: clamp(30px, 16vw, 240px);
         margin-right: clamp(30px, 16vw, 240px);
     }
@@ -98,5 +97,18 @@
     }
     .submitBtn {
         margin: 20px 0 50px 0;
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+    .title {
+        margin: 25px 0;
+    }
+    .subtitle {
+        margin: 20px 120px;
+    }
+    .formGroup {
+        margin-top: 76px;
+        margin-bottom: 100px;
     }
 }
