@@ -19,6 +19,8 @@ const BusinessForSale = () => {
                     subtype="Pvt. Ltd."
                     industry="Pharmaceutical"
                     state="Haryana"
+                    capitalPrice="INR 20 lakh"
+                    askingPrice="INR 40 lakh"
                     price="INR 40 lakh"
                 />
             </div>

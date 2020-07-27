@@ -5,7 +5,7 @@ import NavbarMobile from '../../components/Navbar/NavbarMobile';
 import { Formik } from 'formik';
 import Button from '../../components/UI/Button/Button';
 import { Facebook, LinkedIn, Twitter, Instagram } from '@material-ui/icons';
-import Footer from './Footer';
+import Footer from '../Landing/Footer/Footer';
 
 const ContactUs = () => {
     return (

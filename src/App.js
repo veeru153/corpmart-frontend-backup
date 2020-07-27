@@ -3,6 +3,7 @@ import './App.css';
 
 import Landing from './screens/Landing/Landing';
 import BusinessesForSale from './screens/BusinessesForSale/BusinessesForSale';
+import BusinessDetails from './screens/BusinessDetails/BusinessDetails';
 import Testimonials from './screens/Testimonials/Testimonials';
 import Blogs from './screens/Blogs/Blogs';
 import ListingForm from './screens/ListingForm/ListingForm';
@@ -21,6 +22,7 @@ function App() {
                 <div className="App">
                     <Route exact path="/" component={Landing} />
                     <Route path="/explore" component={BusinessesForSale} />
+                    <Route path="/business" component={BusinessDetails} />
                     <Route path="/testimonials" component={Testimonials} />
                     <Route path="/blogs" component={Blogs} />
                     <Route path="/list-your-business" component={ListingForm} />

@@ -3,7 +3,7 @@ import styles from './BusinessSlide.module.css';
 import Button from '../UI/Button/Button';
 
 const BusinessSlide = (props) => {
-    const { type, subtype, industry, state, price } = props;
+    const { type, subtype, industry, state, capitalPrice, askingPrice } = props;
     return (
         <div className={[styles.slide, props.className].join(' ')}>
             <p className={styles.businessDesc}>A textile manufacturing Pvt. Ltd. company based in Surat.</p>
@@ -25,8 +25,12 @@ const BusinessSlide = (props) => {
                     <div className={styles.businessInfoValue}>{state}</div>
                 </div>
                 <div className={styles.businessInfoRow}>
+                    <div className={styles.businessInfoLabel}>Capital Price</div>
+                    <div className={styles.businessInfoValue}>{capitalPrice}</div>
+                </div>
+                <div className={styles.businessInfoRow}>
                     <div className={styles.businessInfoLabel}>Asking Price</div>
-                    <div className={styles.businessInfoValue} style={{ fontWeight: 'normal' }}>{price}</div>
+                    <div className={styles.businessInfoValue} style={{ fontWeight: 'normal' }}>{askingPrice}</div>
                 </div>
             </div>
             <div className={styles.btnContainer}>

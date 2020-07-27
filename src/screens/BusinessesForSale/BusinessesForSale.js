@@ -27,7 +27,8 @@ const BusinessesForSale = () => {
                             subtype="Pvt. Ltd."
                             industry="Pharmaceutical"
                             state="Haryana"
-                            price="INR 40 lakh"
+                            capitalPrice="INR 20 lakh"
+                            askingPrice="INR 40 lakh"
                             className={styles.card}
                         />
                         <BusinessSlide
@@ -35,7 +36,8 @@ const BusinessesForSale = () => {
                             subtype="Pvt. Ltd."
                             industry="Pharmaceutical"
                             state="Haryana"
-                            price="INR 40 lakh"
+                            capitalPrice="INR 20 lakh"
+                            askingPrice="INR 40 lakh"
                             className={styles.card}
                         />
                         <BusinessSlide
@@ -43,7 +45,8 @@ const BusinessesForSale = () => {
                             subtype="Pvt. Ltd."
                             industry="Pharmaceutical"
                             state="Haryana"
-                            price="INR 40 lakh"
+                            capitalPrice="INR 20 lakh"
+                            askingPrice="INR 40 lakh"
                             className={styles.card}
                         />
                         <BusinessSlide
@@ -51,7 +54,8 @@ const BusinessesForSale = () => {
                             subtype="Pvt. Ltd."
                             industry="Pharmaceutical"
                             state="Haryana"
-                            price="INR 40 lakh"
+                            capitalPrice="INR 20 lakh"
+                            askingPrice="INR 40 lakh"
                             className={styles.card}
                         />
                     </div>
