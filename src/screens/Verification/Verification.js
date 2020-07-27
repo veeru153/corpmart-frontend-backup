@@ -2,14 +2,44 @@ import React from 'react';
 import styles from './Verification.module.css'
 import { Formik } from 'formik';
 import Button from '../../components/UI/Button/Button';
+import Axios from '../../axios';
+import { withRouter } from 'react-router-dom';
+import Cookies from 'universal-cookie';
 
-const Verification = () => {
+const Verification = (props) => {
+    if(props.location.state == undefined) props.history.push('/signup');
+    const cookies = new Cookies();
+
     return (
         <div className={styles.Verification}>
             <Formik
                 initialValues={{ otp: '' }}
-                onSubmit={(values, actions) => {
+                onSubmit={ async (values, actions) => {
+                    const prevState = props.location.state;
+                    let payload;
                     console.log(values);
+
+                    if(prevState.email) {
+                        payload = {
+                            email: prevState.email,
+                            otp: parseInt(values.otp),
+                        }
+                    } else {
+                        payload = {
+                            mobile: prevState.mobile,
+                            otp: parseInt(values.otp),
+                        }
+                    }
+
+                    try {
+                        let req = await Axios.post('/login/?format=json', payload);
+                        cookies.set('userId', req, {
+                            path: '/',
+                            sameSite: 'strict',
+                        })
+                        console.log(req.data);
+                    } catch (e) { console.log(e); }
+
                 }}
             >
                 {(props) => (
@@ -39,4 +69,4 @@ const Verification = () => {
     )
 }
 
-export default Verification;
+export default withRouter(Verification);

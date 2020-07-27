@@ -2,14 +2,26 @@ import React from 'react';
 import styles from './Login.module.css'
 import { Formik } from 'formik';
 import Button from '../../components/UI/Button/Button';
+import Axios from '../../axios';
+import { withRouter, Link } from 'react-router-dom';
 
-const Login = () => {
+const Login = (props) => {
     return (
         <div className={styles.Login}>
         <Formik
             initialValues={{ loginId: '' }}
-            onSubmit={(values, actions) => {
-                console.log(values);
+            onSubmit={ async (values, actions) => {
+                let payload;
+                if(values.loginId.match(/((([!#$%&'*+\-/=?^_`{|}~\w])|([!#$%&'*+\-/=?^_`{|}~\w][!#$%&'*+\-/=?^_`{|}~\.\w]{0,}[!#$%&'*+\-/=?^_`{|}~\w]))[@]\w+([-.]\w+)*\.\w+([-.]\w+)*)/g)) {
+                    payload = { email: values.loginId }
+                } else {
+                    payload = { mobile: values.loginId }
+                }
+                try {
+                    let req = await Axios.post('/generate_otp/?format=json', payload)
+                    console.log(req.data)
+                } catch (e) { console.log(e); }
+                props.history.push('/verification', payload)
             }}
         >
             {(props) => (
@@ -29,7 +41,9 @@ const Login = () => {
                         </div>  
                     </div>
                     <div>
-                        <p className={styles.subtitle}>Don’t have an account? Sign Up.</p>
+                        <p className={styles.subtitle}>
+                            Don’t have an account? <Link to="/signup">Sign Up</Link>.
+                        </p>
                         <Button label="Submit" type="blue" pressed={props.handleSubmit} className={styles.submitBtn}/>
                     </div>
                 </form>
@@ -39,4 +53,4 @@ const Login = () => {
     )
 }
 
-export default Login;
+export default withRouter(Login);

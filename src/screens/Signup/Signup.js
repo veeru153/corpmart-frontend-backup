@@ -2,14 +2,35 @@ import React from 'react';
 import styles from './Signup.module.css';
 import { Formik } from 'formik';
 import Button from '../../components/UI/Button/Button';
+import Axios from '../../axios';
+import { withRouter, Link } from 'react-router-dom';
 
-const Signup = () => {
+const Signup = (props) => {
     return (
         <div className={styles.Signup}>
             <Formik
                 initialValues={{ firstName: '', lastName: '', countryCode: '+91', mobile: '', email: '', orgName: '' }}
-                onSubmit={(values, actions) => {
+                onSubmit={ async (values, actions) => {
+                    let payload = {
+                        email: values.email,
+                        first_name: values.firstName,
+                        last_name: values.lastName,
+                        country_code: parseInt(values.countryCode.substr(1)),
+                        mobile: parseInt(values.mobile),
+                        organisation_name: values.orgName,
+                    }
+                    try {
+                        let req = await Axios.post('/signup/?format=json', payload);
+                        console.log(req.data);
+                    } catch (e) { console.log(e);}
 
+                    try {
+                        let otp = await Axios.post('/generate_otp/?format=json', {
+                            email: values.email
+                        })
+                        console.log(otp.data);
+                    } catch (e) { console.log(e); }
+                    props.history.push('/verification', payload);
                 }}
             >
                 {(props) => (
@@ -79,7 +100,9 @@ const Signup = () => {
                             </div>
                         </div>
                         <div>
-                            <p className={styles.subtitle}>Already have an account? Log In.</p>
+                            <p className={styles.subtitle}>
+                                Already have an account? <Link to="/login">Log In</Link>.
+                            </p>
                             <Button label="Next" type="blue" pressed={props.handleSubmit} className={styles.submitBtn} />
                         </div>
                     </form>
@@ -89,4 +112,4 @@ const Signup = () => {
     )
 }
 
-export default Signup;
+export default withRouter(Signup);

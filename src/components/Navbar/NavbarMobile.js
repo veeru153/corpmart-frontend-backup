@@ -26,7 +26,10 @@ const NavbarMobile = (props) => {
         <>
             <div 
                 className={styles.Navbar} 
-                style={{ backgroundColor: transparent && dynamic ? 'rgba(0,0,0,0)' : 'white'}}
+                style={{ 
+                    backgroundColor: transparent && dynamic ? 'rgba(0,0,0,0)' : 'white',
+                    boxShadow: transparent && dynamic ? 'none' : '0px 0px 10px rgba(0, 0, 0, 0.25)',
+                }}
             >
                 <button className={styles.navBtn} onClick={() => setExpanded(true)}>
                     <Menu 

@@ -22,7 +22,10 @@ const Navbar = (props) => {
     return (
         <div
             className={styles.navbarContainer}
-            style={{ backgroundColor: transparent && dynamic ? 'transparent' : 'white' }}
+            style={{ 
+                backgroundColor: transparent && dynamic ? 'transparent' : 'white',
+                boxShadow: transparent && dynamic ? 'none' : '0px 0px 10px rgba(0, 0, 0, 0.25)',
+            }}
         >
             <div
                 className={styles.Navbar}
