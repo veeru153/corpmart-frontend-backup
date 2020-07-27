@@ -60,9 +60,21 @@
     outline: none;
 }
 
+.mobileNoFields {
+    display: grid;
+    grid-template-columns: 3fr 7fr;
+    column-gap: 2px;
+}
+
 .submitBtn {
     padding: 10px 20px;
     margin-bottom: 20px;
+}
+
+@media only screen and (min-width: 425px) {
+    .mobileNoFields {
+        grid-template-columns: 1fr 9fr;
+    }
 }
 
 @media only screen and (min-width: 512px) {
@@ -76,6 +88,9 @@
     .contactFields {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
+    }
+    .mobileNoFields {
+        grid-template-columns: 1.5fr 8.5fr;
     }
 }
 

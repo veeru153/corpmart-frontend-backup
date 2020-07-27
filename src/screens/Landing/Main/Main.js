@@ -8,7 +8,7 @@ const Main = () => {
         <div className={styles.Main}>
             <div className={styles.splashContainer}>
                 <div className={styles.splash}>
-                    <p className={styles.tagline}>One stop solution for Business acquisition</p>
+                    <p className={styles.tagline}>One Stop Solution for Business Acquisition</p>
                 </div>
             </div>
             <div className={styles.panel}>

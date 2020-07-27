@@ -7,7 +7,10 @@ const Signup = () => {
     return (
         <div className={styles.Signup}>
             <Formik
-                initialValues={{ firstName: '', lastName: '', mobile: '', email: '', orgName: '' }}
+                initialValues={{ firstName: '', lastName: '', countryCode: '+91', mobile: '', email: '', orgName: '' }}
+                onSubmit={(values, actions) => {
+
+                }}
             >
                 {(props) => (
                     <form className={styles.form}>
@@ -38,12 +41,22 @@ const Signup = () => {
                             <div className={styles.contactFields}>
                                 <div className={styles.formGroup}>
                                     <p className={styles.inputLabel}>Mobile Number*</p>
-                                    <input
-                                        id="mobile"
-                                        onChange={props.handleChange('mobile')}
-                                        value={props.values.mobile}
-                                        className={styles.inputField}
-                                    />
+                                    <div className={styles.mobileNoFields}>
+                                        <input
+                                            id="countryCode"
+                                            onChange={props.handleChange('countryCode')}
+                                            value={props.values.countryCode}
+                                            className={styles.inputField}
+                                            style={{ width: '100%' }}
+                                        />
+                                        <input
+                                            id="mobile"
+                                            onChange={props.handleChange('mobile')}
+                                            value={props.values.mobile}
+                                            className={styles.inputField}
+                                            style={{ width: '100%' }}
+                                        />
+                                    </div>
                                 </div>
                                 <div className={styles.formGroup}>
                                     <p className={styles.inputLabel}>Email ID*</p>
