@@ -5,6 +5,7 @@ import Navbar from '../../components/Navbar/Navbar';
 import BusinessSlide from '../../components/BusinessSlide/BusinessSlide';
 import FilterSortMobile from '../../components/FilterSort/FilterSortMobile';
 import FilterDiv from '../../components/FilterSort/FilterDiv/FilterDiv';
+import Footer from '../Landing/Footer/Footer';
 
 // TODO: Get Businesses from API
 
@@ -62,6 +63,7 @@ const BusinessesForSale = () => {
                 </div>
             </div>
             <FilterSortMobile />
+            <Footer />
         </div>
     )
 }

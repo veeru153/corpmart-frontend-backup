@@ -20,6 +20,12 @@
     align-items: center;
 }
 
+.filterOptions {
+    scrollbar-width: 0;
+    -ms-overflow-style: none;
+}
+.filterOptions::-webkit-scrollbar { display: none; }
+
 .option {
     all: unset;
     display: grid;

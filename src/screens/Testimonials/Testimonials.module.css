@@ -19,9 +19,8 @@
 }
 
 .carousel {
-    /* display: grid; */
-    /* grid-template-columns: repeat(auto-fit, minmax(330px, 330px)); */
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -40,7 +39,7 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         padding: 0 60px;
-        row-gap: 15px;
+        row-gap: 5px;
     }
 }
 

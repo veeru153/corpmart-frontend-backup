@@ -22,12 +22,15 @@ const State = () => {
                     {expanded ? <ChevronUp size={16} rotate={180}/> : <ChevronDown size={16} />}
                 </div>
             </button>
-            <div style={{ 
-                height: expanded ? '100%' : '0', 
-                overflow: expanded ? 'scroll' : "hidden", 
-                maxHeight: 'calc(31px * 8)',
-                backgroundColor: '#E8EAED',
-            }}>
+            <div 
+                className={styles.filterOptions}
+                style={{ 
+                    height: expanded ? '100%' : '0', 
+                    overflow: expanded ? 'scroll' : "hidden", 
+                    maxHeight: 'calc(31px * 8)',
+                    backgroundColor: '#E8EAED',
+                }}
+            >
                 {stateList.map((state, index) => (
                     <button className={styles.option} onClick={() => handleState(index)}>
                         <p className={styles.optionExpLabel}>{state.name}</p>

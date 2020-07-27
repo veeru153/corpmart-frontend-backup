@@ -46,5 +46,12 @@
     .container {
         display: grid;
         grid-template-columns: 1.5fr 5fr;
+        height: 100vh;
     }
+    .content {
+        overflow-y: scroll;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .content::-webkit-scrollbar { display: none; }
 }

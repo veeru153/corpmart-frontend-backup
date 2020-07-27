@@ -6,6 +6,7 @@
     width: 80%;
     max-width: 330px;
     padding: 10px 20px;
+    margin: 10px 0;
 }
 
 .author {
@@ -52,6 +53,7 @@
 @media only screen and (min-width: 768px) {
     .slide {
         padding: 15px 30px;
+        justify-self: center;
     }
     .author {
         margin: 15px 0;

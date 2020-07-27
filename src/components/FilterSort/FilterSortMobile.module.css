@@ -27,7 +27,10 @@
 .expanded {
     max-height: 50vh;
     overflow: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
+.expanded::-webkit-scrollbar { display: none; }
 
 .option {
     all: unset;

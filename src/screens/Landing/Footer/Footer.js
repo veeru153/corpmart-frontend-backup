@@ -20,25 +20,25 @@ const Footer = () => {
                     <div className={styles.corpmart}>
                         <p className={styles.sectionHeader}>CorpMart</p>
                         <div className={styles.links}>
-                            <a href="https://www.facebook.com" target="_blank">
+                            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
                                 <Facebook />
                                 <p style={{ margin: '0 12px' }}>Facebook</p>
                             </a>
                         </div>
                         <div className={styles.links}>
-                            <a href="https://www.linkedin.com" target="_blank">
+                            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
                                 <LinkedIn />
                                 <p style={{ margin: '0 12px' }}>LinkedIn</p>
                             </a>
                         </div>
                         <div className={styles.links}>
-                            <a href="https://www.twitter.com" target="_blank">
+                            <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
                                 <Twitter />
                                 <p style={{ margin: '0 12px' }}>Twitter</p>
                             </a>
                         </div>
                         <div className={styles.links}>
-                            <a href="https://www.instagram.com" target="_blank">
+                            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
                                 <Instagram />
                                 <p style={{ margin: '0 12px' }}>Instagram</p>
                             </a>
@@ -89,25 +89,25 @@ const Footer = () => {
                 <div className={styles.corpmart}>
                     <p className={styles.sectionHeader}>CorpMart</p>
                     <div className={styles.links}>
-                        <a href="https://www.facebook.com" target="_blank">
+                        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
                             <Facebook />
                             <p style={{ margin: '0 12px' }}>Facebook</p>
                         </a>
                     </div>
                     <div className={styles.links}>
-                        <a href="https://www.linkedin.com" target="_blank">
+                        <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
                             <LinkedIn />
                             <p style={{ margin: '0 12px' }}>LinkedIn</p>
                         </a>
                     </div>
                     <div className={styles.links}>
-                        <a href="https://www.twitter.com" target="_blank">
+                        <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
                             <Twitter />
                             <p style={{ margin: '0 12px' }}>Twitter</p>
                         </a>
                     </div>
                     <div className={styles.links}>
-                        <a href="https://www.instagram.com" target="_blank">
+                        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
                             <Instagram />
                             <p style={{ margin: '0 12px' }}>Instagram</p>
                         </a>
