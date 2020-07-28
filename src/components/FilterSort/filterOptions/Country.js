@@ -24,12 +24,15 @@ const Country = () => {
                     {expanded ? <ChevronUp size={16} rotate={180}/> : <ChevronDown size={16} />}
                 </div>
             </button>
-            <div style={{ 
-                height: expanded ? '100%' : '0', 
-                overflow: expanded ? 'scroll' : "hidden", 
-                maxHeight: 'calc(31px * 2)',
-                backgroundColor: '#E8EAED',
-            }}>
+            <div 
+                className={styles.filterOptions}
+                style={{ 
+                    height: expanded ? '100%' : '0', 
+                    overflow: expanded ? 'scroll' : "hidden", 
+                    maxHeight: 'calc(31px * 2)',
+                    backgroundColor: '#E8EAED',
+                }}
+            >
                 {countryList.map((country, index) => (
                     <button className={styles.option} onClick={() => handleCountry(index)}>
                         <p className={styles.optionExpLabel}>{country.name}</p>
