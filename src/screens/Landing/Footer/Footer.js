@@ -130,7 +130,7 @@ const Footer = () => {
                 </div>
             </div>
             <div className={styles.copyright}>
-                <div>Copyright © 2020 CorpMart Private Limited. All Rights Reserved.</div>
+                <div>Copyright © 2020 CorpMart. All Rights Reserved.</div>
                 <div className={styles.tos}>Terms of Use | Privacy Policy</div>
             </div>
         </>
