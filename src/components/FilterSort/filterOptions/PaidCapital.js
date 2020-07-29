@@ -8,7 +8,6 @@ import Slider from '../../UI/MySlider/MySlider';
 const PaidCapital = () => {
     const [expanded, setExpanded] = useState(false);
     const [values, setValues] = useState([10, 450000]);
-    const min = 14999;
     const min = 0;
     const max = 450001;
 
