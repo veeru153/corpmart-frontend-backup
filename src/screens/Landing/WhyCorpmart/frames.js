@@ -2,6 +2,8 @@ import saveTime from './imgs/saveTime.png';
 import verified from './imgs/verified.png';
 import legal from './imgs/legal.png';
 import deals from './imgs/deals.png';
+import sellWithClicks from './imgs/sellWithClicks.png';
+import valuation from './imgs/valuation.png';
 
 const frames = [
     {
@@ -20,9 +22,19 @@ const frames = [
         img: legal,
     },
     {
-        title: 'Hassle Free Deals',
+        title: 'Diverse Database',
         desc: 'Acquire a company as per the criteria of the tenders or orders you hold.',
         img: deals,
+    },
+    {
+        title: 'Sell within clicks',
+        desc: 'List your company within clicks. Let CorpMart find a suitable buyer for you.',
+        img: sellWithClicks,
+    },
+    {
+        title: 'Best Valuation',
+        desc: 'Get best value for your business and convert your cost centre into an all cash business deal.',
+        img: valuation,
     },
 ]
 

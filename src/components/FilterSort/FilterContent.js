@@ -6,12 +6,13 @@ import Country from './filterOptions/Country';
 import TypeOfCompany from './filterOptions/TypeOfCompany';
 import SubType from './filterOptions/SubType';
 import Industry from './filterOptions/Industry';
-import Capital from './filterOptions/Capital';
+import AuthCapital from './filterOptions/AuthCapital';
+import PaidCapital from './filterOptions/PaidCapital';
 import SellingPrice from './filterOptions/SellingPrice';
 
 
 const FilterContent = (props) => {
-    const { expanded, type, filterOps, handleOption } = props
+    const { expanded, type, filterOps, handleOption } = props;
     return (
         <div
             className={styles.filterExp}
@@ -24,7 +25,8 @@ const FilterContent = (props) => {
             <TypeOfCompany />
             <SubType />
             <Industry />
-            <Capital />
+            <AuthCapital />
+            <PaidCapital />
             <SellingPrice />
             {filterOps.map((op, index) => (
                 <button

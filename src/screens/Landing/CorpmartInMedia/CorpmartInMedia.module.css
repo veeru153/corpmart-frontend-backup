@@ -1,0 +1,27 @@
+.CorpmartInMedia {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.header {
+    flex: 1;
+}
+
+.title {
+    font-weight: 600;
+    font-size: clamp(24px, 6.4vw, 48px);
+    margin: 7.5px;
+}
+
+.subtitle {
+    font-size: clamp(16px, 4.28vw, 24px);
+    margin: 7.5px 20px 44px 20px;
+}
+
+.mediaShowcase {
+    flex: 9;
+
+}

@@ -33,7 +33,7 @@
 
 .businessInfoRow {
     display: grid;
-    grid-template-columns: 1.48fr 2fr;
+    grid-template-columns: 1fr 1fr;
     margin: 5px 0;
 }
 

@@ -4,13 +4,13 @@ import { ChevronDown, ChevronUp } from 'react-feather';
 
 // TODO: Add Slider
 
-const Capital = () => {
+const AuthCapital = () => {
     const [expanded, setExpanded] = useState(false);
 
     return (
         <div className={styles.section}>
             <button className={styles.header} onClick={() => setExpanded(!expanded)}>
-                <p>Capital (in INR)</p>
+                <p>Authorised Capital (in INR)</p>
                 <div className={styles.headerIcon}>
                     {expanded ? <ChevronUp size={16} rotate={180}/> : <ChevronDown size={16} />}
                 </div>
@@ -27,4 +27,4 @@ const Capital = () => {
     )
 }
 
-export default Capital;
+export default AuthCapital;

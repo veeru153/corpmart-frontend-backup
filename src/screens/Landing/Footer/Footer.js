@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Footer.module.css';
-import { Facebook, LinkedIn, Twitter, Instagram } from '@material-ui/icons';
+import { Facebook, LinkedIn, Twitter, Instagram, WhatsApp } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
@@ -19,6 +19,12 @@ const Footer = () => {
                     </div>
                     <div className={styles.corpmart}>
                         <p className={styles.sectionHeader}>CorpMart</p>
+                        <div className={styles.links}>
+                            <a href="https://www.whatsapp.com" target="_blank" rel="noopener noreferrer">
+                                <WhatsApp />
+                                <p style={{ margin: '0 12px' }}>WhatsApp</p>
+                            </a>
+                        </div>
                         <div className={styles.links}>
                             <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
                                 <Facebook />
@@ -74,6 +80,9 @@ const Footer = () => {
                 <div className={styles.company}>
                     <p className={styles.sectionHeader}>Company</p>
                     <p className={styles.links}>
+                        <Link to="/">Home</Link>
+                    </p>
+                    <p className={styles.links}>
                         <Link to="/contact-us">Contact us</Link>
                     </p>
                     <p className={styles.links}>
@@ -88,6 +97,12 @@ const Footer = () => {
                 </div>
                 <div className={styles.corpmart}>
                     <p className={styles.sectionHeader}>CorpMart</p>
+                    <div className={styles.links}>
+                        <a href="https://www.whatsapp.com" target="_blank" rel="noopener noreferrer">
+                            <WhatsApp />
+                            <p style={{ margin: '0 12px' }}>WhatsApp</p>
+                        </a>
+                    </div>
                     <div className={styles.links}>
                         <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
                             <Facebook />

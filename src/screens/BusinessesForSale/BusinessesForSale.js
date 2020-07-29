@@ -28,7 +28,8 @@ const BusinessesForSale = () => {
                             subtype="Pvt. Ltd."
                             industry="Pharmaceutical"
                             state="Haryana"
-                            capitalPrice="INR 20 lakh"
+                            authCapital="INR 20 lakh"
+                            paidCapital="INR 10 lakh"
                             askingPrice="INR 40 lakh"
                             className={styles.card}
                         />
@@ -37,7 +38,8 @@ const BusinessesForSale = () => {
                             subtype="Pvt. Ltd."
                             industry="Pharmaceutical"
                             state="Haryana"
-                            capitalPrice="INR 20 lakh"
+                            authCapital="INR 20 lakh"
+                            paidCapital="INR 10 lakh"
                             askingPrice="INR 40 lakh"
                             className={styles.card}
                         />
@@ -46,7 +48,8 @@ const BusinessesForSale = () => {
                             subtype="Pvt. Ltd."
                             industry="Pharmaceutical"
                             state="Haryana"
-                            capitalPrice="INR 20 lakh"
+                            authCapital="INR 20 lakh"
+                            paidCapital="INR 10 lakh"
                             askingPrice="INR 40 lakh"
                             className={styles.card}
                         />
@@ -55,7 +58,8 @@ const BusinessesForSale = () => {
                             subtype="Pvt. Ltd."
                             industry="Pharmaceutical"
                             state="Haryana"
-                            capitalPrice="INR 20 lakh"
+                            authCapital="INR 20 lakh"
+                            paidCapital="INR 10 lakh"
                             askingPrice="INR 40 lakh"
                             className={styles.card}
                         />

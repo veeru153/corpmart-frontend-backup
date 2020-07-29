@@ -7,8 +7,6 @@ const FilterDiv = () => {
     const [filterOps, setFilterOps] = useState([
         { name: 'GST No. Availability', checked: false },
         { name: 'Bank Account Availability', checked: false },
-        { name: 'Imp/Exp Code Availability', checked: false },
-        { name: 'Balance Sheet Availability', checked: false },
     ]);
 
     const handleOption = (index) => {
