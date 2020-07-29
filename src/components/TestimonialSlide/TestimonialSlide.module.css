@@ -5,7 +5,7 @@
     text-align: left;
     width: 80%;
     max-width: 330px;
-    padding: 10px 20px;
+    padding: 16px 20px;
     margin: 10px 0;
 }
 
@@ -39,18 +39,18 @@
 }
 
 .testimonialText {
-    margin: 10px 0;
+    margin: 20px 0;
     font-size: 14px;
     font-weight: 300;
     text-align: justify;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 10;
+    -webkit-line-clamp: 11;
     -webkit-box-orient: vertical;
 }
 
-@media only screen and (min-width: 768px) {
+/* @media only screen and (min-width: 768px) {
     .slide {
         padding: 15px 30px;
         justify-self: center;
@@ -67,4 +67,4 @@
     .blogText {
         margin: 15px 0;
     }
-}
+} */

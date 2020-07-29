@@ -1,12 +1,17 @@
 import React from 'react';
 import styles from './BusinessSlide.module.css';
 import Button from '../UI/Button/Button';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
 const BusinessSlide = (props) => {
-    const { type, subtype, industry, state, capitalPrice, askingPrice } = props;
+    const { type, subtype, industry, state, authCapital, paidCapital, askingPrice } = props;
     return (
         <div className={[styles.slide, props.className].join(' ')}>
             <p className={styles.businessDesc}>A textile manufacturing Pvt. Ltd. company based in Surat.</p>
+            <div className={styles.verified}>
+                <CheckCircleIcon style={{ fontSize: 16, color: '#55B546'}}/>
+                <p>Contact Verified</p>
+            </div>
             <div className={styles.businessInfo}>
                 <div className={styles.businessInfoRow}>
                     <div className={styles.businessInfoLabel}>Type</div>
@@ -25,17 +30,21 @@ const BusinessSlide = (props) => {
                     <div className={styles.businessInfoValue}>{state}</div>
                 </div>
                 <div className={styles.businessInfoRow}>
-                    <div className={styles.businessInfoLabel}>Capital Price</div>
-                    <div className={styles.businessInfoValue}>{capitalPrice}</div>
+                    <div className={styles.businessInfoLabel}>Auth. Captial</div>
+                    <div className={styles.businessInfoValue}>{authCapital}</div>
+                </div>
+                <div className={styles.businessInfoRow}>
+                    <div className={styles.businessInfoLabel}>Paid-up Capital</div>
+                    <div className={styles.businessInfoValue}>{paidCapital}</div>
                 </div>
                 <div className={styles.businessInfoRow}>
                     <div className={styles.businessInfoLabel}>Asking Price</div>
-                    <div className={styles.businessInfoValue} style={{ fontWeight: 'normal' }}>{askingPrice}</div>
+                    <div className={styles.businessInfoValue} style={{ fontWeight: 'normal', fontSize: 16 }}>{askingPrice}</div>
                 </div>
             </div>
             <div className={styles.btnContainer}>
                 <Button
-                    label="contact"
+                    label="Contact Business"
                     type="orange"
                     style={{ padding: '12px 16px' }}
                     textStyle={{ margin: 0 }}

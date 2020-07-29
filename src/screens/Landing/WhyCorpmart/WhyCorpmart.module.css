@@ -91,6 +91,9 @@
         grid-template-rows: 1fr 1.5fr;
         height: 100vh;
     }
+    .whyText {
+        margin-top: 15px;
+    }
     .frame {
         grid-template-rows: 1fr 1fr 2.8fr;
     }

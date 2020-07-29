@@ -36,6 +36,7 @@ const Verification = (props) => {
                         cookies.set('userId', req, {
                             path: '/',
                             sameSite: 'strict',
+                            maxAge: 172800,
                         })
                         console.log(req.data);
                     } catch (e) { console.log(e); }
