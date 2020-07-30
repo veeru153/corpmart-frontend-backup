@@ -3,6 +3,8 @@ import styles from './NavbarMobile.module.css';
 import { Menu, Search } from 'react-feather';
 import { Link } from 'react-router-dom';
 
+// TODO: Implement Logout procedure.
+
 const NavbarMobile = (props) => {
     const [transparent, setTransparent] = useState(true);
     const [expanded, setExpanded] = useState(false);

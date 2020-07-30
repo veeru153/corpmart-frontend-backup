@@ -4,6 +4,9 @@ import styles from './Navbar.module.css';
 import { Link } from 'react-router-dom';
 import { Search } from 'react-feather';
 
+// TODO: Implement Login checking to change navbar contents.
+// TODO: Implement Logout procedure.
+
 const Navbar = (props) => {
     const [transparent, setTransparent] = useState(true);
     const { dynamic } = props;
@@ -57,6 +60,7 @@ const Navbar = (props) => {
                 </div>
                 <div className={styles.navBtn}>
                     <Link to="/login">Log in</Link>
+                    {/* <Link to="/dashboard">My Dashboard</Link> */}
                 </div>
                 <div className={styles.navBtn}>
                     <Link to="/signup">
@@ -67,6 +71,14 @@ const Navbar = (props) => {
                             className={styles.signupBtn}
                         />
                     </Link>
+                    {/* <Link to="/logout">
+                        <Button
+                            label="Sign up"
+                            type={transparent && dynamic ? "transparent" : "white"}
+                            color={transparent && dynamic ? "white" : "#484848"}
+                            className={styles.signupBtn}
+                        />
+                    </Link> */}
                 </div>
             </div>
         </div>

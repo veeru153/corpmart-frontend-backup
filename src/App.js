@@ -12,6 +12,7 @@ import Login from './screens/Login/Login';
 import Signup from './screens/Signup/Signup';
 import RegistrationSuccess from './screens/RegistrationSuccess/RegistrationSuccess';
 import ContactUs from './screens/ContactUs/ContactUs';
+import UserDashboard from './screens/UserDashboard/UserDashboard';
 
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
@@ -31,6 +32,7 @@ function App() {
                     <Route path="/signup" component={Signup} />
                     <Route path="/welcome" component={RegistrationSuccess} />
                     <Route path="/contact-us" component={ContactUs} />
+                    <Route path="/dashboard" component={UserDashboard} />
                 </div>
             </Switch>
         </BrowserRouter>
