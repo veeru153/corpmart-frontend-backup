@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 const NavbarMobile = (props) => {
     const [transparent, setTransparent] = useState(true);
     const [expanded, setExpanded] = useState(false);
+    const [showSearchBar, setShowSearchBar] = useState(false);
     const { dynamic } = props;
 
     document.body.style.overflowY = expanded ? "hidden" : "scroll";
@@ -38,12 +39,25 @@ const NavbarMobile = (props) => {
                         style={{ padding: '20px 18px 16px 18px', transition: 'all 0.4s ease-in-out' }}
                     />
                 </button>
-                <div></div> {/* Search Bar */}
+                <div 
+                    className={[
+                        styles.searchBar, 
+                        transparent && dynamic ? styles.searchBarWhite : styles.searchBarBlack
+                    ].join(' ')}
+                    style={{ opacity: showSearchBar ? '100%' : '0%' }}
+                >
+                    <input 
+                        id="search"
+                        placeholder="ex. businesses for sale"
+                        style={{ display: showSearchBar ? 'block' : 'none' }}
+                    />
+                </div> {/* Search Bar */}
                 <div className={styles.navBtn}>
                     <Search 
                         color={transparent && dynamic ? "white" : "black"} 
                         size={28} 
-                        style={{ padding: '20px 18px 16px 18px', transition: 'all 0.4s ease-in-out' }} 
+                        style={{ padding: '20px 18px 16px 18px', transition: 'all 0.4s ease-in-out' }}
+                        onClick={() => setShowSearchBar(!showSearchBar)} 
                     />
                 </div>
             </div>

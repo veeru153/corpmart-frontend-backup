@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Button from '../UI/Button/Button';
 import styles from './Navbar.module.css';
 import { Link } from 'react-router-dom';
+import { Search } from 'react-feather';
 
 const Navbar = (props) => {
     const [transparent, setTransparent] = useState(true);
@@ -37,7 +38,23 @@ const Navbar = (props) => {
                 <div className={styles.navBtn}>
                     <Link to="/explore">Businesses for Sale</Link>
                 </div>
-                <div className={styles.navBtn}>Search</div>
+                <div 
+                    className={[
+                        styles.navBtn, 
+                        styles.searchBar,
+                        transparent && dynamic ? styles.searchBarWhite : styles.searchBarBlack
+                    ].join(' ')}
+                >
+                    <input 
+                        id="search"
+                        placeholder="ex. businesses for sale"
+                    />
+                    <Search 
+                        color={transparent && dynamic ? "white" : "black"} 
+                        size={28} 
+                        style={{ padding: '8px', transition: 'all 0.4s ease-in-out', flex: 1 }} 
+                    />
+                </div>
                 <div className={styles.navBtn}>
                     <Link to="/login">Log in</Link>
                 </div>

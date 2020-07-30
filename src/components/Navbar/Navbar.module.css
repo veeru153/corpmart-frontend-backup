@@ -15,6 +15,46 @@
     height: 100%;
 }
 
+.searchBar {
+    border: 2px solid #FFFFFF;
+    box-sizing: border-box;
+    border-radius: 10px;
+    margin: 7.5px 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.searchBarWhite {
+    border: 2px solid #FFFFFF;
+}
+.searchBarBlack {
+    border: 2px solid #000000;
+}
+.searchBar input {
+    all: unset;
+    flex: 9;
+    background: transparent;
+    font-weight: 300;
+    font-size: 18px;
+    text-transform: none;
+    text-align: left;
+    padding: 0 16px;
+    transition: all 0.4s ease-in;
+}
+.searchBarWhite input {
+    color: white;
+}
+.searchBarBlack input {
+    color: black;
+}
+.searchBarWhite input::placeholder {
+    color: white;
+    background: transparent;
+}
+.searchBarBlack input::placeholder {
+    color: black;
+}
+
 .navBtn {
     display: flex;
     justify-content: center;
