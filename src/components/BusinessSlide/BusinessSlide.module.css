@@ -11,6 +11,11 @@
     font-size: 18px;
     text-align: justify;
     margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 .verified {
@@ -41,12 +46,23 @@
     color: #484848;
     font-weight: 300;
     font-size: 14px;
+    display: flex;
+    align-items: center;
 }
 
 .businessInfoValue {
     color: black;
     font-weight: 300;
     font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    text-transform: capitalize;
+}
+.businessInfoValue p {
+    margin: 0;
 }
 
 .btnContainer {

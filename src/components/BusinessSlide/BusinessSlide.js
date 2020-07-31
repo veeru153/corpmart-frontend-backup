@@ -4,10 +4,10 @@ import Button from '../UI/Button/Button';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
 const BusinessSlide = (props) => {
-    const { type, subtype, industry, state, authCapital, paidCapital, askingPrice } = props;
+    const { type, subtype, industry, state, authCapital, paidCapital, askingPrice, desc } = props;
     return (
         <div className={[styles.slide, props.className].join(' ')}>
-            <p className={styles.businessDesc}>A textile manufacturing Pvt. Ltd. company based in Surat.</p>
+            <p className={styles.businessDesc}>{desc}</p>
             <div className={styles.verified}>
                 <CheckCircleIcon style={{ fontSize: 16, color: '#55B546'}}/>
                 <p>Contact Verified</p>
@@ -23,7 +23,7 @@ const BusinessSlide = (props) => {
                 </div>
                 <div className={styles.businessInfoRow}>
                     <div className={styles.businessInfoLabel}>Industry</div>
-                    <div className={styles.businessInfoValue}>{industry}</div>
+                    <div className={styles.businessInfoValue}>{industry.toLowerCase()}</div>
                 </div>
                 <div className={styles.businessInfoRow}>
                     <div className={styles.businessInfoLabel}>State</div>

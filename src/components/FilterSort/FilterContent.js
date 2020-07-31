@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './FilterSortMobile.module.css';
 import { CheckBoxOutlined, CheckBoxOutlineBlank,  } from '@material-ui/icons';
 import State from './filterOptions/State/State';
@@ -9,10 +9,22 @@ import Industry from './filterOptions/Industry';
 import AuthCapital from './filterOptions/AuthCapital';
 import PaidCapital from './filterOptions/PaidCapital';
 import SellingPrice from './filterOptions/SellingPrice';
+import Axios from '../../axios';
 
 
 const FilterContent = (props) => {
     const { expanded, type, filterOps, handleOption } = props;
+    const [sliderMaxVals, setSliderMaxVals] = useState([0,0,0]);
+
+    useEffect(() => {
+        async function getMax() {
+            let res = await Axios.get('/max-value?format=json');
+            let data = await res.data;
+            setSliderMaxVals([data.max_auth_capital, data.max_paidup_capital, data.max_selling_price]);
+        }
+        getMax();
+    }, [])
+
     return (
         <div
             className={styles.filterExp}
@@ -25,9 +37,19 @@ const FilterContent = (props) => {
             <TypeOfCompany />
             <SubType />
             <Industry />
-            <AuthCapital />
-            <PaidCapital />
-            <SellingPrice />
+            {
+                sliderMaxVals.reduce((total, currEl) => total + currEl) != 0
+                ?   <>
+                        <AuthCapital max={sliderMaxVals[0]} />
+                        <PaidCapital max={sliderMaxVals[1]} />
+                        <SellingPrice max={sliderMaxVals[2]} />
+                    </>
+                :   <>
+                        <AuthCapital max={0} />
+                        <PaidCapital max={0} />
+                        <SellingPrice max={0} />
+                    </>
+            }
             {filterOps.map((op, index) => (
                 <button
                     className={styles.option}

@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './filterOptions.module.css';
 import { ChevronDown, ChevronUp } from 'react-feather';
+import Slider from '../../UI/MySlider/MySlider';
 
 // TODO: Add Slider
 
-const SellingPrice = () => {
+const SellingPrice = (props) => {
     const [expanded, setExpanded] = useState(false);
+    const [values, setValues] = useState([0, 0]);
+
+    useEffect(() => setValues([0, props.max]), [props.max]);
 
     return (
         <div className={styles.section}>
@@ -21,7 +25,9 @@ const SellingPrice = () => {
                 maxHeight: '120px',
                 backgroundColor: '#E8EAED'
             }}>
-                
+                <Slider values={values} setValues={setValues} max={props.max} min={0} />
+                <p>Selling Price</p>
+                <p>INR {values[0]} - {values[1]}</p>
             </div>
         </div>
     )

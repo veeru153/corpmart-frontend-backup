@@ -3,7 +3,7 @@ import styles from './FilterDiv.module.css';
 import { Filter } from 'react-feather';
 import FilterContent from '../FilterContent';
 
-const FilterDiv = () => {
+const FilterDiv = (props) => {
     const [filterOps, setFilterOps] = useState([
         { name: 'GST No. Availability', checked: false },
         { name: 'Bank Account Availability', checked: false },
@@ -21,7 +21,12 @@ const FilterDiv = () => {
                 <p>FILTER BY</p>
                 <Filter size={24} style={{ margin: '0 20px' }}/>
             </div>
-            <FilterContent filterOps={filterOps} expanded type="filter" handleOption={handleOption}/>
+            <FilterContent 
+                filterOps={filterOps} 
+                expanded 
+                type="filter" 
+                handleOption={handleOption}
+            />
         </div>
     )
 }

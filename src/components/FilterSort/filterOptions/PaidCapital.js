@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './filterOptions.module.css';
 import { ChevronDown, ChevronUp } from 'react-feather';
 import Slider from '../../UI/MySlider/MySlider';
 
 // TODO: Add Slider
 
-const PaidCapital = () => {
+const PaidCapital = (props) => {
     const [expanded, setExpanded] = useState(false);
-    const [values, setValues] = useState([10, 450000]);
-    const min = 0;
-    const max = 450001;
+    const [values, setValues] = useState([0, 0]);
+
+    useEffect(() => setValues([0, props.max]), [props.max]);
 
     return (
         <div className={styles.section}>
@@ -26,8 +26,8 @@ const PaidCapital = () => {
                 backgroundColor: '#E8EAED',
                 // padding: '40px 0'
             }}>
-                <Slider values={values} setValues={setValues} max={max} min={min} />
-                <p>Selling Price</p>
+                <Slider values={values} setValues={setValues} max={props.max} min={0} />
+                <p>Paid-up Capital</p>
                 <p>INR {values[0]} - {values[1]}</p>
             </div>
         </div>
