@@ -1,31 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './ListingForm.module.css'
 import { Formik } from 'formik';
 import Button from '../../components/UI/Button/Button';
+import { withRouter } from 'react-router-dom';
 
 // TODO: Implement Dropdowns and Checkboxes
 
-const ListingForm = () => {
+const ListingForm = (props) => {
+    const [previewMode, setPreviewMode] = useState(false);
+
+    let initVals;
+
+    if(props.location.state && props.location.state.type == 'preview') {
+        initVals = props.location.state.formPayload;
+        if(previewMode == false) setPreviewMode(true);
+    } else {
+        // TODO: if logged in set values for first name, last name, mobileNo and emailId from user object
+        initVals = {
+            firstName: '', lastName: '', mobileNo: '', emailId: '',
+            businessName: '', state: '', country: '', sellingPrice: ''
+        };
+    }
+
     return (
         <div className={styles.ListingForm}>
         <Formik
-            initialValues={{
-                firstName: '', lastName: '', mobileNo: '', emailId: '',
-                businessName: '', state: '', country: '',
-                companyType: '', subtype: '', industry: '', saleDesc: '',
-                incorporationYear: '', companyAge: '',
-                gst: false, bankAcc: false, ieCode: false, licenses: false, licenseDetails: '',
-                capital: '', sellingPrice: ''
-            }}
+            initialValues={initVals}
             onSubmit={(values, actions) => {
                 console.log(values);
+                if(previewMode) {
+                    // TODO: if logged out, check if user exists. If user exists, send email to /generate-opt and proceed. If user does not exist, create user and login.
+                } else {
+                    props.history.push('/preview', {
+                        type: 'preview',
+                        formPayload: values,
+                    })
+                }
             }}
         >
             {(props) => (
                 <form className={styles.form}>
                     <div className={styles.header}>
                         <p className={styles.title}>List your Business</p>
-                        <p className={styles.subtitle}>(mandatory fields are marked with *)</p>
+                        <p className={styles.subtitle}>
+                            {
+                                previewMode
+                                ?   "Review your listing before submitting"
+                                :   "(mandatory fields are marked with *)"
+                            }  
+                        </p>
                     </div>
                     <div>
                         <div className={styles.nameFields}>
@@ -67,7 +90,7 @@ const ListingForm = () => {
                             />
                         </div>
                         <div className={styles.formGroup}>
-                            <p className={styles.inputLabel}>Business Name*</p>
+                            <p className={styles.inputLabel}>Business/Company Name*</p>
                             <input
                                 id="businessName"
                                 onChange={props.handleChange('businessName')}
@@ -93,100 +116,6 @@ const ListingForm = () => {
                                 className={styles.inputField}
                             />
                         </div>
-                    </div>
-                    <div className={styles.header}>
-                        <p className={styles.title2}>Additional Information</p>
-                        <p className={styles.subtitle2}>Businesses with additional information are likely to be listed faster.</p>
-                    </div>
-                    <div>
-                        <div className={styles.formGroup}>
-                            <p className={styles.inputLabel}>Type of Company</p>
-                            <input
-                                id="companyType"
-                                onChange={props.handleChange('companyType')}
-                                value={props.values.companyType}
-                                className={styles.inputField}
-                            />
-                        </div>
-                        <div className={styles.formGroup}>
-                            <p className={styles.inputLabel}>Sub-type</p>
-                            <input
-                                id="subtype"
-                                onChange={props.handleChange('subtype')}
-                                value={props.values.subtype}
-                                className={styles.inputField}
-                            />
-                        </div>
-                        <div className={styles.formGroup}>
-                            <p className={styles.inputLabel}>Industry</p>
-                            <input
-                                id="industry"
-                                onChange={props.handleChange('industry')}
-                                value={props.values.industry}
-                                className={styles.inputField}
-                            />
-                        </div>
-                        <div className={styles.formGroup}>
-                            <p className={styles.inputLabel}>Sale Description</p>
-                            <textarea
-                                id="saleDesc"
-                                onChange={props.handleChange('saleDesc')}
-                                value={props.values.saleDesc}
-                                rows={4}
-                                className={[styles.inputField, styles.saleDesc].join(' ')}
-                            ></textarea>
-                        </div>
-                        <div className={styles.yearAgeFields}>
-                            <div className={styles.formGroup}>
-                                <p className={styles.inputLabel}>Year of Incorporation</p>
-                                <input
-                                    id="incorporationYear"
-                                    onChange={props.handleChange('incorporationYear')}
-                                    value={props.values.incorporationYear}
-                                    className={styles.inputField}
-                                />
-                            </div>
-                            <p className={styles.orText}>OR</p>
-                            <div className={styles.formGroup}>
-                                <p className={styles.inputLabel}>Age of Company</p>
-                                <input
-                                    id="companyAge"
-                                    onChange={props.handleChange('companyAge')}
-                                    value={props.values.companyAge}
-                                    className={styles.inputField}
-                                />
-                            </div>
-                        </div>
-                        <div className={styles.formGroup}>
-                            <p>Do you have GST no.?</p>
-                        </div>
-                        <div className={styles.formGroup}>
-                            <p>Do you have a Bank Account?</p>
-                        </div>
-                        <div className={styles.formGroup}>
-                            <p>Do you have an Import/Export Code?</p>
-                        </div>
-                        <div className={styles.formGroup}>
-                            <p>Do you have any Licenses or Registrations?</p>
-                        </div>
-                        <div className={styles.formGroup}>
-                            <p className={styles.inputLabel}>Mention, if any</p>
-                            <input
-                                id="licenseDetails"
-                                onChange={props.handleChange('licenseDetails')}
-                                value={props.values.licenseDetails}
-                                className={styles.inputField}
-                            />
-                        </div>
-                        <div className={styles.formGroup}>
-                            <p className={styles.inputLabel}>Capital (in INR)</p>
-                            <input
-                                id="capital"
-                                onChange={props.handleChange('capital')}
-                                value={props.values.capital}
-                                className={styles.inputField}
-                            />
-                        </div>
                         <div className={styles.formGroup}>
                             <p className={styles.inputLabel}>Expected Selling Price (in INR)</p>
                             <input
@@ -197,10 +126,14 @@ const ListingForm = () => {
                             />
                         </div>
                     </div>
-                    <div className={styles.tos}>
+                    <div className={styles.tos} style={{ display: previewMode ? 'block' : 'none' }}>
                         <p>By submitting this form, you agree to our Terms and Conditions and Privacy Policy.</p>
                     </div>
-                    <Button label="Submit" type="blue" pressed={props.handleSubmit} className={styles.submitBtn}/>
+                    {
+                        previewMode
+                        ?   <Button label="Submit" type="blue" pressed={props.handleSubmit} className={styles.submitBtn}/>
+                        :   <Button label="Continue" type="blue" pressed={props.handleSubmit} className={styles.submitBtn}/>
+                    }
                 </form>
             )}
         </Formik>
@@ -208,4 +141,4 @@ const ListingForm = () => {
     )
 }
 
-export default ListingForm;
+export default withRouter(ListingForm);

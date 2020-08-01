@@ -55,6 +55,11 @@
     text-align: left;
 }
 
+.optionGroups {
+    display: grid;
+    grid-template-columns: 7fr 1.5fr 1.5fr;
+}
+
 .inputLabel {
     font-size: clamp(14px, 3.8vw, 18px);
     margin: 2.5px 0;
@@ -70,6 +75,10 @@
 
 .inputField:focus {
     outline: none;
+}
+
+.optionBtn {
+    padding: 4px 12px;
 }
 
 .saleDesc {
