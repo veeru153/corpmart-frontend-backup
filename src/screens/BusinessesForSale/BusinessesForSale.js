@@ -42,6 +42,15 @@ const BusinessesForSale = () => {
             case 'country':
                 value.length == 0 ? params[1] = '' : params[1] = `country=${value.join(',')}`;
                 break;
+            case 'type':
+                value.length == 0 ? params[2] = '' : params[2] = `company_type=${value.join(',')}`;
+                break;
+            case 'subtype':
+                value.length == 0 ? params[3] = '' : params[3] = `sub_type=${value.join(',')}`;
+                break;
+            case 'industry':
+                value.length == 0 ? params[4] = '' : params[4] = `industry=${value.join(',')}`;
+                break;
             default:
                 break;
         }

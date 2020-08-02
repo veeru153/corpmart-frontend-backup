@@ -1,41 +1,41 @@
 import React, { useState, Component } from 'react';
-import styles from './filterOptions.module.css';
+import styles from '../filterOptions.module.css';
 import { ChevronDown, ChevronUp } from 'react-feather';
 import { CheckBoxOutlined, CheckBoxOutlineBlank } from '@material-ui/icons';
+import industryList from './industryList';
 
-class Country extends Component {
+// TODO: Add Other in industryList
+
+class Industry extends Component {
     state = {
         expanded: false,
-        countryList: [
-            { name: 'India', checked: false},
-            { name: 'Other', checked: false},
-        ],
-        selectedCountries: [],
+        industryList: industryList,
+        selectedIndustry: [],
     }
 
-    addCountry = (country) => {
-        const tempSelectedCountries = [...this.state.selectedCountries];
-        tempSelectedCountries.push(country);
+    addIndustry = (industry) => {
+        const tempIndustry = [...this.state.selectedIndustry];
+        tempIndustry.push(industry);
         this.setState({
-            selectedCountries: tempSelectedCountries,
+            selectedIndustry: tempIndustry,
         })
     }
 
-    removeCountry = (country) => {
-        const tempSelectedCountries = [...this.state.selectedCountries].filter(c => c != country);
+    removeIndustry = (industry) => {
+        const tempIndustry = [...this.state.selectedIndustry].filter(i => i != industry);
         this.setState({
-            selectedCountries: tempSelectedCountries
+            selectedIndustry: tempIndustry
         })
     }
 
-    handleCountry = (index) => {
-        const tempCountry = [...this.state.countryList];
-        if(!tempCountry[index].checked) this.addCountry(tempCountry[index].name);
-        else this.removeCountry(tempCountry[index].name);
-        tempCountry[index] = { ...tempCountry[index], checked: !this.state.countryList[index].checked };
+    handleIndustry = (index) => {
+        const tempIndustry = [...this.state.industryList];
+        if(!tempIndustry[index].checked) this.addIndustry(tempIndustry[index].name);
+        else this.removeIndustry(tempIndustry[index].name);
+        tempIndustry[index] = { ...tempIndustry[index], checked: !this.state.industryList[index].checked };
         this.setState({
-            countryList: tempCountry
-        }, () => this.props.updateQuery('country', this.state.selectedCountries))
+            industryList: tempIndustry
+        }, () => this.props.updateQuery('industry', this.state.selectedIndustry))
     }
 
     render() {
@@ -44,7 +44,7 @@ class Country extends Component {
                 <button className={styles.header} onClick={() => this.setState((prevState) => ({
                     expanded: !prevState.expanded
                 }))}>
-                    <p>Country</p>
+                    <p>Industry</p>
                     <div className={styles.headerIcon}>
                         {this.state.expanded ? <ChevronUp size={16} rotate={180}/> : <ChevronDown size={16} />}
                     </div>
@@ -54,19 +54,19 @@ class Country extends Component {
                     style={{ 
                         height: this.state.expanded ? '100%' : '0', 
                         overflow: this.state.expanded ? 'scroll' : "hidden", 
-                        maxHeight: 'calc(31px * 2)',
+                        maxHeight: 'calc(31px * 8)',
                         backgroundColor: '#E8EAED',
                     }}
                 >
-                    {this.state.countryList.map((country, index) => (
+                    {this.state.industryList.map((industry, index) => (
                         <button 
-                            key={country.name}
+                            key={industry.name}
                             className={styles.option} 
-                            onClick={() => this.handleCountry(index)}
+                            onClick={() => this.handleIndustry(index)}
                         >
-                            <p className={styles.optionExpLabel}>{country.name}</p>
+                            <p className={styles.optionExpLabel}>{industry.name}</p>
                             <div>
-                                { country.checked
+                                { industry.checked
                                     ?   <CheckBoxOutlined />
                                     :   <CheckBoxOutlineBlank />
                                 }
@@ -80,4 +80,4 @@ class Country extends Component {
 
 }
 
-export default Country;
+export default Industry;

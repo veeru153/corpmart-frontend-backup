@@ -5,7 +5,7 @@ import State from './filterOptions/State/State';
 import Country from './filterOptions/Country';
 import TypeOfCompany from './filterOptions/TypeOfCompany';
 import SubType from './filterOptions/SubType';
-import Industry from './filterOptions/Industry';
+import Industry from './filterOptions/Industry/Industry';
 import AuthCapital from './filterOptions/AuthCapital';
 import PaidCapital from './filterOptions/PaidCapital';
 import SellingPrice from './filterOptions/SellingPrice';
@@ -34,9 +34,9 @@ const FilterContent = (props) => {
         >
             <State updateQuery={updateQuery} />
             <Country updateQuery={updateQuery} />
-            <TypeOfCompany />
-            <SubType />
-            <Industry />
+            <TypeOfCompany updateQuery={updateQuery} />
+            <SubType updateQuery={updateQuery} />
+            <Industry updateQuery={updateQuery} />
             {
                 sliderMaxVals.reduce((total, currEl) => total + currEl) != 0
                 ?   <>
