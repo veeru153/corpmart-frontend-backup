@@ -13,7 +13,7 @@ import Axios from '../../axios';
 
 
 const FilterContent = (props) => {
-    const { expanded, type, filterOps, handleOption } = props;
+    const { expanded, type, filterOps, handleOption, updateQuery } = props;
     const [sliderMaxVals, setSliderMaxVals] = useState([0,0,0]);
 
     useEffect(() => {
@@ -32,8 +32,8 @@ const FilterContent = (props) => {
                 display: expanded && type == 'filter' ? 'block' : 'none',
             }}
         >
-            <State />
-            <Country />
+            <State updateQuery={updateQuery} />
+            <Country updateQuery={updateQuery} />
             <TypeOfCompany />
             <SubType />
             <Industry />
@@ -52,6 +52,7 @@ const FilterContent = (props) => {
             }
             {filterOps.map((op, index) => (
                 <button
+                    key={op.name}
                     className={styles.option}
                     style={{ padding: '1px 0' }}
                     onClick={() => handleOption(index)}

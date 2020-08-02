@@ -70,7 +70,11 @@ const Industry = () => {
                 }}
             >
                 {industryList.map((industry, index) => (
-                    <button className={styles.option} onClick={() => handleCompanyType(index)}>
+                    <button 
+                        key={industry.name}
+                        className={styles.option} 
+                        onClick={() => handleCompanyType(index)}
+                    >
                         <p className={styles.optionExpLabel}>{industry.name}</p>
                         <div>
                             { industry.checked

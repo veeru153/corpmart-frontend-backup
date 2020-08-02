@@ -26,6 +26,7 @@ const FilterDiv = (props) => {
                 expanded 
                 type="filter" 
                 handleOption={handleOption}
+                updateQuery={props.updateQuery}
             />
         </div>
     )

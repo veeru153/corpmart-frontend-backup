@@ -13,6 +13,7 @@ import Axios from '../../axios';
 const BusinessesForSale = () => {
     const [businessList, setBusinessList] = useState([]);
     const [sliderMaxVals, setSliderMaxVals] = useState([0,0,0]);
+    // const [queryParams, setQueryParams] = ({});
 
     useEffect(() => {
         async function getMax() {
@@ -32,13 +33,33 @@ const BusinessesForSale = () => {
         fetchData();
     }, []);
 
+    const updateQuery = async (param, value) => {
+        let params = ['','','','','','','','','','','','','',];
+        switch(param) {
+            case 'state':
+                value.length == 0 ? params[0] = '' : params[0] = `state=${value.join(',')}`;
+                break;
+            case 'country':
+                value.length == 0 ? params[1] = '' : params[1] = `country=${value.join(',')}`;
+                break;
+            default:
+                break;
+        }
+
+        console.log(params.filter(p => p != '').join('&'));
+        let res = await Axios.get(`/business-list/?format=json&${params.filter(p => p != '').join('&')}`);
+        let data = await res.data;
+        setBusinessList(data);
+
+    }
+
     return (
         <div className={styles.BusinessesForSale}>
             <NavbarMobile />
             <Navbar />
 
             <div className={styles.container}>
-                <FilterDiv sliderMaxVals={sliderMaxVals}/>
+                <FilterDiv sliderMaxVals={sliderMaxVals} updateQuery={updateQuery} />
                 <div className={styles.content}>
                     <div className={styles.header}>
                         <p className={styles.title}>Businesses For Sale</p>

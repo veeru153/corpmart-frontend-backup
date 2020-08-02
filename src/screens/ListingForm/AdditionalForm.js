@@ -3,7 +3,7 @@ import styles from './ListingForm.module.css'
 import { Formik } from 'formik';
 import Button from '../../components/UI/Button/Button';
 
-// TODO: Implement Dropdowns and Checkboxes
+// TODO: Implement Dropdowns
 
 const AdditionalForm = () => {
     return (
@@ -12,7 +12,7 @@ const AdditionalForm = () => {
             initialValues={{
                 companyType: '', subtype: '', industry: '', saleDesc: '',
                 incorporationYear: '', companyAge: '',
-                gst: false, bankAcc: true, ieCode: false, licenses: true, licenseDetails: '',
+                gst: false, bankAcc: false, ieCode: false, licenses: false, licenseDetails: '',
                 authCapital: '', paidupCapital: '',
             }}
             onSubmit={(values, actions) => {

@@ -42,7 +42,11 @@ const SubType = () => {
                 }}
             >
                 {companyList.map((company, index) => (
-                    <button className={styles.option} onClick={() => handleCompanyType(index)}>
+                    <button 
+                        key={company.name}
+                        className={styles.option} 
+                        onClick={() => handleCompanyType(index)}
+                    >
                         <p className={styles.optionExpLabel}>{company.name}</p>
                         <div>
                             { company.checked

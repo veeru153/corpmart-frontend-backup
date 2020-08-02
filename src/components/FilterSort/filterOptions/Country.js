@@ -9,9 +9,23 @@ const Country = () => {
         { name: 'India', checked: false},
         { name: 'Other', checked: false},
     ])
+    const [selectedCountries, setSelectedCountries] = useState([]);
+
+    const addState = (country) => {
+        const tempSelectedCountries = [...selectedCountries];
+        tempSelectedCountries.push(country);
+        setSelectedCountries(tempSelectedCountries);
+    }
+
+    const removeState = (country) => {
+        const tempSelectedCountries = [...selectedCountries].filter(c => c != country);;
+        setSelectedCountries(tempSelectedCountries);
+    }
 
     const handleCountry = (index) => {
         const tempCountry = [...countryList];
+        if(!tempCountry[index].checked) addState(tempCountry[index].name);
+        else removeState(tempCountry[index].name);
         tempCountry[index] = { ...tempCountry[index], checked: !countryList[index].checked };
         setCountryList(tempCountry);
     }
@@ -34,7 +48,11 @@ const Country = () => {
                 }}
             >
                 {countryList.map((country, index) => (
-                    <button className={styles.option} onClick={() => handleCountry(index)}>
+                    <button 
+                        key={country.name}
+                        className={styles.option} 
+                        onClick={() => handleCountry(index)}
+                    >
                         <p className={styles.optionExpLabel}>{country.name}</p>
                         <div>
                             { country.checked
