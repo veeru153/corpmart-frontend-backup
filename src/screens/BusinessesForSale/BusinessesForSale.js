@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { Component } from 'react';
 import styles from './BusinessesForSale.module.css';
 import NavbarMobile from '../../components/Navbar/NavbarMobile';
 import Navbar from '../../components/Navbar/Navbar';
@@ -10,31 +10,48 @@ import Axios from '../../axios';
 
 // TODO: Implement Filters
 
-const BusinessesForSale = () => {
-    const [businessList, setBusinessList] = useState([]);
-    const [sliderMaxVals, setSliderMaxVals] = useState([0,0,0]);
-    // const [queryParams, setQueryParams] = ({});
+class BusinessesForSale extends Component {
+    state = {
+        businessList: [],
+        sliderMaxVals: [0,0,0],
+        queryParams: ['','','','','','','','','','','','','',],
+        page: 1,
+        filterOps: [
+            { name: 'GST No. Availability', checked: false },
+            { name: 'Bank Account Availability', checked: false },
+        ],
+        selectedOps: []
+    }
 
-    useEffect(() => {
-        async function getMax() {
-            let res = await Axios.get('/max-value?format=json');
-            let data = await res.data;
-            setSliderMaxVals([data.max_auth_capital, data.max_paidup_capital, data.max_selling_price]);
-        }
-        getMax();
-    }, [])
+    async componentDidMount() {
+        let res = await Axios.get('/max-value?format=json');
+        let data = await res.data;
 
-    useEffect(() => {
-        async function fetchData() {
-            let res = await Axios.get('/business-list/?format=json');
-            let data = await res.data;
-            setBusinessList(data);
-        }
-        fetchData();
-    }, []);
+        let res2 = await Axios.get(`/business-list/?format=json&page=${this.state.page}`);
+        let data2 = await res2.data.results;
 
-    const updateQuery = async (param, value) => {
-        let params = ['','','','','','','','','','','','','',];
+        this.setState({
+            sliderMaxVals: [data.max_auth_capital, data.max_paidup_capital, data.max_selling_price],
+            businessList: data2
+        });
+    }
+
+    handleOption = (index) => {
+        const tempOps = [...this.state.filterOps];
+        tempOps[index] = { ...tempOps[index], checked: !this.state.filterOps[index].checked };
+        this.setState({
+            filterOps: tempOps
+        }, () => {
+            if(index == 0) {
+                this.updateQuery('gst', this.state.filterOps[0].checked)
+            } else {
+                this.updateQuery('bank', this.state.filterOps[0].checked)
+            }
+        })
+    }
+
+    updateQuery = async (param, value) => {
+        let params = [...this.state.queryParams];
         switch(param) {
             case 'state':
                 value.length == 0 ? params[0] = '' : params[0] = `state=${value.join(',')}`;
@@ -63,53 +80,75 @@ const BusinessesForSale = () => {
                 params[9] = `selling_price_min=${value[0]}`;
                 params[10] = `selling_price_max=${value[1]}`;
                 break;
+            case 'gst':
+                params[11] = value ? 'gst=True' : 'gst=False';
+                break;
+            case 'bank':
+                params[12] = value ? 'bank=True' : 'bank=False';
+                break;
             default:
                 break;
         }
 
-        console.log(businessList);
-        let res = await Axios.get(`/business-list/?format=json&${params.filter(p => p != '').join('&')}`);
-        let data = await res.data;
-        setBusinessList(data);
-
+        this.setState({
+            queryParams: params
+        }, async () => {
+            let res = await Axios.get(`/business-list/?format=json&page=${this.state.page}&${params.filter(p => p != '').join('&')}`);
+            let data = await res.data.results;
+            this.setState({
+                businessList: data
+            }, () => console.log(this.state.businessList))
+        })
     }
 
-    return (
-        <div className={styles.BusinessesForSale}>
-            <NavbarMobile />
-            <Navbar />
-
-            <div className={styles.container}>
-                <FilterDiv sliderMaxVals={sliderMaxVals} updateQuery={updateQuery} />
-                <div className={styles.content}>
-                    <div className={styles.header}>
-                        <p className={styles.title}>Businesses For Sale</p>
-                        <p className={styles.subtitle}>Explore the extensive range of pre-approved businesses to find the one that suits your requirement.</p>
-                    </div>
-                    <div className={styles.showcase}>
-                        {
-                            businessList.map(b => (
-                                <BusinessSlide
-                                    key={b.id}
-                                    desc={b.sale_description}
-                                    type={b.company_type}
-                                    subtype={b.sub_type}
-                                    industry={b.industry}
-                                    state={b.state}
-                                    authCapital={b.authorised_capital}
-                                    paidCapital={b.paidup_capital}
-                                    askingPrice="INR 40 lakh"
-                                    className={styles.card}
-                                />
-                            ))
-                        }
+    render() {
+        return (
+            <div className={styles.BusinessesForSale}>
+                <NavbarMobile />
+                <Navbar />
+    
+                <div className={styles.container}>
+                    <FilterDiv 
+                        sliderMaxVals={this.state.sliderMaxVals} 
+                        updateQuery={this.updateQuery} 
+                        filterOps={this.state.filterOps}
+                        handleOption={this.handleOption}
+                    />
+                    <div className={styles.content}>
+                        <div className={styles.header}>
+                            <p className={styles.title}>Businesses For Sale</p>
+                            <p className={styles.subtitle}>Explore the extensive range of pre-approved businesses to find the one that suits your requirement.</p>
+                        </div>
+                        <div className={styles.showcase}>
+                            {
+                                this.state.businessList.map(b => (
+                                    <BusinessSlide
+                                        key={b.id}
+                                        desc={b.sale_description}
+                                        type={b.company_type}
+                                        subtype={b.sub_type}
+                                        industry={b.industry}
+                                        state={b.state}
+                                        authCapital={b.authorised_capital}
+                                        paidCapital={b.paidup_capital}
+                                        askingPrice="INR 40 lakh"
+                                        className={styles.card}
+                                    />
+                                ))
+                            }
+                        </div>
                     </div>
                 </div>
+                <FilterSortMobile 
+                    sliderMaxVals={this.state.sliderMaxVals} 
+                    updateQuery={this.updateQuery}
+                    filterOps={this.state.filterOps}
+                    handleOption={this.handleOption}
+                />
+                <Footer />
             </div>
-            <FilterSortMobile sliderMaxVals={sliderMaxVals} updateQuery={updateQuery} />
-            <Footer />
-        </div>
-    )
+        )
+    }
 }
 
 export default BusinessesForSale;
