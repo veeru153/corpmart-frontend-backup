@@ -10,18 +10,6 @@ import SortContent from './SortContent';
 const FilterSortMobile = (props) => {
     const [expanded, setExpanded] = useState(true);
     const [type, setType] = useState('');
-    const [filterOps, setFilterOps] = useState([
-        { name: 'GST No. Availability', checked: false },
-        { name: 'Bank Account Availability', checked: false },
-        { name: 'Imp/Exp Code Availability', checked: false },
-        { name: 'Balance Sheet Availability', checked: false },
-    ]);
-
-    const handleOption = (index) => {
-        const tempOps = [...filterOps];
-        tempOps[index] = { ...tempOps[index], checked: !filterOps[index].checked };
-        setFilterOps(tempOps);
-    }
 
     const openMenu = (type) => {
         setExpanded(true);
@@ -63,8 +51,8 @@ const FilterSortMobile = (props) => {
                 <FilterContent 
                     expanded={expanded} 
                     type={type} 
-                    filterOps={filterOps} 
-                    handleOption={handleOption}
+                    filterOps={props.filterOps} 
+                    handleOption={props.handleOption}
                     updateQuery={props.updateQuery}
                 />
                 <SortContent expanded={expanded} type={type} />

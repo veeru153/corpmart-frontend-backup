@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component } from 'react';
+import React, { Component } from 'react';
 import styles from './FilterSortMobile.module.css';
 import { CheckBoxOutlined, CheckBoxOutlineBlank, } from '@material-ui/icons';
 import State from './filterOptions/State/State';
@@ -10,7 +10,6 @@ import AuthCapital from './filterOptions/AuthCapital';
 import PaidCapital from './filterOptions/PaidCapital';
 import SellingPrice from './filterOptions/SellingPrice';
 import Axios from '../../axios';
-
 
 class FilterContent extends Component {
     state = {

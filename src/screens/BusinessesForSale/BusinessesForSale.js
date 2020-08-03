@@ -8,7 +8,6 @@ import FilterDiv from '../../components/FilterSort/FilterDiv/FilterDiv';
 import Footer from '../Landing/Footer/Footer';
 import Axios from '../../axios';
 
-// TODO: Implement Filters
 
 class BusinessesForSale extends Component {
     state = {

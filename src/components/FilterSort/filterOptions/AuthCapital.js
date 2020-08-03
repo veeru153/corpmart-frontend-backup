@@ -1,10 +1,8 @@
-import React, { useState, useEffect, Component } from 'react';
+import React, { Component } from 'react';
 import styles from './filterOptions.module.css';
 import { ChevronDown, ChevronUp } from 'react-feather';
 import Slider from '../../UI/MySlider/MySlider';
 import Axios from '../../../axios';
-
-// TODO: Add Slider
 
 class AuthCapital extends Component {
     state = {
