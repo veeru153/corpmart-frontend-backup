@@ -7,7 +7,7 @@ import SortContent from './SortContent';
 
 // TODO: Add Backdrop
 
-const FilterSortMobile = () => {
+const FilterSortMobile = (props) => {
     const [expanded, setExpanded] = useState(true);
     const [type, setType] = useState('');
     const [filterOps, setFilterOps] = useState([
@@ -65,6 +65,7 @@ const FilterSortMobile = () => {
                     type={type} 
                     filterOps={filterOps} 
                     handleOption={handleOption}
+                    updateQuery={props.updateQuery}
                 />
                 <SortContent expanded={expanded} type={type} />
             </div>

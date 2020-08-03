@@ -51,11 +51,23 @@ const BusinessesForSale = () => {
             case 'industry':
                 value.length == 0 ? params[4] = '' : params[4] = `industry=${value.join(',')}`;
                 break;
+            case 'authCapital':
+                params[5] = `authorised_capital_min=${value[0]}`;
+                params[6] = `authorised_capital_max=${value[1]}`;
+                break;
+            case 'paidupCapital':
+                params[7] = `paidup_capital_min=${value[0]}`;
+                params[8] = `paidup_capital_max=${value[1]}`;
+                break;
+            case 'sellingPrice':
+                params[9] = `selling_price_min=${value[0]}`;
+                params[10] = `selling_price_max=${value[1]}`;
+                break;
             default:
                 break;
         }
 
-        console.log(params.filter(p => p != '').join('&'));
+        console.log(businessList);
         let res = await Axios.get(`/business-list/?format=json&${params.filter(p => p != '').join('&')}`);
         let data = await res.data;
         setBusinessList(data);
@@ -94,7 +106,7 @@ const BusinessesForSale = () => {
                     </div>
                 </div>
             </div>
-            <FilterSortMobile sliderMaxVals={sliderMaxVals} />
+            <FilterSortMobile sliderMaxVals={sliderMaxVals} updateQuery={updateQuery} />
             <Footer />
         </div>
     )
