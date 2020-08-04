@@ -82,7 +82,7 @@ const NavbarMobile = (props) => {
                     <Link to="/explore" className={styles.navLink}><p>Businesses for Sale</p></Link>
                     <Link to="/faq" className={styles.navLink}><p>FAQs</p></Link>
                     <Link to="/contact-us" className={styles.navLink}><p>Contact Us</p></Link>
-                    <p>Logout</p>
+                    <div><p>Logout</p></div>
                     <Link to="/login" className={styles.navLink}><p>Login</p></Link>
                     <Link to="/signup" className={styles.navLink}><p>Sign up</p></Link>
                 </div>

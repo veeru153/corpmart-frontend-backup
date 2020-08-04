@@ -3,13 +3,14 @@ import Button from '../UI/Button/Button';
 import styles from './Navbar.module.css';
 import { Link } from 'react-router-dom';
 import { Search } from 'react-feather';
-
-// TODO: Implement Login checking to change navbar contents.
-// TODO: Implement Logout procedure.
+import Cookies from 'universal-cookie';
+import { handleLogout, validateToken } from '../util';
 
 const Navbar = (props) => {
     const [transparent, setTransparent] = useState(true);
+    const [loggedIn, setLoggedIn] = useState(false);
     const { dynamic } = props;
+    const cookies = new Cookies();
 
     const handleScroll = () => {
         if (window.scrollY > 64) {
@@ -22,6 +23,18 @@ const Navbar = (props) => {
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
     })
+
+    useEffect(() => {
+        async function validateSession() {
+            let validity = await validateToken();
+            if(validity == 200) {
+                setLoggedIn(true);
+            } else {
+                setLoggedIn(false);
+            }
+        }
+        validateSession();
+    }, [])
 
     return (
         <div
@@ -59,26 +72,31 @@ const Navbar = (props) => {
                     />
                 </div>
                 <div className={styles.navBtn}>
-                    <Link to="/login">Log in</Link>
-                    {/* <Link to="/dashboard">My Dashboard</Link> */}
+                    {
+                        loggedIn
+                        ? <Link to="/dashboard">My Dashboard</Link>
+                        : <Link to="/login">Log in</Link>
+                    }
                 </div>
                 <div className={styles.navBtn}>
-                    <Link to="/signup">
-                        <Button
-                            label="Sign up"
-                            type={transparent && dynamic ? "white" : "blue"}
-                            color={transparent && dynamic ? "black" : "white"}
-                            className={styles.signupBtn}
-                        />
-                    </Link>
-                    {/* <Link to="/logout">
-                        <Button
-                            label="Sign up"
-                            type={transparent && dynamic ? "transparent" : "white"}
-                            color={transparent && dynamic ? "white" : "#484848"}
-                            className={styles.signupBtn}
-                        />
-                    </Link> */}
+                    {
+                        loggedIn
+                        ? <Button
+                                label="Log Out"
+                                type={"transparent"}
+                                color={transparent && dynamic ? "white" : "#484848"}
+                                className={styles.signupBtn}
+                                pressed={handleLogout}
+                            />
+                        : <Link to="/signup">
+                            <Button
+                                label="Sign up"
+                                type={transparent && dynamic ? "white" : "blue"}
+                                color={transparent && dynamic ? "black" : "white"}
+                                className={styles.signupBtn}
+                            />
+                          </Link>
+                    }
                 </div>
             </div>
         </div>

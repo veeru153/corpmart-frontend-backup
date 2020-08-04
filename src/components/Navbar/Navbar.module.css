@@ -70,6 +70,7 @@
 .signupBtn {
     padding: 12px clamp(4px, 1.6vw, 40px);
     transition: all 0.2s ease-in-out;
+    cursor: pointer;
 }
 
 @media only screen and (max-width: 768px) {
