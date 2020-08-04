@@ -11,7 +11,7 @@ const WhyCorpmart = () => {
             </div>
             <div className={styles.frames}>
                 {frames.map(frame => (
-                    <div className={styles.frame}>
+                    <div key={frame.title} className={styles.frame}>
                         <div className={styles.frameImgContainer}>
                             <img src={frame.img} className={styles.frameImg} alt={frame.title} />
                         </div>
