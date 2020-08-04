@@ -123,6 +123,7 @@ class BusinessesForSale extends Component {
                                 this.state.businessList.map(b => (
                                     <BusinessSlide
                                         key={b.id}
+                                        id={b.id}
                                         desc={b.sale_description}
                                         type={b.company_type}
                                         subtype={b.sub_type}

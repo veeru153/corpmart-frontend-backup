@@ -24,7 +24,7 @@ function App() {
                 <div className="App">
                     <Route exact path="/" component={Landing} />
                     <Route path="/explore" component={BusinessesForSale} />
-                    <Route path="/business" component={BusinessDetails} />
+                    <Route path="/business/:id" render={(props) => <BusinessDetails {...props} />} />
                     <Route path="/testimonials" component={Testimonials} />
                     <Route path="/blogs" component={Blogs} />
                     <Route path="/list-your-business" component={ListingForm} />

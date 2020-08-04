@@ -2,9 +2,10 @@ import React from 'react';
 import styles from './BusinessSlide.module.css';
 import Button from '../UI/Button/Button';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import { Link } from 'react-router-dom';
 
 const BusinessSlide = (props) => {
-    const { type, subtype, industry, state, authCapital, paidCapital, askingPrice, desc } = props;
+    const { id, type, subtype, industry, state, authCapital, paidCapital, askingPrice, desc } = props;
     return (
         <div className={[styles.slide, props.className].join(' ')}>
             <p className={styles.businessDesc}>{desc}</p>

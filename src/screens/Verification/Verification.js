@@ -33,13 +33,17 @@ const Verification = (props) => {
 
                     try {
                         let req = await Axios.post('/login/?format=json', payload);
-                        cookies.set('userId', req, {
+                        cookies.set('userToken', req.data.token, {
                             path: '/',
                             sameSite: 'strict',
                             maxAge: 172800,
                         })
                         console.log(req.data);
-                    } catch (e) { console.log(e); }
+                    } catch (e) { 
+                        console.log(e); 
+                    } finally {
+                        props.history.push('/');
+                    }
 
                 }}
             >

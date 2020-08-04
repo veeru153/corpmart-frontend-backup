@@ -48,6 +48,7 @@ const UserDashboard = () => {
                     </div>
                     <div className={styles.showcase}>
                         <BusinessSlide
+                            desc="Dummy Desc"
                             type="Pvt. Ltd."
                             subtype="Pvt. Ltd."
                             industry="Pharmaceutical"
