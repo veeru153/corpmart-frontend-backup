@@ -3,14 +3,12 @@ import Button from '../UI/Button/Button';
 import styles from './Navbar.module.css';
 import { Link } from 'react-router-dom';
 import { Search } from 'react-feather';
-import Cookies from 'universal-cookie';
 import { handleLogout, validateToken } from '../util';
 
 const Navbar = (props) => {
     const [transparent, setTransparent] = useState(true);
     const [loggedIn, setLoggedIn] = useState(false);
     const { dynamic } = props;
-    const cookies = new Cookies();
 
     const handleScroll = () => {
         if (window.scrollY > 64) {

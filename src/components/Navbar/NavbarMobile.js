@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import styles from './NavbarMobile.module.css';
 import { Menu, Search } from 'react-feather';
 import { Link } from 'react-router-dom';
-
-// TODO: Implement Logout procedure.
+import { handleLogout, validateToken } from '../util';
 
 const NavbarMobile = (props) => {
     const [transparent, setTransparent] = useState(true);
     const [expanded, setExpanded] = useState(false);
     const [showSearchBar, setShowSearchBar] = useState(false);
+    const [loggedIn, setLoggedIn] = useState(false);
     const { dynamic } = props;
 
     document.body.style.overflowY = expanded ? "hidden" : "scroll";
@@ -24,6 +24,18 @@ const NavbarMobile = (props) => {
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
     })
+
+    useEffect(() => {
+        async function validateSession() {
+            let validity = await validateToken();
+            if(validity == 200) {
+                setLoggedIn(true);
+            } else {
+                setLoggedIn(false);
+            }
+        }
+        validateSession();
+    }, [])
 
     return (
         <>
@@ -76,15 +88,28 @@ const NavbarMobile = (props) => {
                     }}
                     onClick={(e) => e.stopPropagation()}
                 >
-                    <p className={styles.navName}>Shubham Ahuja</p>
-                    <Link to="/dashboard" className={styles.navLink}><p>My Dashboard</p></Link>
+                    { 
+                        loggedIn
+                        ? <>
+                            <p className={styles.navName}>Shubham Ahuja</p>
+                            <Link to="/dashboard" className={styles.navLink}><p>My Dashboard</p></Link>
+                          </> 
+                        : null
+                    }
                     <Link to="/" className={styles.navLink}><p>Home</p></Link>
                     <Link to="/explore" className={styles.navLink}><p>Businesses for Sale</p></Link>
+                    <Link to="/testimonials" className={styles.navLink}><p>Testimonials</p></Link>
+                    <Link to="/blogs" className={styles.navLink}><p>Blogs</p></Link>
                     <Link to="/faq" className={styles.navLink}><p>FAQs</p></Link>
                     <Link to="/contact-us" className={styles.navLink}><p>Contact Us</p></Link>
-                    <div><p>Logout</p></div>
-                    <Link to="/login" className={styles.navLink}><p>Login</p></Link>
-                    <Link to="/signup" className={styles.navLink}><p>Sign up</p></Link>
+                    {
+                        loggedIn
+                        ? <div onClick={handleLogout} className={styles.navLink}><p>Logout</p></div>
+                        : <>
+                            <Link to="/login" className={styles.navLink}><p>Login</p></Link>
+                            <Link to="/signup" className={styles.navLink}><p>Sign up</p></Link>
+                          </>
+                    }
                 </div>
             </div>
         </>
