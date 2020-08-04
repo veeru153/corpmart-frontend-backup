@@ -64,7 +64,11 @@ class Industry extends Component {
                             className={styles.option} 
                             onClick={() => this.handleIndustry(index)}
                         >
-                            <p className={styles.optionExpLabel}>{industry.name}</p>
+                            <p 
+                                className={styles.optionExpLabel} 
+                                style={{ textTransform: 'capitalize'}}>
+                                    {industry.name.toLowerCase()}
+                            </p>
                             <div>
                                 { industry.checked
                                     ?   <CheckBoxOutlined />

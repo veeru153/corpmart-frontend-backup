@@ -4,9 +4,12 @@ import { ChevronDown, ChevronUp } from 'react-feather';
 import { CheckBoxOutlined, CheckBoxOutlineBlank } from '@material-ui/icons';
 import defaultStateList from './stateList';
 
+// TDOD: Disable autofill in search bar
+
 class State extends Component {
     state = {
         expanded: false,
+        origStateList: defaultStateList,
         stateList: defaultStateList,
         selectedStates: [],
     }
@@ -34,7 +37,15 @@ class State extends Component {
         this.setState({
             stateList: tempState
         }, () => this.props.updateQuery('state', this.state.selectedStates));
-        
+    }
+
+    handleSearch = (e) => {
+        let query = e.target.value;
+        let regex = new RegExp(`.*${query}.*`, 'gi');
+        const tempState = [...this.state.origStateList].filter(s => s.name.match(regex));
+        this.setState({
+            stateList: tempState
+        })
     }
 
     render() {
@@ -57,6 +68,12 @@ class State extends Component {
                         backgroundColor: '#E8EAED',
                     }}
                 >
+                    <input 
+                        id="stateFilter"
+                        onChange={(e) => this.handleSearch(e)}
+                        className={styles.searchBox}
+                        autoComplete="false"
+                    />
                     {this.state.stateList.map((state, index) => (
                         <button 
                             key={state.name}
