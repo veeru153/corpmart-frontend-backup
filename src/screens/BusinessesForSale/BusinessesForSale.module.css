@@ -6,6 +6,7 @@
 
 .container {
     display: block;
+    min-height: 100vh;
 }
 
 .content {
@@ -46,7 +47,6 @@
     .container {
         display: grid;
         grid-template-columns: 1.5fr 5fr;
-        min-height: 100vh;
     }
     .content {
         overflow-y: scroll;

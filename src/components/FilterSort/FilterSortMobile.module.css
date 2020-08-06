@@ -1,14 +1,20 @@
 .FilterSort {
     position: fixed;
     left: 0;
-    bottom: 0;
+    top: 0;
     width: 100%;
-    background: white;
+    min-height: 100vh;
 }
 
 .tabs {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    background: white;
+    z-index: 9999;
 }
 
 .tab {
@@ -17,6 +23,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    z-index: 99999;
 }
 
 .tab p {
@@ -25,7 +32,12 @@
 }
 
 .expanded {
-    max-height: 50vh;
+    max-height: 60vh;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: -52px;
+    background: white;
     overflow: scroll;
     scrollbar-width: none;
     -ms-overflow-style: none;

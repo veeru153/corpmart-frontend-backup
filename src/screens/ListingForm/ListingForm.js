@@ -32,15 +32,16 @@ const ListingForm = (props) => {
         initVals = props.location.state.formPayload;
         if(previewMode == false) setPreviewMode(true);
     } else {
-        initVals = {
-            firstName: '', lastName: '', mobileNo: '', emailId: '',
-            businessName: '', state: '', country: '', sellingPrice: ''
-        };
         if(loggedIn) {
-            initVals.firstName = user.first_name;
-            initVals.lastName = user.last_name;
-            initVals.mobileNo = user.mobile;
-            initVals.emailId = user.email;
+            initVals = {
+                firstName: user.first_name, lastName: user.last_name, mobileNo: user.mobile, emailId: user.email,
+                businessName: '', state: '', country: '', sellingPrice: ''
+            };
+        } else {
+            initVals = {
+                firstName: '', lastName: '', mobileNo: '', emailId: '',
+                businessName: '', state: '', country: '', sellingPrice: ''
+            };
         }
     }
 
@@ -49,7 +50,6 @@ const ListingForm = (props) => {
         <Formik
             initialValues={initVals}
             onSubmit={ async (values, actions) => {
-                console.log(values);
                 if(previewMode) {
                     if(loggedIn) {
                         props.history.push('/additional-data', {
@@ -102,7 +102,13 @@ const ListingForm = (props) => {
                 } else {
                     props.history.push('/preview', {
                         type: 'preview',
-                        formPayload: values,
+                        formPayload: {
+                            ...values,
+                            firstName: user.first_name, 
+                            lastName: user.last_name, 
+                            mobileNo: user.mobile, 
+                            emailId: user.email,
+                        },
                     })
                 }
             }}

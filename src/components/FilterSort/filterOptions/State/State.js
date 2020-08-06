@@ -51,9 +51,13 @@ class State extends Component {
     render() {
         return (
             <div className={styles.section}>
-                <button className={styles.header} onClick={() => this.setState((prevState) => ({
-                    expanded: !prevState.expanded
-                }))}>
+                <button 
+                    className={styles.header} 
+                    onClick={(e) => {
+                        this.setState((prevState) => ({
+                            expanded: !prevState.expanded
+                        }))}
+                }>
                     <p>State</p>
                     <div className={styles.headerIcon}>
                         {this.state.expanded ? <ChevronUp size={16} rotate={180}/> : <ChevronDown size={16} />}
@@ -67,6 +71,7 @@ class State extends Component {
                         maxHeight: 'calc(31px * 8)',
                         backgroundColor: '#E8EAED',
                     }}
+                    onClick={(e) => e.stopPropagation()}
                 >
                     <input 
                         id="stateFilter"
@@ -79,7 +84,7 @@ class State extends Component {
                         <button 
                             key={state.name}
                             className={styles.option} 
-                            onClick={() => this.handleState(index)}
+                            onClick={(e) => this.handleState(index)}
                         >
                             <p className={styles.optionExpLabel}>{state.name}</p>
                             <div>

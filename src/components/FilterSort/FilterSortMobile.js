@@ -5,10 +5,8 @@ import Sort from '@material-ui/icons/Sort';
 import FilterContent from './FilterContent';
 import SortContent from './SortContent';
 
-// TODO: Add Backdrop
-
 const FilterSortMobile = (props) => {
-    const [expanded, setExpanded] = useState(true);
+    const [expanded, setExpanded] = useState(false);
     const [type, setType] = useState('');
 
     const openMenu = (type) => {
@@ -17,17 +15,21 @@ const FilterSortMobile = (props) => {
     }
 
     return (
-        <div className={styles.FilterSort}>
-            {/* <div 
-                className={styles.backdrop} 
-                // style={{ display: expanded ? 'block' : 'none'}}
-                onClick={() => setExpanded(false)}
-            ></div> */}
+        <div 
+            className={styles.FilterSort} 
+            style={{
+                background: expanded ? 'rgba(0, 0, 0, 0.3)' : 'none',
+            }}
+            onClick={() => setExpanded(false)}
+        >
             <div className={styles.tabs}>
                 <button
                     className={styles.tab}
                     style={{ borderBottom: expanded && type == 'filter' ? '4px solid #4AB9CA' : 'none' }}
-                    onClick={() => openMenu('filter')}
+                    onClick={(e) => {
+                        openMenu('filter');
+                        e.stopPropagation();
+                    }}
                 >
                     <Filter size={16} />
                     <p>Filter</p>
@@ -35,7 +37,10 @@ const FilterSortMobile = (props) => {
                 <button
                     className={styles.tab}
                     style={{ borderBottom: expanded && type == 'sort' ? '4px solid #4AB9CA' : 'none' }}
-                    onClick={() => openMenu('sort')}
+                    onClick={(e) => {
+                        openMenu('sort')
+                        e.stopPropagation();
+                    }}
                 >
                     <Sort fontSize="16" />
                     <p>Sort by</p>
@@ -43,6 +48,7 @@ const FilterSortMobile = (props) => {
             </div>
             <div
                 className={styles.expanded}
+                onClick={(e) => e.stopPropagation()}
                 style={{
                     height: expanded ? '100%' : '0',
                     overflow: expanded ? 'scroll' : 'hidden',

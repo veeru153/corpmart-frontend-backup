@@ -23,7 +23,8 @@ const AdditionalForm = (props) => {
                 authCapital: '', paidupCapital: '',
             }}
             onSubmit={ async (values, actions) => {
-                let prevState = props.location.state.payload;
+                let prevState = props.location.state.formPayload;
+                console.log(prevState);
                 try {
                     let res = await Axios.post('/post-business', {
                         business_name: prevState.businessName,
