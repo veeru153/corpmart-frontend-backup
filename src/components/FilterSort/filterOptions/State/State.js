@@ -4,7 +4,7 @@ import { ChevronDown, ChevronUp } from 'react-feather';
 import { CheckBoxOutlined, CheckBoxOutlineBlank } from '@material-ui/icons';
 import defaultStateList from './stateList';
 
-// TDOD: Disable autofill in search bar
+// TODO: Disable autofill in search bar
 
 class State extends Component {
     state = {
@@ -70,6 +70,7 @@ class State extends Component {
                 >
                     <input 
                         id="stateFilter"
+                        placeholder="Filter States"
                         onChange={(e) => this.handleSearch(e)}
                         className={styles.searchBox}
                         autoComplete="false"

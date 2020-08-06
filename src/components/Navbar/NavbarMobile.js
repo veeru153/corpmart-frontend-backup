@@ -28,7 +28,7 @@ const NavbarMobile = (props) => {
     useEffect(() => {
         async function validateSession() {
             let validity = await validateToken();
-            if(validity == 200) {
+            if(validity.status == 200) {
                 setLoggedIn(true);
             } else {
                 setLoggedIn(false);

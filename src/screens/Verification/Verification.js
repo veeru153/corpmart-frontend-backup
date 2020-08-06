@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 
 const Verification = (props) => {
-    if(props.location.state == undefined) props.history.push('/signup');
+    if(props.location.state == undefined) props.history.pop();
     const cookies = new Cookies();
 
     return (
@@ -17,34 +17,51 @@ const Verification = (props) => {
                 onSubmit={ async (values, actions) => {
                     const prevState = props.location.state;
                     let payload;
-                    console.log(values);
-
-                    if(prevState.email) {
-                        payload = {
-                            email: prevState.email,
-                            otp: parseInt(values.otp),
+                    if(prevState.type == 'listing') {
+                        // if redirected from listing, login and redirect to additional form with the previous data
+                        try {
+                            let req = await Axios.post('/login/?format=json', payload);
+                            cookies.set('userToken', req.data.token, {
+                                path: '/',
+                                sameSite: 'strict',
+                                maxAge: 172800,
+                            })
+                            console.log(req.data);
+                        } catch (e) { 
+                            console.log(e); 
+                        } finally {
+                            props.history.push('/additional-data', {
+                                payload: prevState.payload
+                            })
                         }
                     } else {
-                        payload = {
-                            mobile: prevState.mobile,
-                            otp: parseInt(values.otp),
+                        // otherwise, continue the login-signup and redirect to landing
+                        if(prevState.payload.email) {
+                            payload = {
+                                email: prevState.payload.email,
+                                otp: parseInt(values.otp),
+                            }
+                        } else {
+                            payload = {
+                                mobile: prevState.payload.mobile,
+                                otp: parseInt(values.otp),
+                            }
+                        }
+    
+                        try {
+                            let req = await Axios.post('/login/?format=json', payload);
+                            cookies.set('userToken', req.data.token, {
+                                path: '/',
+                                sameSite: 'strict',
+                                maxAge: 172800,
+                            })
+                            console.log(req.data);
+                        } catch (e) { 
+                            console.log(e); 
+                        } finally {
+                            props.history.push('/');
                         }
                     }
-
-                    try {
-                        let req = await Axios.post('/login/?format=json', payload);
-                        cookies.set('userToken', req.data.token, {
-                            path: '/',
-                            sameSite: 'strict',
-                            maxAge: 172800,
-                        })
-                        console.log(req.data);
-                    } catch (e) { 
-                        console.log(e); 
-                    } finally {
-                        props.history.push('/');
-                    }
-
                 }}
             >
                 {(props) => (

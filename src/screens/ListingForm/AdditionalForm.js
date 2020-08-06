@@ -2,10 +2,17 @@ import React from 'react';
 import styles from './ListingForm.module.css'
 import { Formik } from 'formik';
 import Button from '../../components/UI/Button/Button';
+import { Link, withRouter } from 'react-router-dom';
+import Axios from '../../axios';
 
 // TODO: Implement Dropdowns
 
-const AdditionalForm = () => {
+const AdditionalForm = (props) => {
+    // TODO: Uncomment this code to allow proper redirection
+    // if(!props.location.state || props.location.state == undefined) {
+    //     props.history.push('/list-your-business');
+    // }
+
     return (
         <div className={styles.ListingForm}>
         <Formik
@@ -15,8 +22,32 @@ const AdditionalForm = () => {
                 gst: false, bankAcc: false, ieCode: false, licenses: false, licenseDetails: '',
                 authCapital: '', paidupCapital: '',
             }}
-            onSubmit={(values, actions) => {
-                console.log(values);
+            onSubmit={ async (values, actions) => {
+                let prevState = props.location.state.payload;
+                try {
+                    let res = await Axios.post('/post-business', {
+                        business_name: prevState.businessName,
+                        state: prevState.state,
+                        country: prevState.country,
+                        company_type: values.companyType,
+                        company_type_others_description: "",
+                        sub_type: values.subtype,
+                        sub_type_others_description: "",
+                        industry: values.industry,
+                        industries_others_description: "",
+                        sale_description: values.saleDesc,
+                        year_of_incorporation: values.incorporationYear,
+                        has_gst_number: values.gst,
+                        has_bank_account: values.bankAcc,
+                        has_import_export_code: values.ieCode,
+                        has_other_license: values.licenses,
+                        other_license: "",
+                        authorised_capital: values.authCapital,
+                        paidup_capital: values.paidupCapital,
+                        user_defined_selling_price: prevState.sellingPrice
+                    })
+                    console.log(res);
+                } catch (e) { console.log(e); }
             }}
         >
             {(props) => (

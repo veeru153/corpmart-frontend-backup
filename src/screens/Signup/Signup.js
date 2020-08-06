@@ -30,7 +30,10 @@ const Signup = (props) => {
                         })
                         console.log(otp.data);
                     } catch (e) { console.log(e); }
-                    props.history.push('/verification', payload);
+                    props.history.push('/verification', {
+                        payload: payload,
+                        type: 'signup'
+                    });
                 }}
             >
                 {(props) => (
@@ -65,7 +68,6 @@ const Signup = (props) => {
                                     <div className={styles.mobileNoFields}>
                                         <input
                                             id="countryCode"
-                                            onChange={props.handleChange('countryCode')}
                                             value={props.values.countryCode}
                                             className={styles.inputField}
                                             style={{ width: '100%' }}

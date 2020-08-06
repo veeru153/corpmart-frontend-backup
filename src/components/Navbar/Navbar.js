@@ -25,7 +25,8 @@ const Navbar = (props) => {
     useEffect(() => {
         async function validateSession() {
             let validity = await validateToken();
-            if(validity == 200) {
+            console.log(validity)
+            if(validity.status == 200) {
                 setLoggedIn(true);
             } else {
                 setLoggedIn(false);

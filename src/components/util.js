@@ -16,7 +16,7 @@ const validateToken = async () => {
                 'Authorization': `Token ${token}`
             }
         }).catch((e) => e.response);
-        return res.status;
+        return res;
     } else {
         return false;
     }
