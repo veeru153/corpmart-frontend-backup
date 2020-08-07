@@ -4,51 +4,60 @@ import { Formik } from 'formik';
 import Button from '../../components/UI/Button/Button';
 import { Link, withRouter } from 'react-router-dom';
 import Axios from '../../axios';
+import Cookies from 'universal-cookie';
 
 // TODO: Implement Dropdowns
 
 const AdditionalForm = (props) => {
-    // TODO: Uncomment this code to allow proper redirection
-    // if(!props.location.state || props.location.state == undefined) {
-    //     props.history.push('/list-your-business');
-    // }
+    let d = new Date();
+    const cookies = new Cookies();
+    let token = cookies.get('userToken');
+    if(!props.location.state || props.location.state == undefined) {
+        props.history.push('/list-your-business');
+    }
 
     return (
         <div className={styles.ListingForm}>
         <Formik
             initialValues={{
                 companyType: '', subtype: '', industry: '', saleDesc: '',
-                incorporationYear: '', companyAge: '',
+                incorporationYear: d.getFullYear(), companyAge: '',
                 gst: false, bankAcc: false, ieCode: false, licenses: false, licenseDetails: '',
                 authCapital: '', paidupCapital: '',
             }}
             onSubmit={ async (values, actions) => {
-                let prevState = props.location.state.formPayload;
-                console.log(prevState);
+                let { formPayload } = props.location.state;
+                let applicationData = {
+                    verified_by: "",
+                    business_name: formPayload.businessName,
+                    state: formPayload.state,
+                    country: formPayload.country,
+                    company_type: values.companyType,
+                    company_type_others_description: "",
+                    sub_type: values.subtype,
+                    sub_type_others_description: "",
+                    industry: values.industry,
+                    industries_others_description: "",
+                    sale_description: values.saleDesc,
+                    year_of_incorporation: parseInt(values.incorporationYear),
+                    has_gst_number: values.gst,
+                    has_bank_account: values.bankAcc,
+                    has_import_export_code: values.ieCode,
+                    has_other_license: values.licenses,
+                    other_license: "",
+                    authorised_capital: parseInt(values.authCapital),
+                    paidup_capital: parseInt(values.paidupCapital),
+                    user_defined_selling_price: formPayload.sellingPrice
+                }
                 try {
-                    let res = await Axios.post('/post-business', {
-                        business_name: prevState.businessName,
-                        state: prevState.state,
-                        country: prevState.country,
-                        company_type: values.companyType,
-                        company_type_others_description: "",
-                        sub_type: values.subtype,
-                        sub_type_others_description: "",
-                        industry: values.industry,
-                        industries_others_description: "",
-                        sale_description: values.saleDesc,
-                        year_of_incorporation: values.incorporationYear,
-                        has_gst_number: values.gst,
-                        has_bank_account: values.bankAcc,
-                        has_import_export_code: values.ieCode,
-                        has_other_license: values.licenses,
-                        other_license: "",
-                        authorised_capital: values.authCapital,
-                        paidup_capital: values.paidupCapital,
-                        user_defined_selling_price: prevState.sellingPrice
+                    let res = await Axios.post('/post-business', applicationData, {
+                        headers: {
+                            "Authorization": `Token ${token}`,
+                            "Content-Type": "application/json"
+                        }
                     })
-                    console.log(res);
-                } catch (e) { console.log(e); }
+                    props.history.push('/');
+                } catch (e) { console.log(e.response); }
             }}
         >
             {(props) => (

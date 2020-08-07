@@ -63,8 +63,9 @@ const ListingForm = (props) => {
                             res = await Axios.post('/generate_otp/', {
                                 mobile: values.mobileNo
                             });
+                            // TODO: [FINAL] Remove this in when done. This returns OTP in console.
                             console.log(res.data);
-                        } catch (e) { console.log(e); }
+                        } catch (e) { res = e.response; console.log(e.response); }
                         // res.status == 200 means user exists and we have an OTP so redirect to verification so user can login
                         if(res.status == 200) {
                             props.history.push('/verification', {
@@ -77,26 +78,28 @@ const ListingForm = (props) => {
                             try {
                                 // User signs up
                                 res = await Axios.post('/signup/', {
-                                    email: values.email,
+                                    email: values.emailId,
                                     first_name: values.firstName,
                                     last_name: values.lastName,
-                                    mobile: parseInt(values.mobile),
-                                    organisation_name: values.businessName,
+                                    country_code: '91',
+                                    mobile: parseInt(values.mobileNo),
+                                    organisation_name: values.businessName
                                 })
-                            } catch (e) { console.log(e); }
+                            } catch (e) { console.log(e.response); }
 
                             try {
                                 // Newly signed up user gets OTP
                                 res = await Axios.post('/generate_otp/', {
                                     mobile: values.mobileNo
                                 });
+                                // TODO: [FINAL] Remove this in when done. This returns OTP in console.
                                 console.log(res.data);
                                 // User should be signed up here and will have an OTP, redirect to /verification.
                                 props.history.push('/verification', {
                                     type: 'listing',
                                     formPayload: values
                                 })
-                            } catch (e) { console.log(e); }
+                            } catch (e) { console.log(e.response); }
                         }
                     }
                 } else {
@@ -104,10 +107,10 @@ const ListingForm = (props) => {
                         type: 'preview',
                         formPayload: {
                             ...values,
-                            firstName: user.first_name, 
-                            lastName: user.last_name, 
-                            mobileNo: user.mobile, 
-                            emailId: user.email,
+                            firstName: loggedIn ? user.first_name : values.firstName, 
+                            lastName: loggedIn ? user.last_name : values.lastName, 
+                            mobileNo: loggedIn ? user.mobile : values.mobileNo, 
+                            emailId: loggedIn ? user.email : values.emailId,
                         },
                     })
                 }

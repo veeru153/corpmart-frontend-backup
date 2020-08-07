@@ -18,7 +18,12 @@ const Verification = (props) => {
                     const prevState = props.location.state;
                     let payload;
                     if(prevState.type == 'listing') {
+                        let { formPayload } = prevState;
                         // if redirected from listing, login and redirect to additional form with the previous data
+                        payload = {
+                            mobile: formPayload.mobileNo,
+                            otp: parseInt(values.otp)
+                        }
                         try {
                             let req = await Axios.post('/login/?format=json', payload);
                             cookies.set('userToken', req.data.token, {
@@ -26,14 +31,11 @@ const Verification = (props) => {
                                 sameSite: 'strict',
                                 maxAge: 172800,
                             })
-                            console.log(req.data);
-                        } catch (e) { 
-                            console.log(e); 
-                        } finally {
                             props.history.push('/additional-data', {
-                                payload: prevState.payload
+                                formPayload: formPayload
                             })
-                        }
+                        } catch (e) { console.log(e.response); }
+
                     } else {
                         // otherwise, continue the login-signup and redirect to landing
                         if(prevState.payload.email) {
@@ -55,12 +57,8 @@ const Verification = (props) => {
                                 sameSite: 'strict',
                                 maxAge: 172800,
                             })
-                            console.log(req.data);
-                        } catch (e) { 
-                            console.log(e); 
-                        } finally {
                             props.history.push('/');
-                        }
+                        } catch (e) { console.log(e.response); }
                     }
                 }}
             >
