@@ -78,6 +78,19 @@
     outline: none;
 }
 
+.MuiNativeSelect-select {
+    height: 100%;
+    background-color: white;
+}
+
+/* .makeStyles-dropdownField-1 select {
+    background-color: white;
+    height: 100%;
+}
+.makeStyles-dropdownField-1 select:focus {
+    background-color: white;
+} */
+
 .optionBtn {
     padding: 4px 12px;
 }

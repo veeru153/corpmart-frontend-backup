@@ -5,8 +5,13 @@ import Button from '../../components/UI/Button/Button';
 import { withRouter } from 'react-router-dom';
 import { validateToken } from '../../components/util';
 import Axios from '../../axios';
+import FormDropdown from '../../components/UI/FormDropdown/FormDropdown';
 
-// TODO: Implement Dropdowns and Checkboxes
+import stateList from '../../components/FilterSort/filterOptions/State/stateList';
+const countryList = [
+    { name: 'India', checked: false},
+    { name: 'Other', checked: false},
+]
 
 const ListingForm = (props) => {
     const [previewMode, setPreviewMode] = useState(false);
@@ -190,20 +195,20 @@ const ListingForm = (props) => {
                         </div>
                         <div className={styles.formGroup}>
                             <p className={styles.inputLabel}>State*</p>
-                            <input
-                                id="state"
+                            <FormDropdown
+                                name="state"
                                 onChange={props.handleChange('state')}
                                 value={props.values.state}
-                                className={styles.inputField}
+                                options={stateList}
                             />
                         </div>
                         <div className={styles.formGroup}>
                             <p className={styles.inputLabel}>Country*</p>
-                            <input
-                                id="country"
+                            <FormDropdown
+                                name="country"
                                 onChange={props.handleChange('country')}
                                 value={props.values.country}
-                                className={styles.inputField}
+                                options={countryList}
                             />
                         </div>
                         <div className={styles.formGroup}>
