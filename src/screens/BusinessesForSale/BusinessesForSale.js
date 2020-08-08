@@ -13,7 +13,7 @@ class BusinessesForSale extends Component {
     state = {
         businessList: [],
         sliderMaxVals: [0,0,0],
-        queryParams: ['','','','','','','','','','','','','',],
+        queryParams: ['','','','','','','','','','','','','','',],
         page: 1,
         filterOps: [
             { name: 'GST No. Availability', checked: false },
@@ -80,11 +80,17 @@ class BusinessesForSale extends Component {
                 params[10] = `selling_price_max=${value[1]}`;
                 break;
             case 'gst':
-                params[11] = value ? 'gst=True' : 'gst=False';
+                params[11] = value ? 'gst=True' : '';
                 break;
             case 'bank':
-                params[12] = value ? 'bank=True' : 'bank=False';
+                params[12] = value ? 'bank=True' : '';
                 break;
+            case 'sort':
+                if(value == 0) {
+                    params[13] = '';
+                } else {
+                    params[13] = `sort_by=${value}`;
+                }
             default:
                 break;
         }

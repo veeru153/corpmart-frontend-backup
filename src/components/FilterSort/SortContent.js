@@ -1,10 +1,8 @@
 import React from 'react';
 import styles from './FilterSortMobile.module.css';
 
-// TODO: Implement rather than having placeholders
-
 const SortContent = (props) => {
-    const { expanded, type } = props;
+    const { expanded, type, updateQuery } = props;
     return (
         <div
             className={styles.sortExp}
@@ -12,13 +10,15 @@ const SortContent = (props) => {
                 display: expanded && type == 'sort' ? 'block' : 'none',
             }}
         >
-            <p>Recently Listed</p>
-            <p>Year of Establishment (newest first)</p>
-            <p>Year of Establishment (oldest first)</p>
-            <p>Capital (low to high)</p>
-            <p>Capital (high to low)</p>
-            <p>Selling price (low to high)</p>
-            <p>Selling price (high to low)</p>
+            <p onClick={() =>  updateQuery('sort', 0)}>Recently Listed</p>
+            <p onClick={() =>  updateQuery('sort', 1)}>Year of Establishment (newest first)</p>
+            <p onClick={() =>  updateQuery('sort', 2)}>Year of Establishment (oldest first)</p>
+            <p onClick={() =>  updateQuery('sort', 3)}>Authorised Capital (low to high)</p>
+            <p onClick={() =>  updateQuery('sort', 4)}>Authorised Capital (high to low)</p>
+            <p onClick={() =>  updateQuery('sort', 3)}>Paid-up Capital (low to high)</p>
+            <p onClick={() =>  updateQuery('sort', 4)}>Paid-up Capital (high to low)</p>
+            <p onClick={() =>  updateQuery('sort', 5)}>Selling price (low to high)</p>
+            <p onClick={() =>  updateQuery('sort', 6)}>Selling price (high to low)</p>
         </div>
     )
 }

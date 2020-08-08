@@ -61,7 +61,11 @@ const FilterSortMobile = (props) => {
                     handleOption={props.handleOption}
                     updateQuery={props.updateQuery}
                 />
-                <SortContent expanded={expanded} type={type} />
+                <SortContent 
+                    expanded={expanded} 
+                    type={type} 
+                    updateQuery={props.updateQuery}
+                />
             </div>
         </div>
     )
