@@ -127,7 +127,9 @@ class BusinessesForSale extends Component {
                                         desc={b.sale_description}
                                         type={b.company_type}
                                         subtype={b.sub_type}
+                                        subtypeOther={b.sub_type_others_description}
                                         industry={b.industry}
+                                        industryOther={b.industries_others_description}
                                         state={b.state}
                                         authCapital={b.authorised_capital}
                                         paidCapital={b.paidup_capital}

@@ -5,7 +5,7 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import { Link } from 'react-router-dom';
 
 const BusinessSlide = (props) => {
-    const { id, type, subtype, industry, state, authCapital, paidCapital, askingPrice, desc } = props;
+    const { id, type, subtype, subtypeOther, industry, industryOther, state, authCapital, paidCapital, askingPrice, desc } = props;
     return (
         <div className={[styles.slide, props.className].join(' ')}>
             <p className={styles.businessDesc}>{desc}</p>
@@ -20,11 +20,15 @@ const BusinessSlide = (props) => {
                 </div>
                 <div className={styles.businessInfoRow}>
                     <div className={styles.businessInfoLabel}>Sub Type</div>
-                    <div className={styles.businessInfoValue}>{subtype}</div>
+                    <div className={styles.businessInfoValue}>
+                        {subtype == "Others" ? subtypeOther : subtype}
+                    </div>
                 </div>
                 <div className={styles.businessInfoRow}>
                     <div className={styles.businessInfoLabel}>Industry</div>
-                    <div className={styles.businessInfoValue}>{industry.toLowerCase()}</div>
+                    <div className={styles.businessInfoValue}>
+                        {industry.toLowerCase() == "others" ? industryOther.toLowerCase() : industry.toLowerCase()}
+                    </div>
                 </div>
                 <div className={styles.businessInfoRow}>
                     <div className={styles.businessInfoLabel}>State</div>

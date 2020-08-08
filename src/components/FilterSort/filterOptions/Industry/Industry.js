@@ -4,8 +4,6 @@ import { ChevronDown, ChevronUp } from 'react-feather';
 import { CheckBoxOutlined, CheckBoxOutlineBlank } from '@material-ui/icons';
 import industryList from './industryList';
 
-// TODO: Add Other in industryList
-
 class Industry extends Component {
     state = {
         expanded: false,

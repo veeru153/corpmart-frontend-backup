@@ -3,8 +3,6 @@ import styles from './filterOptions.module.css';
 import { ChevronDown, ChevronUp } from 'react-feather';
 import { CheckBoxOutlined, CheckBoxOutlineBlank } from '@material-ui/icons';
 
-// TODO: Add Other in companyList
-
 class SubType extends Component {
     state = {
         expanded: false,
@@ -17,6 +15,7 @@ class SubType extends Component {
             { name: 'Micro Finance Company', checked: false},
             { name: 'Insurance Company', checked: false},
             { name: 'Direct Selling Company', checked: false},
+            { name: 'Others', checked: false},
         ],
         selectedSubTypes: [],
     }

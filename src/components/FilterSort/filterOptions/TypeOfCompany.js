@@ -3,8 +3,6 @@ import styles from './filterOptions.module.css';
 import { ChevronDown, ChevronUp } from 'react-feather';
 import { CheckBoxOutlined, CheckBoxOutlineBlank } from '@material-ui/icons';
 
-// TODO: Add Other in companyList
-
 class TypeOfCompany extends Component {
     state = {
         expanded: false,
@@ -14,6 +12,7 @@ class TypeOfCompany extends Component {
             { name: 'Limited Liability Partnership (LLP)', checked: false},
             { name: 'Partnership Firm', checked: false},
             { name: 'Trust/Society', checked: false},
+            { name: 'Others', checked: false},
         ],
         selectedTypes: [],
     }
