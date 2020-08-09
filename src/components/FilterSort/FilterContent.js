@@ -30,6 +30,8 @@ class FilterContent extends Component {
                 className={styles.filterExp}
                 style={{
                     display: this.props.expanded && this.props.type == 'filter' ? 'block' : 'none',
+                    overflow: this.props.expanded ? 'scroll' : 'hidden',
+                    marginBottom: 104,
                 }}
             >
                 <State updateQuery={this.props.updateQuery} />

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import styles from './FilterSortMobile.module.css';
+import styles from '../FilterSort/FilterSortMobile.module.css';
 import { Filter } from 'react-feather';
 import Sort from '@material-ui/icons/Sort';
-import FilterContent from './FilterContent';
+import DashboardContentSelector from './DashboardContentSelector';
 import SortContent from './SortContent';
 
-const FilterSortMobile = (props) => {
+const DashboardNavMobile = (props) => {
     const [expanded, setExpanded] = useState(false);
     const [type, setType] = useState('');
 
@@ -27,7 +27,7 @@ const FilterSortMobile = (props) => {
                     className={styles.tab}
                     style={{ borderBottom: expanded && type == 'filter' ? '4px solid #4AB9CA' : 'none' }}
                     onClick={(e) => {
-                        openMenu('filter');
+                        openMenu('contentSelector');
                         e.stopPropagation();
                     }}
                 >
@@ -51,25 +51,23 @@ const FilterSortMobile = (props) => {
                 onClick={(e) => e.stopPropagation()}
                 style={{
                     height: expanded ? '100%' : '0',
-                    maxHeight: expanded && type == 'filter' ? '52vh' : '48vh',
+                    maxHeight: expanded && type == 'contentSelector' ? '20vh' : '48vh',
                     overflow: expanded ? 'scroll' : 'hidden',
                 }}
             >
-                <FilterContent 
+                <DashboardContentSelector 
                     expanded={expanded} 
                     type={type} 
-                    filterOps={props.filterOps} 
-                    handleOption={props.handleOption}
-                    updateQuery={props.updateQuery}
+                    changePanel={props.changePanel}
                 />
                 <SortContent 
                     expanded={expanded} 
                     type={type} 
-                    updateQuery={props.updateQuery}
+                    handleSort={props.handleSort}
                 />
             </div>
         </div>
     )
 }
 
-export default FilterSortMobile;
+export default DashboardNavMobile;

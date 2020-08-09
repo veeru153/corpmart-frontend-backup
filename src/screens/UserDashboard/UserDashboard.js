@@ -1,99 +1,123 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import styles from './UserDashboard.module.css';
 import NavbarMobile from '../../components/Navbar/NavbarMobile';
 import Navbar from '../../components/Navbar/Navbar';
 import BusinessSlide from '../../components/BusinessSlide/BusinessSlide';
 import Footer from '../Landing/Footer/Footer';
 import Button from '../../components/UI/Button/Button';
+import DashboardNavMobile from '../../components/DashboardNav/DashboardNavMobile';
+import Axios from '../../axios';
+import Cookies from 'universal-cookie';
 
-// TODO: Get Businesses from API
+class UserDashboard extends Component {
+    state = {
+        token: '',
+        currPanel: 'yourListings',
+        businessList: [],
+    }
 
-const UserDashboard = () => {
-    const panelTypes = ['yourListings', 'recentlyViewed'];
-    const [nowActive, setNowActive] = useState(panelTypes[0]);
+    getBusinesses = async (request) => {
+        let endpoint = request == 'yourListings' ? 'user-business' : 'view-history';
+        let res = await Axios.get(`/${endpoint}/?format=json`, {
+            headers: {
+                'Authorization': `Token ${this.state.token}`
+            }
+        });
+        let tempList = await res.data;
+        this.setState({
+            businessList: tempList
+        })
+    }
 
-    return (
-        <div className={styles.BusinessesForSale}>
-            <NavbarMobile />
-            <Navbar />
+    componentDidMount() {
+        const cookies = new Cookies();
+        this.setState({
+            token: cookies.get('userToken'),
+        }, () => this.getBusinesses(this.state.currPanel))
+    }
 
-            <div className={styles.container}>
-                <div className={styles.sidebar}>
-                    <div 
-                        className={styles.sidebarOptions} 
-                        style={{ justifyContent: 'center', alignItems: 'center' }}
-                    >
-                        <Button type="blue" label="Add Listing" textStyle={{ padding: '12px 20px' }} />
+    changePanel = (panel) => {
+        this.setState({
+            currPanel: panel
+        }, () => this.getBusinesses(this.state.currPanel))
+    }
+
+    handleSort = async (query) => {
+        let endpoint = this.state.currPanel == 'yourListings' ? 'user-business' : 'view-history';
+        let sortQuery = query == 0 ? "" : `&sort_by=${query}`
+        let res = await Axios.get(`/${endpoint}/?format=json${sortQuery}`, {
+            headers: {
+                'Authorization': `Token ${this.state.token}`
+            }
+        });
+        let tempList = await res.data;
+        this.setState({
+            businessList: tempList
+        })
+    }
+
+    render() {
+        return (
+            <div className={styles.BusinessesForSale}>
+                <NavbarMobile />
+                <Navbar />
+    
+                <div className={styles.container}>
+                    <div className={styles.sidebar}>
+                        <div
+                            className={styles.sidebarOptions}
+                            style={{ justifyContent: 'center', alignItems: 'center' }}
+                        >
+                            <Button type="blue" label="Add Listing" textStyle={{ padding: '12px 20px' }} />
+                        </div>
+                        <div
+                            className={styles.sidebarOptions}
+                            style={{ justifyContent: 'flexStart', alignItems: 'left', margin: '0 30px' }}
+                        >
+                            <p
+                                className={styles.sidebarOptionsText}
+                                style={{ fontWeight: this.state.currPanel == 'yourListings' ? 'normal' : '300' }}
+                                onClick={() => this.changePanel('yourListings')}
+                            >Your Listing</p>
+                            <p
+                                className={styles.sidebarOptionsText}
+                                style={{ fontWeight: this.state.currPanel == 'recentlyViewed' ? 'normal' : '300' }}
+                                onClick={() => this.changePanel('recentlyViewed')}
+                            >Recently Viewed</p>
+                        </div>
                     </div>
-                    <div 
-                        className={styles.sidebarOptions}
-                        style={{ justifyContent: 'flexStart', alignItems: 'left', margin: '0 30px' }}
-                    >
-                        <p 
-                            className={styles.sidebarOptionsText}
-                            style={{ fontWeight: nowActive == panelTypes[0] ? 'normal' : '300'}}
-                            onClick={() => setNowActive(panelTypes[0])}
-                        >Your Listing</p>
-                        <p 
-                            className={styles.sidebarOptionsText}
-                            style={{ fontWeight: nowActive == panelTypes[1] ? 'normal' : '300'}}
-                            onClick={() => setNowActive(panelTypes[1])}
-                        >Recently Viewed</p>
+                    <div className={styles.content}>
+                        <div className={styles.header}>
+                            <p className={styles.title}>My Dashboard</p>
+                            <p className={styles.subtitle}>Fron here you can manage your business listings and balancesheet requests.</p>
+                        </div>
+                        <div className={styles.showcase}>
+                            {this.state.businessList.map(b => (
+                                <BusinessSlide
+                                    key={b.id}
+                                    desc={b.sale_description}
+                                    type={b.company_type}
+                                    subtype={b.sub_type}
+                                    industry={b.industry}
+                                    state={b.state}
+                                    authCapital={b.authorised_capital ?? 0}
+                                    paidCapital={b.paidup_capital ?? 0}
+                                    askingPrice={b.admin_defined_selling_price ?? 0}
+                                    className={styles.card}
+                                />
+                            ))}
+                        </div>
                     </div>
                 </div>
-                <div className={styles.content}>
-                    <div className={styles.header}>
-                        <p className={styles.title}>My Dashboard</p>
-                        <p className={styles.subtitle}>Fron here you can manage your business listings and balancesheet requests.</p>
-                    </div>
-                    <div className={styles.showcase}>
-                        <BusinessSlide
-                            desc="Dummy Desc"
-                            type="Pvt. Ltd."
-                            subtype="Pvt. Ltd."
-                            industry="Pharmaceutical"
-                            state="Haryana"
-                            authCapital="INR 20 lakh"
-                            paidCapital="INR 10 lakh"
-                            askingPrice="INR 40 lakh"
-                            className={styles.card}
-                        />
-                        <BusinessSlide
-                            type="Pvt. Ltd."
-                            subtype="Pvt. Ltd."
-                            industry="Pharmaceutical"
-                            state="Haryana"
-                            authCapital="INR 20 lakh"
-                            paidCapital="INR 10 lakh"
-                            askingPrice="INR 40 lakh"
-                            className={styles.card}
-                        />
-                        <BusinessSlide
-                            type="Pvt. Ltd."
-                            subtype="Pvt. Ltd."
-                            industry="Pharmaceutical"
-                            state="Haryana"
-                            authCapital="INR 20 lakh"
-                            paidCapital="INR 10 lakh"
-                            askingPrice="INR 40 lakh"
-                            className={styles.card}
-                        />
-                        <BusinessSlide
-                            type="Pvt. Ltd."
-                            subtype="Pvt. Ltd."
-                            industry="Pharmaceutical"
-                            state="Haryana"
-                            authCapital="INR 20 lakh"
-                            paidCapital="INR 10 lakh"
-                            askingPrice="INR 40 lakh"
-                            className={styles.card}
-                        />
-                    </div>
-                </div>
+                <DashboardNavMobile
+                    changePanel={this.changePanel} 
+                    handleSort={this.handleSort}
+                />
+                <Footer />
             </div>
-            <Footer />
-        </div>
-    )
+        )
+    }
+
 }
 
 export default UserDashboard;

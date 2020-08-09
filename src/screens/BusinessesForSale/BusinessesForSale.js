@@ -137,9 +137,9 @@ class BusinessesForSale extends Component {
                                         industry={b.industry}
                                         industryOther={b.industries_others_description}
                                         state={b.state}
-                                        authCapital={b.authorised_capital}
-                                        paidCapital={b.paidup_capital}
-                                        askingPrice="INR 40 lakh"
+                                        authCapital={b.authorised_capital ?? 0}
+                                        paidCapital={b.paidup_capital ?? 0}
+                                        askingPrice={b.admin_defined_selling_price ?? 0}
                                         className={styles.card}
                                     />
                                 ))

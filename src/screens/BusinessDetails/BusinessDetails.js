@@ -32,7 +32,7 @@ class BusinessDetails extends Component {
         const { id } = params;
         console.log(id);
         let res = await Axios.get(`https://salty-inlet-27527.herokuapp.com/api/v1/business-detail/?format=json&business_id=2`);
-        let data = await res.data[0]
+        let data = await res.data[0];
         this.setState((prevState) => ({
             ...prevState,
             desc: data.sale_description,
@@ -144,16 +144,16 @@ class BusinessDetails extends Component {
                             <p className={styles.title}>Other Businesses for sale</p>
                         </div>
                         <BusinessSlide 
-                            key="{b.id}"
-                            id="{b.id}"
-                            desc="{b.sale_description}"
-                            type="{b.company_type}"
-                            subtype="{b.sub_type}"
-                            industry="{b.industry}"
-                            state="{b.state}"
-                            authCapital="{b.authorised_capital}"
-                            paidCapital="{b.paidup_capital}"
-                            askingPrice="INR 40 lakh"
+                            key={this.state.id}
+                            id={this.state.id}
+                            desc={this.state.sale_description}
+                            type={this.state.company_type}
+                            subtype={this.state.sub_type}
+                            industry={this.state.industry}
+                            state={this.state.state}
+                            authCapital={this.state.authorised_capital ?? 0}
+                            paidCapital={this.state.paidup_capital ?? 0}
+                            askingPrice={this.state.askingPrice ?? 0}
                             className={styles.card}
                         />
                     </div>
