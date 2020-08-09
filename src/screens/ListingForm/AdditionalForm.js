@@ -59,6 +59,7 @@ const AdditionalForm = (props) => {
                                 "Content-Type": "application/json"
                             }
                         })
+                        console.log(res);
                         props.history.push('/');
                     } catch (e) { console.log(e.response); }
                 }}
