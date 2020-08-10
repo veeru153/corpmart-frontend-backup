@@ -19,6 +19,7 @@ const FilterSortMobile = (props) => {
             className={styles.FilterSort} 
             style={{
                 background: expanded ? 'rgba(0, 0, 0, 0.3)' : 'none',
+                minHeight: expanded ? '100vh' : 'unset',
             }}
             onClick={() => setExpanded(false)}
         >

@@ -6,6 +6,9 @@ import BusinessSlide from '../../components/BusinessSlide/BusinessSlide';
 import Button from '../../components/UI/Button/Button';
 import Footer from '../Landing/Footer/Footer';
 import Axios from '../../axios';
+import Cookies from 'universal-cookie';
+
+// TODO: Get proper business details based on the id. Need to wait until Error 500 is fixed on backend
 
 class BusinessDetails extends Component {
     state = {
@@ -28,28 +31,43 @@ class BusinessDetails extends Component {
     }
 
     async componentDidMount() {
+        const cookies = new Cookies();
+        const token = cookies.get('userToken');
         const { match: { params } } = this.props;
         const { id } = params;
         console.log(id);
-        let res = await Axios.get(`https://salty-inlet-27527.herokuapp.com/api/v1/business-detail/?format=json&business_id=2`);
-        let data = await res.data[0];
-        this.setState((prevState) => ({
-            ...prevState,
-            desc: data.sale_description,
-            type: data.company_type,
-            subtype: data.sub_type,
-            industry: data.industry,
-            yearOfIncorporation: data.year_of_incorporation,
-            state: data.state,
-            authCapital: data.authorised_capital,
-            paidupCapital: data.paidup_capital,
-            gst: data.has_gst_number,
-            bankAcc: data.has_bank_account,
-            ieCode: data.has_import_export_code,
-            otherLicenses: data.has_other_license,
-            balancesheet: data.balancesheet_available,
-            balancesheetId: data.balancesheet_id,
-        }))
+        try {
+            let res;
+            if(token) {
+                res = await Axios.get(`/business-detail/?format=json&business_id=${id}`, {
+                    headers: {
+                        'Authorization': `Token ${token}`
+                    }
+                });
+            } else {
+                res = await Axios.get(`/business-detail/?format=json&business_id=${id}`);
+            }
+            // let res = await Axios.get(`/business-detail/?format=json&business_id=${id}`);
+            let data = await res.data[0];
+            console.log(data);
+            this.setState((prevState) => ({
+                ...prevState,
+                desc: data.sale_description,
+                type: data.company_type,
+                subtype: data.sub_type,
+                industry: data.industry,
+                yearOfIncorporation: data.year_of_incorporation,
+                state: data.state,
+                authCapital: data.authorised_capital,
+                paidupCapital: data.paidup_capital,
+                gst: data.has_gst_number,
+                bankAcc: data.has_bank_account,
+                ieCode: data.has_import_export_code,
+                otherLicenses: data.has_other_license,
+                balancesheet: data.balancesheet_available,
+                balancesheetId: data.balancesheet_id,
+            }))
+        } catch (e) { console.log(e.response); }
     }
     
     render() {

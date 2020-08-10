@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './BusinessSlide.module.css';
 import Button from '../UI/Button/Button';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 const BusinessSlide = (props) => {
     const { id, type, subtype, subtypeOther, industry, industryOther, state, authCapital, paidCapital, askingPrice, desc } = props;
@@ -53,10 +53,11 @@ const BusinessSlide = (props) => {
                     type="orange"
                     style={{ padding: '12px 16px' }}
                     textStyle={{ margin: 0 }}
+                    pressed={() => props.history.push(`/business-details/${id}`)}
                 />
             </div>
         </div>
     )
 }
 
-export default BusinessSlide;
+export default withRouter(BusinessSlide);

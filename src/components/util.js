@@ -18,6 +18,7 @@ const validateToken = async () => {
         }).catch((e) => e.response);
         return res;
     } else {
+        cookies.remove('userToken');
         return false;
     }
 }

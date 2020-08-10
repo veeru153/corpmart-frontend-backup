@@ -8,6 +8,8 @@ const SortContent = (props) => {
             className={styles.sortExp}
             style={{
                 display: expanded && type == 'sort' ? 'block' : 'none',
+                overflow: expanded ? 'scroll' : 'hidden',
+                marginBottom: 104,
             }}
         >
             <p onClick={() =>  handleSort(0)}>Recently Listed</p>

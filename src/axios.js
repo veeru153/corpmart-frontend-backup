@@ -1,7 +1,7 @@
 import Axios from 'axios';
 
 const instance = Axios.create({
-    baseURL: 'https://salty-inlet-27527.herokuapp.com/api/v1'
+    baseURL: 'https://corpmart.el.r.appspot.com/api/v1'
 })
 
 export default instance;

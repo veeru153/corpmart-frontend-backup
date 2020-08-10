@@ -11,16 +11,16 @@ import Cookies from 'universal-cookie';
 
 class UserDashboard extends Component {
     state = {
-        token: '',
         currPanel: 'yourListings',
         businessList: [],
     }
 
     getBusinesses = async (request) => {
+        const cookies = new Cookies();
         let endpoint = request == 'yourListings' ? 'user-business' : 'view-history';
         let res = await Axios.get(`/${endpoint}/?format=json`, {
             headers: {
-                'Authorization': `Token ${this.state.token}`
+                'Authorization': `Token ${cookies.get('userToken')}`
             }
         });
         let tempList = await res.data;
@@ -30,10 +30,7 @@ class UserDashboard extends Component {
     }
 
     componentDidMount() {
-        const cookies = new Cookies();
-        this.setState({
-            token: cookies.get('userToken'),
-        }, () => this.getBusinesses(this.state.currPanel))
+        this.getBusinesses(this.state.currPanel);
     }
 
     changePanel = (panel) => {
@@ -68,7 +65,12 @@ class UserDashboard extends Component {
                             className={styles.sidebarOptions}
                             style={{ justifyContent: 'center', alignItems: 'center' }}
                         >
-                            <Button type="blue" label="Add Listing" textStyle={{ padding: '12px 20px' }} />
+                            <Button 
+                                type="blue" 
+                                label="Add Listing" 
+                                textStyle={{ padding: '12px 20px' }} 
+                                pressed={() => this.props.history.push('/list-your-business')}
+                            />
                         </div>
                         <div
                             className={styles.sidebarOptions}
@@ -94,15 +96,16 @@ class UserDashboard extends Component {
                         <div className={styles.showcase}>
                             {this.state.businessList.map(b => (
                                 <BusinessSlide
-                                    key={b.id}
-                                    desc={b.sale_description}
-                                    type={b.company_type}
-                                    subtype={b.sub_type}
-                                    industry={b.industry}
-                                    state={b.state}
-                                    authCapital={b.authorised_capital ?? 0}
-                                    paidCapital={b.paidup_capital ?? 0}
-                                    askingPrice={b.admin_defined_selling_price ?? 0}
+                                    key={!b.viewed_at ? b.id : b.business.id}
+                                    id={!b.viewed_at ? b.id : b.business.id}
+                                    desc={ !b.viewed_at ? b.sale_description : b.business.sale_description}
+                                    type={ !b.viewed_at ? b.company_type : b.business.company_type}
+                                    subtype={ !b.viewed_at ? b.sub_type : b.business.sub_type}
+                                    industry={ !b.viewed_at ? b.industry : b.business.industry}
+                                    state={ !b.viewed_at ? b.state : b.business.state}
+                                    authCapital={ !b.viewed_at ? b.authorised_capital ?? 0 : b.business.authorised_capital ?? 0}
+                                    paidCapital={!b.viewed_at ? b.paidup_capital ?? 0 : b.business.paidup_capital ?? 0}
+                                    askingPrice={!b.viewed_at ? b.admin_defined_selling_price ?? 0 : b.business.admin_defined_selling_price ?? 0}
                                     className={styles.card}
                                 />
                             ))}

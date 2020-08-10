@@ -8,6 +8,8 @@ const DashboardContentSelector = (props) => {
             className={styles.sortExp}
             style={{
                 display: expanded && type == 'contentSelector' ? 'block' : 'none',
+                overflow: expanded ? 'scroll' : 'hidden',
+                marginBottom: 104,
             }}
         >
             <p onClick={() => changePanel('yourListings')}>Your Listing</p>
