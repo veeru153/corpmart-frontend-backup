@@ -12,6 +12,7 @@ import Cookies from 'universal-cookie';
 
 class BusinessDetails extends Component {
     state = {
+        id: '',
         desc: '',
         type: '',
         subtype: '',
@@ -35,7 +36,6 @@ class BusinessDetails extends Component {
         const token = cookies.get('userToken');
         const { match: { params } } = this.props;
         const { id } = params;
-        console.log(id);
         try {
             let res;
             if(token) {
@@ -52,6 +52,7 @@ class BusinessDetails extends Component {
             console.log(data);
             this.setState((prevState) => ({
                 ...prevState,
+                id: id,
                 desc: data.sale_description,
                 type: data.company_type,
                 subtype: data.sub_type,
@@ -68,6 +69,33 @@ class BusinessDetails extends Component {
                 balancesheetId: data.balancesheet_id,
             }))
         } catch (e) { console.log(e.response); }
+    }
+
+    fetchBalancesheet = async () => {
+        const cookies = new Cookies();
+        const token = cookies.get('userToken');
+        const id = this.state.id;
+        let res = await Axios.get(`/balancesheet/?balancesheet_id=${id}`, {
+            headers: {
+                'Authorization': `Token ${token}`
+            }
+        });
+        let link = await res.data[0].file;
+        window.open(link, '_blank');
+    }
+
+    postContact = async () => {
+        const cookies = new Cookies();
+        const token = cookies.get('userToken');
+        const id = this.state.id;
+        let res = await Axios.post(`contact-request/`, {
+            "business": id
+        }, {
+            headers: {
+                'Authorization': `Token ${token}`
+            }
+        });
+        let link = await res.data[0].file;
     }
     
     render() {
@@ -144,6 +172,7 @@ class BusinessDetails extends Component {
                                     type="orange"
                                     style={{ padding: '12px 16px' }}
                                     textStyle={{ margin: 0 }}
+                                    pressed={this.fetchBalancesheet}
                                 />
                             </div>
                             <div className={styles.bsDiv2}>

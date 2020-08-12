@@ -1,15 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './Login.module.css'
-import { Formik } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import Button from '../../components/UI/Button/Button';
 import Axios from '../../axios';
 import { withRouter, Link } from 'react-router-dom';
+import * as yup from 'yup';
 
 const Login = (props) => {
+    const [error, setError] = useState();
+    const [errorMsg, setErrorMsg] = useState('');
+    
+    const validationSchema = yup.object({
+        loginId: yup.lazy(val => {
+            if(val != undefined && !isNaN(parseInt(val))) {
+                return yup.string().required("A Login ID is required.").length(10, "Mobile numbers must be 10 digits long.")
+            } else {
+                return yup.string().required("A Login ID is required.").email("Invalid Email Address")
+            }
+        })
+    })
+
+    const handleIdInput = (e, props) => {
+        setError(false);
+        props.setFieldValue('loginId', e.target.value);
+    }
+
     return (
         <div className={styles.Login}>
         <Formik
             initialValues={{ loginId: '' }}
+            validationSchema={validationSchema}
+            validateOnBlur
             onSubmit={ async (values, actions) => {
                 let payload;
                 if(values.loginId.match(/((([!#$%&'*+\-/=?^_`{|}~\w])|([!#$%&'*+\-/=?^_`{|}~\w][!#$%&'*+\-/=?^_`{|}~\.\w]{0,}[!#$%&'*+\-/=?^_`{|}~\w]))[@]\w+([-.]\w+)*\.\w+([-.]\w+)*)/g)) {
@@ -19,12 +40,17 @@ const Login = (props) => {
                 }
                 try {
                     let req = await Axios.post('/generate_otp/?format=json', payload)
-                    console.log(req.data)
-                } catch (e) { console.log(e); }
-                props.history.push('/verification', {
-                    payload: payload,
-                    type: 'login'
-                })
+                    console.log(req.data);
+                    props.history.push('/verification', {
+                        payload: payload,
+                        type: 'login'
+                    })
+                } catch (e) { 
+                    if(e.response.data.startsWith("DoesNotExist")) {
+                        setError(true);
+                        setErrorMsg("This user does not exist.")
+                    }
+                }
             }}
         >
             {(props) => (
@@ -35,9 +61,18 @@ const Login = (props) => {
                     <div>
                         <div className={styles.formGroup}>
                             <p className={styles.inputLabel}>Enter Mobile number OR Email ID</p>
+                            {error
+                                ? <p className={styles.subtitle} style={{ color: 'red' }}>{errorMsg}</p> 
+                                : null}
+                            <ErrorMessage name="loginId">
+                                {(msg) => {
+                                    return <p className={styles.subtitle} style={{ color: 'red' }}>{msg}</p> 
+                                }}
+                            </ErrorMessage> 
+                            
                             <input
                                 id="loginId"
-                                onChange={props.handleChange('loginId')}
+                                onChange={(e, formikProps) => handleIdInput(e, props)}
                                 value={props.values.loginId}
                                 className={styles.inputField}
                             />
@@ -47,7 +82,12 @@ const Login = (props) => {
                         <p className={styles.subtitle}>
                             Don’t have an account? <Link to="/signup">Sign Up</Link>.
                         </p>
-                        <Button label="Submit" type="blue" pressed={props.handleSubmit} className={styles.submitBtn}/>
+                        <Button 
+                            label="Submit" 
+                            type="blue" 
+                            pressed={props.handleSubmit} 
+                            className={styles.submitBtn}
+                        />
                     </div>
                 </form>
             )}
