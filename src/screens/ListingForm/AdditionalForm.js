@@ -1,19 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './ListingForm.module.css'
 import { Formik } from 'formik';
 import Button from '../../components/UI/Button/Button';
 import Axios from '../../axios';
 import Cookies from 'universal-cookie';
 import FormDropdown from '../../components/UI/FormDropdown/FormDropdown';
+import * as yup from 'yup';
 
 import typeList from '../../components/FilterSort/filterOptions/Type/typeList';
 import subTypeList from '../../components/FilterSort/filterOptions/Type/subTypeList';
 import industryList from '../../components/FilterSort/filterOptions/Industry/industryList';
 
+const formSchema = yup.object({
+    companyType: yup.string().notRequired(),
+    subtype: yup.string().notRequired(),
+    industry: yup.string().notRequired(),
+    saleDesc: yup.string().notRequired(),
+    incorporationYear: yup.mixed().notRequired(),
+    companyAge: yup.mixed().notRequired(),
+    gst: yup.boolean(),
+    bankAcc: yup.boolean(),
+    ieCode: yup.boolean(),
+    licenses: yup.boolean(),
+    licenseDetails: yup.string().notRequired(),
+    authCapital: yup.string().notRequired(),
+    paidupCapital: yup.string().notRequired(),
+})
+
 const AdditionalForm = (props) => {
     if(!props.location.state || props.location.state == undefined) {
         props.history.push('/list-your-business');
     }
+
+    const [error, setError] = useState(false);
+    const [errorMsg, setErrorMsg] = useState('');
 
     let d = new Date();
     const cookies = new Cookies();
@@ -28,6 +48,8 @@ const AdditionalForm = (props) => {
                     gst: false, bankAcc: false, ieCode: false, licenses: false, licenseDetails: '',
                     authCapital: '', paidupCapital: '',
                 }}
+                validationSchema={formSchema}
+                validateOnBlur
                 onSubmit={async (values, actions) => {
                     let { formPayload } = props.location.state;
                     let applicationData = {
@@ -59,9 +81,11 @@ const AdditionalForm = (props) => {
                                 "Content-Type": "application/json"
                             }
                         })
-                        console.log(res);
                         props.history.push('/');
-                    } catch (e) { console.log(e.response); }
+                    } catch (e) { 
+                        console.log(e.response);
+                        setError(true);
+                    }
                 }}
             >
                 {(props) => (
@@ -69,6 +93,9 @@ const AdditionalForm = (props) => {
                         <div className={styles.header}>
                             <p className={styles.title}>Additional Information</p>
                             <p className={styles.subtitle}>Businesses with additional information are likely to be listed faster.</p>
+                            {error
+                                ? <p className={styles.subtitle} style={{ color: 'red' }}>{errorMsg}</p> 
+                                : null}
                         </div>
                         <div>
                             <div className={styles.formGroup}>

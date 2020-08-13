@@ -1,15 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './Signup.module.css';
-import { Formik } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import Button from '../../components/UI/Button/Button';
 import Axios from '../../axios';
 import { withRouter, Link } from 'react-router-dom';
+import * as yup from 'yup';
+
+const signupSchema = yup.object({
+    firstName: yup.string().required("A First Name is required."),
+    lastName: yup.string().required("A Last Name is required."),
+    mobile: yup.string().required("A Mobile number is required.").matches(/^[0-9]*$/g, "Mobile numbers must only contain numbers.").length(10, "Mobile numbers should be 10 digits long."),
+    email: yup.string().required("An Email address is required.").email("Invalid Email Address"),
+    orgName: yup.string()
+})
 
 const Signup = (props) => {
+    const [error, setError] = useState(false);
+    const [errorMsg, setErrorMsg] = useState(false);
+
     return (
         <div className={styles.Signup}>
             <Formik
                 initialValues={{ firstName: '', lastName: '', countryCode: '+91', mobile: '', email: '', orgName: '' }}
+                validationSchema={signupSchema}
+                validateOnBlur
                 onSubmit={ async (values, actions) => {
                     let payload = {
                         email: values.email,
@@ -28,23 +42,35 @@ const Signup = (props) => {
                         let otp = await Axios.post('/generate_otp/?format=json', {
                             email: values.email
                         })
+                        props.history.push('/verification', {
+                            payload: payload,
+                            type: 'signup'
+                        });
                         console.log(otp.data);
-                    } catch (e) { console.log(e); }
-                    props.history.push('/verification', {
-                        payload: payload,
-                        type: 'signup'
-                    });
+                    } catch (e) { 
+                        console.log(e.response); 
+                        setError(true);
+                        setErrorMsg("An Error Occured");
+                    }
                 }}
             >
                 {(props) => (
                     <form className={styles.form}>
                         <div className={styles.header}>
                             <p className={styles.title}>Sign Up</p>
+                            {error
+                                ? <p className={styles.subtitle} style={{ color: 'red' }}>{errorMsg}</p> 
+                                : null}
                         </div>
                         <div className={styles.formFields}>
                             <div className={styles.nameFields}>
                                 <div className={styles.formGroup}>
                                     <p className={styles.inputLabel}>First Name*</p>
+                                    <ErrorMessage name="firstName">
+                                        {(msg) => {
+                                            return <p className={styles.subtitle} style={{ color: 'red' }}>{msg}</p> 
+                                        }}
+                                    </ErrorMessage> 
                                     <input
                                         id="firstName"
                                         onChange={props.handleChange('firstName')}
@@ -54,6 +80,11 @@ const Signup = (props) => {
                                 </div>
                                 <div className={styles.formGroup}>
                                     <p className={styles.inputLabel}>Last Name*</p>
+                                    <ErrorMessage name="lastName">
+                                        {(msg) => {
+                                            return <p className={styles.subtitle} style={{ color: 'red' }}>{msg}</p> 
+                                        }}
+                                    </ErrorMessage> 
                                     <input
                                         id="lastName"
                                         onChange={props.handleChange('lastName')}
@@ -65,6 +96,11 @@ const Signup = (props) => {
                             <div className={styles.contactFields}>
                                 <div className={styles.formGroup}>
                                     <p className={styles.inputLabel}>Mobile Number*</p>
+                                    <ErrorMessage name="mobile">
+                                        {(msg) => {
+                                            return <p className={styles.subtitle} style={{ color: 'red' }}>{msg}</p> 
+                                        }}
+                                    </ErrorMessage> 
                                     <div className={styles.mobileNoFields}>
                                         <input
                                             id="countryCode"
@@ -83,6 +119,11 @@ const Signup = (props) => {
                                 </div>
                                 <div className={styles.formGroup}>
                                     <p className={styles.inputLabel}>Email ID*</p>
+                                    <ErrorMessage name="email">
+                                        {(msg) => {
+                                            return <p className={styles.subtitle} style={{ color: 'red' }}>{msg}</p> 
+                                        }}
+                                    </ErrorMessage> 
                                     <input
                                         id="email"
                                         onChange={props.handleChange('email')}
@@ -93,6 +134,11 @@ const Signup = (props) => {
                             </div>
                             <div className={styles.formGroup}>
                                 <p className={styles.inputLabel}>Name of Organisation</p>
+                                <ErrorMessage name="orgName">
+                                    {(msg) => {
+                                        return <p className={styles.subtitle} style={{ color: 'red' }}>{msg}</p> 
+                                    }}
+                                </ErrorMessage> 
                                 <input
                                     id="orgName"
                                     onChange={props.handleChange('orgName')}

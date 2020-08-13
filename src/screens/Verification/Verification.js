@@ -1,10 +1,15 @@
 import React from 'react';
 import styles from './Verification.module.css'
-import { Formik } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import Button from '../../components/UI/Button/Button';
 import Axios from '../../axios';
 import { withRouter } from 'react-router-dom';
 import Cookies from 'universal-cookie';
+import * as yup from 'yup';
+
+const otpSchema = {
+    otp: yup.string().required("OTP is required.").matches(/^[0-9]*$/g, "OTP must only contain numbers.").length(6, "OTP must be 6 digits long.")
+}
 
 const Verification = (props) => {
     if(props.location.state == undefined) props.history.pop();
@@ -14,6 +19,8 @@ const Verification = (props) => {
         <div className={styles.Verification}>
             <Formik
                 initialValues={{ otp: '' }}
+                validationSchema={otpSchema}
+                validateOnBlur
                 onSubmit={ async (values, actions) => {
                     const prevState = props.location.state;
                     let payload;
@@ -71,6 +78,11 @@ const Verification = (props) => {
                         <div>
                             <div className={styles.formGroup}>
                                 <p className={styles.inputLabel}>Enter OTP</p>
+                                <ErrorMessage name="otp">
+                                    {(msg) => {
+                                        return <p className={styles.subtitle} style={{ color: 'red' }}>{msg}</p> 
+                                    }}
+                                </ErrorMessage> 
                                 <input
                                     id="otp"
                                     onChange={props.handleChange('otp')}

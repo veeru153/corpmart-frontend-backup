@@ -15,7 +15,7 @@ const Login = (props) => {
             if(val != undefined && !isNaN(parseInt(val))) {
                 return yup.string().required("A Login ID is required.").length(10, "Mobile numbers must be 10 digits long.")
             } else {
-                return yup.string().required("A Login ID is required.").email("Invalid Email Address")
+                return yup.string().required("A Login ID is required.").email("Invalid Email address")
             }
         })
     })
@@ -46,9 +46,11 @@ const Login = (props) => {
                         type: 'login'
                     })
                 } catch (e) { 
+                    setError(true);
                     if(e.response.data.startsWith("DoesNotExist")) {
-                        setError(true);
                         setErrorMsg("This user does not exist.")
+                    } else {
+                        setErrorMsg("An Error Occured.")
                     }
                 }
             }}
