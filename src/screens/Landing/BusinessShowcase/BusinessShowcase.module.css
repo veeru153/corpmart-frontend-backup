@@ -4,11 +4,7 @@
     align-items: center;
     flex-direction: column;
     min-height: 100vh;
-    background: #4AB9CA;
-}
-
-.header {
-    color: white;
+    /* background: #4AB9CA; */
 }
 
 .title {
@@ -42,5 +38,17 @@
     }
     .title {
         font-size: clamp(24px, 6vw, 36px);
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .BusinessShowcase {
+        background: url(./background.png) no-repeat center;
+        background-size: contain; 
+    }
+}
+@media only screen and (min-width: 1440px) {
+    .BusinessShowcase {
+        background-size: cover;
     }
 }

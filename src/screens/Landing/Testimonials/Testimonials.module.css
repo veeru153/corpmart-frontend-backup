@@ -42,3 +42,14 @@
         font-size: clamp(16px, 4.28vw, 20px);
     }
 }
+@media only screen and (min-width: 768px) {
+    .Testimonials {
+        background: url(./background.png) no-repeat center;
+        background-size: contain; 
+    }
+}
+@media only screen and (min-width: 1440px) {
+    .Testimonials {
+        background-size: cover;
+    }
+}

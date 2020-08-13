@@ -12,6 +12,7 @@ import Cookies from 'universal-cookie';
 
 class BusinessDetails extends Component {
     state = {
+        loggedIng: false,
         id: '',
         desc: '',
         type: '',
@@ -47,11 +48,10 @@ class BusinessDetails extends Component {
             } else {
                 res = await Axios.get(`/business-detail/?format=json&business_id=${id}`);
             }
-            // let res = await Axios.get(`/business-detail/?format=json&business_id=${id}`);
             let data = await res.data[0];
-            console.log(data);
             this.setState((prevState) => ({
                 ...prevState,
+                loggedIn: token ? true : false,
                 id: id,
                 desc: data.sale_description,
                 type: data.company_type,
@@ -88,14 +88,15 @@ class BusinessDetails extends Component {
         const cookies = new Cookies();
         const token = cookies.get('userToken');
         const id = this.state.id;
-        let res = await Axios.post(`contact-request/`, {
+        let res = await Axios.post(`contact-request`, {
             "business": id
         }, {
             headers: {
                 'Authorization': `Token ${token}`
             }
         });
-        let link = await res.data[0].file;
+        let data = await res.data;
+        console.log(data);
     }
     
     render() {
@@ -172,7 +173,7 @@ class BusinessDetails extends Component {
                                     type="orange"
                                     style={{ padding: '12px 16px' }}
                                     textStyle={{ margin: 0 }}
-                                    pressed={this.fetchBalancesheet}
+                                    pressed={this.postContact}
                                 />
                             </div>
                             <div className={styles.bsDiv2}>
