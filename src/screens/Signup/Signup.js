@@ -35,7 +35,6 @@ const Signup = (props) => {
                     }
                     try {
                         let req = await Axios.post('/signup/?format=json', payload);
-                        console.log(req.data);
                     } catch (e) { console.log(e);}
 
                     try {
@@ -46,7 +45,6 @@ const Signup = (props) => {
                             payload: payload,
                             type: 'signup'
                         });
-                        console.log(otp.data);
                     } catch (e) { 
                         console.log(e.response); 
                         setError(true);

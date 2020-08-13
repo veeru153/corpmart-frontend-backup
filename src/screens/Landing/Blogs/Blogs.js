@@ -18,7 +18,7 @@ class Blogs extends Component {
             this.setState({
                 blogCard: data
             })
-        } catch (e) { console.log(e.response)}
+        } catch (e) { console.log(e.response); }
     }
 
     render() {

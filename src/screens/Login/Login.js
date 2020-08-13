@@ -40,7 +40,6 @@ const Login = (props) => {
                 }
                 try {
                     let req = await Axios.post('/generate_otp/?format=json', payload)
-                    console.log(req.data);
                     props.history.push('/verification', {
                         payload: payload,
                         type: 'login'

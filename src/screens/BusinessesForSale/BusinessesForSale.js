@@ -102,7 +102,7 @@ class BusinessesForSale extends Component {
             let data = await res.data.results;
             this.setState({
                 businessList: data
-            }, () => console.log(this.state.businessList))
+            })
         })
     }
 

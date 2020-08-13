@@ -82,8 +82,6 @@ const ListingForm = (props) => {
                             res = await Axios.post('/generate_otp/', {
                                 mobile: values.mobileNo
                             });
-                            // TODO: [FINAL] Remove this in when done. This returns OTP in console.
-                            console.log(res.data);
                         } catch (e) { res = e.response; console.log(e.response); }
                         // res.status == 200 means user exists and we have an OTP so redirect to verification so user can login
                         if(res.status == 200) {
@@ -111,8 +109,6 @@ const ListingForm = (props) => {
                                 res = await Axios.post('/generate_otp/', {
                                     mobile: values.mobileNo
                                 });
-                                // TODO: [FINAL] Remove this in when done. This returns OTP in console.
-                                console.log(res.data);
                                 // User should be signed up here and will have an OTP, redirect to /verification.
                                 props.history.push('/verification', {
                                     type: 'listing',

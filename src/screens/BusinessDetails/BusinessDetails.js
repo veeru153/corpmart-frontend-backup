@@ -8,8 +8,6 @@ import Footer from '../Landing/Footer/Footer';
 import Axios from '../../axios';
 import Cookies from 'universal-cookie';
 
-// TODO: Get proper business details based on the id. Need to wait until Error 500 is fixed on backend
-
 class BusinessDetails extends Component {
     state = {
         loggedIng: false,
@@ -96,7 +94,6 @@ class BusinessDetails extends Component {
             }
         });
         let data = await res.data;
-        console.log(data);
     }
     
     render() {
