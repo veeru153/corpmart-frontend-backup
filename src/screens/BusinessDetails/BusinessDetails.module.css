@@ -141,19 +141,21 @@
     .detailsCard {
         margin: 0 15px 0 30px;
         justify-self: flex-end;
+        overflow-y: scroll;
+        overflow-x: hidden;
     }
     .balancesheet {
         /* margin: 0 30px 0 15px; */
         justify-self: flex-start;
     }
     .businessDesc {
-        font-size: clamp(16px, 1.6vw, 24px);
+        font-size: clamp(16px, 1.6vw, 20px);
     }
     .businessInfoRow {
         grid-template-columns: 1.6fr 2fr;
     }
     .businessInfoLabel, .businessInfoValue, .businessRegRow p {
-        font-size: clamp(14px, 1.25vw, 18px);
+        font-size: clamp(14px, 1.25vw, 16px);
     }
     .bsDiv1 p, .bsDiv2 p  {
         font-size: clamp(16px, 1.4vw, 20px);
@@ -166,6 +168,6 @@
 @media only screen and (min-width: 1338px) {
     .detailsCard, .balancesheet {
         /* margin: 0 auto; */
-        height: 522px;
+        height: 564px;
     }
 }

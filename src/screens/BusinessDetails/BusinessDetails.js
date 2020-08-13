@@ -7,6 +7,8 @@ import Button from '../../components/UI/Button/Button';
 import Footer from '../Landing/Footer/Footer';
 import Axios from '../../axios';
 import Cookies from 'universal-cookie';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import CancelRoundedIcon from '@material-ui/icons/CancelRounded';
 
 class BusinessDetails extends Component {
     state = {
@@ -37,7 +39,7 @@ class BusinessDetails extends Component {
         const { id } = params;
         try {
             let res;
-            if(token) {
+            if (token) {
                 res = await Axios.get(`/business-detail/?format=json&business_id=${id}`, {
                     headers: {
                         'Authorization': `Token ${token}`
@@ -93,9 +95,8 @@ class BusinessDetails extends Component {
                 'Authorization': `Token ${token}`
             }
         });
-        let data = await res.data;
     }
-    
+
     render() {
         return (
             <div>
@@ -136,28 +137,63 @@ class BusinessDetails extends Component {
                                 </div>
                                 <div className={styles.businessRegRow}>
                                     {this.state.gst
-                                        ? <p className={styles.regAvailable}>GST no. available</p>
-                                        : <p className={styles.regNotAvailable}>GST no. not available</p>}
+                                        ? <>
+                                            <CheckCircleIcon style={{ fontSize: 16, color: '#55B546' }} />
+                                            <p className={styles.regAvailable}>GST no. available</p>
+                                        </>
+                                        : <>
+                                            <CancelRoundedIcon style={{ fontSize: 16, color: '#FF3232' }} />
+                                            <p className={styles.regNotAvailable}>GST no. not available</p>
+                                        </>
+                                    }
                                 </div>
                                 <div className={styles.businessRegRow}>
                                     {this.state.bankAcc
-                                        ? <p className={styles.regAvailable}>Bank account available</p>
-                                        : <p className={styles.regNotAvailable}>Bank account not available</p>}
+                                        ? <>
+                                            <CheckCircleIcon style={{ fontSize: 16, color: '#55B546' }} />
+                                            <p className={styles.regAvailable}>Bank account available</p>
+                                        </>
+                                        : <>
+                                            <CancelRoundedIcon style={{ fontSize: 16, color: '#FF3232' }} />
+                                            <p className={styles.regNotAvailable}>Bank account not available</p>
+                                        </>
+                                    }
                                 </div>
                                 <div className={styles.businessRegRow}>
                                     {this.state.ieCode
-                                        ? <p className={styles.regAvailable}>Import/Export code available</p>
-                                        : <p className={styles.regNotAvailable}>Import/Export code not available</p>}
+                                        ? <>
+                                            <CheckCircleIcon style={{ fontSize: 16, color: '#55B546' }} />
+                                            <p className={styles.regAvailable}>Import/Export code available</p>
+                                        </>
+                                        : <>
+                                            <CancelRoundedIcon style={{ fontSize: 16, color: '#FF3232' }} />
+                                            <p className={styles.regNotAvailable}>Import/Export code not available</p>
+                                        </>
+                                    }
                                 </div>
                                 <div className={styles.businessRegRow}>
                                     {this.state.otherLicenses
-                                        ? <p className={styles.regAvailable}>Other licenses available</p>
-                                        : <p className={styles.regNotAvailable}>No other licenses available</p>}
+                                        ? <>
+                                            <CheckCircleIcon style={{ fontSize: 16, color: '#55B546' }} />
+                                            <p className={styles.regAvailable}>Other licenses available</p>
+                                        </>
+                                        : <>
+                                            <CancelRoundedIcon style={{ fontSize: 16, color: '#FF3232' }} />
+                                            <p className={styles.regNotAvailable}>No other licenses available</p>
+                                        </>
+                                    }
                                 </div>
                                 <div className={styles.businessRegRow}>
                                     {this.state.balancesheet
-                                        ? <p className={styles.regAvailable}>Balancesheet available</p>
-                                        : <p className={styles.regNotAvailable}>Balancesheet not available</p>}
+                                        ? <>
+                                            <CheckCircleIcon style={{ fontSize: 16, color: '#55B546' }} />
+                                            <p className={styles.regAvailable}>Balancesheet available</p>
+                                        </>
+                                        : <>
+                                            <CancelRoundedIcon style={{ fontSize: 16, color: '#FF3232' }} />
+                                            <p className={styles.regNotAvailable}>Balancesheet not available</p>
+                                        </>
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -188,7 +224,7 @@ class BusinessDetails extends Component {
                         <div className={styles.header}>
                             <p className={styles.title}>Other Businesses for sale</p>
                         </div>
-                        <BusinessSlide 
+                        <BusinessSlide
                             key={this.state.id}
                             id={this.state.id}
                             desc={this.state.sale_description}
