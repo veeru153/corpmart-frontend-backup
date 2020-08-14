@@ -7,9 +7,9 @@ import { withRouter } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import * as yup from 'yup';
 
-const otpSchema = {
-    otp: yup.string().required("OTP is required.").matches(/^[0-9]*$/g, "OTP must only contain numbers.").length(6, "OTP must be 6 digits long.")
-}
+const otpSchema = yup.object({
+    otp: yup.string().required("OTP is required.").matches(/^[0-9]*$/g, "OTP must only contain numbers.").length(5, "OTP must be 5 digits long.")
+})
 
 const Verification = (props) => {
     if(props.location.state == undefined) props.history.pop();
@@ -38,10 +38,12 @@ const Verification = (props) => {
                                 sameSite: 'strict',
                                 maxAge: 172800,
                             })
+                        } catch (e) { console.log(e.response); }
+                        if(cookies.get('userToken')) {
                             props.history.push('/additional-data', {
                                 formPayload: formPayload
                             })
-                        } catch (e) { console.log(e.response); }
+                        }
 
                     } else {
                         // otherwise, continue the login-signup and redirect to landing
@@ -66,6 +68,9 @@ const Verification = (props) => {
                             })
                             props.history.push('/');
                         } catch (e) { console.log(e.response); }
+                        if(cookies.get('userToken')) {
+                            props.history.push('/');
+                        }
                     }
                 }}
             >

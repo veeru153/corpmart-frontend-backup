@@ -9,16 +9,16 @@ import FormDropdown from '../../components/UI/FormDropdown/FormDropdown';
 import stateList from '../../components/FilterSort/filterOptions/State/stateList';
 import * as yup from 'yup';
 
-const listingSchema = yup.object({
-    firstName: yup.string().required("First Name is required."), 
-    lastName: yup.string().required("Last Name is required."), 
-    mobileNo: yup.string().required("A Mobile number is required.").matches(/^[0-9]*$/g, "Mobile numbers must only contain numbers.").length(10, "Mobile numbers should be 10 digits long."), 
-    emailId: yup.string().required("An Email address is required.").email("Invalid Email Address"),          
-    businessName: yup.string().required("Business Name is required."), 
-    state: yup.string().required("State is required."), 
-    country: yup.string().required("Country is required."), 
-    sellingPrice: yup.string().required("Selling Price is required.")
-})
+// const listingSchema = yup.object({
+//     firstName: yup.string().required("First Name is required."), 
+//     lastName: yup.string().required("Last Name is required."), 
+//     mobileNo: yup.string().required("A Mobile number is required.").matches(/^[0-9]*$/g, "Mobile numbers must only contain numbers.").length(10, "Mobile numbers should be 10 digits long."), 
+//     emailId: yup.string().required("An Email address is required.").email("Invalid Email Address"),          
+//     businessName: yup.string().required("Business Name is required."), 
+//     state: yup.string().required("State is required."), 
+//     country: yup.string().required("Country is required."), 
+//     sellingPrice: yup.string().required("Selling Price is required.")
+// })
 
 const countryList = [
     { name: 'India', checked: false},
@@ -66,8 +66,8 @@ const ListingForm = (props) => {
         <div className={styles.ListingForm}>
         <Formik
             initialValues={initVals}
-            validationSchema={listingSchema}
-            validateOnBlur
+            // validationSchema={listingSchema}
+            // validateOnBlur
             onSubmit={ async (values, actions) => {
                 if(previewMode) {
                     if(loggedIn) {

@@ -16,7 +16,7 @@
 .title {
     font-size: 18px;
     line-height: 150%;
-    margin: 10px 0;
+    margin: 10px 12px;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;

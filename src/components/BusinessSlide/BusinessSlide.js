@@ -8,7 +8,7 @@ const BusinessSlide = (props) => {
     const { id, type, subtype, subtypeOther, industry, industryOther, state, authCapital, paidCapital, askingPrice, desc } = props;
     return (
         <div className={[styles.slide, props.className].join(' ')}>
-            <p className={styles.businessDesc}>{desc}</p>
+            <p className={styles.businessDesc}>{desc.length == 0 ? "Currently Not Available. Please check later." : desc}</p>
             <div className={styles.verified}>
                 <CheckCircleIcon style={{ fontSize: 16, color: '#55B546'}}/>
                 <p>Contact Verified</p>
@@ -16,18 +16,20 @@ const BusinessSlide = (props) => {
             <div className={styles.businessInfo}>
                 <div className={styles.businessInfoRow}>
                     <div className={styles.businessInfoLabel}>Type</div>
-                    <div className={styles.businessInfoValue}>{type}</div>
+                    <div className={styles.businessInfoValue}>{type ?? "Available After Contact"}</div>
                 </div>
                 <div className={styles.businessInfoRow}>
                     <div className={styles.businessInfoLabel}>Sub Type</div>
                     <div className={styles.businessInfoValue}>
-                        {subtype == "Others" ? subtypeOther : subtype}
+                        {subtype ? (subtype == "Others" ? subtypeOther : subtype) : "Available After Contact"}
                     </div>
                 </div>
                 <div className={styles.businessInfoRow}>
                     <div className={styles.businessInfoLabel}>Industry</div>
                     <div className={styles.businessInfoValue}>
-                        {industry.toLowerCase() == "others" ? industryOther.toLowerCase() : industry.toLowerCase()}
+                        {industry
+                        ?  (industry.toLowerCase() == "others" ? industryOther.toLowerCase() : industry.toLowerCase())
+                        :  "Available After Contact"}
                     </div>
                 </div>
                 <div className={styles.businessInfoRow}>
@@ -36,15 +38,15 @@ const BusinessSlide = (props) => {
                 </div>
                 <div className={styles.businessInfoRow}>
                     <div className={styles.businessInfoLabel}>Auth. Captial</div>
-                    <div className={styles.businessInfoValue}>{authCapital}</div>
+                    <div className={styles.businessInfoValue}>{authCapital ?? "Available After Contact"}</div>
                 </div>
                 <div className={styles.businessInfoRow}>
                     <div className={styles.businessInfoLabel}>Paid-up Capital</div>
-                    <div className={styles.businessInfoValue}>{paidCapital}</div>
+                    <div className={styles.businessInfoValue}>{paidCapital ?? "Available After Contact"}</div>
                 </div>
                 <div className={styles.businessInfoRow}>
                     <div className={styles.businessInfoLabel}>Asking Price</div>
-                    <div className={styles.businessInfoValue} style={{ fontWeight: 'normal', fontSize: 16 }}>{askingPrice}</div>
+                    <div className={styles.businessInfoValue} style={{ fontWeight: 'normal', fontSize: 16 }}>{askingPrice ?? "Available After Contact"}</div>
                 </div>
             </div>
             <div className={styles.btnContainer}>

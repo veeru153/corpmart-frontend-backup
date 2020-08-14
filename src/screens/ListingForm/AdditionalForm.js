@@ -23,8 +23,8 @@ const formSchema = yup.object({
     ieCode: yup.boolean(),
     licenses: yup.boolean(),
     licenseDetails: yup.string().notRequired(),
-    authCapital: yup.string().notRequired(),
-    paidupCapital: yup.string().notRequired(),
+    authCapital: yup.string().notRequired().matches(/^[0-9]*$/g, "Authorised Capital can only contain numbers."),
+    paidupCapital: yup.string().notRequired().matches(/^[0-9]*$/g, "Paid-up Capital can only contain numbers."),
 })
 
 const AdditionalForm = (props) => {

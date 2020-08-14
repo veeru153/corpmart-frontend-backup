@@ -7,14 +7,16 @@ import FilterSortMobile from '../../components/FilterSort/FilterSortMobile';
 import FilterDiv from '../../components/FilterSort/FilterDiv/FilterDiv';
 import Footer from '../Landing/Footer/Footer';
 import Axios from '../../axios';
+import Button from '../../components/UI/Button/Button';
 
 
 class BusinessesForSale extends Component {
     state = {
         businessList: [],
-        sliderMaxVals: [0,0,0],
-        queryParams: ['','','','','','','','','','','','','','',],
+        sliderMaxVals: [0, 0, 0],
+        queryParams: ['', '', '', '', '', '', '', '', '', '', '', '', '', '',],
         page: 1,
+        lastPage: true,
         filterOps: [
             { name: 'GST No. Availability', checked: false },
             { name: 'Bank Account Availability', checked: false },
@@ -27,12 +29,22 @@ class BusinessesForSale extends Component {
         let data = await res.data;
 
         let res2 = await Axios.get(`/business-list/?format=json&page=${this.state.page}`);
-        let data2 = await res2.data.results;
+        let data2 = await res2.data;
 
         this.setState({
             sliderMaxVals: [data.max_auth_capital, data.max_paidup_capital, data.max_selling_price],
-            businessList: data2
+            businessList: data2.results,
+            lastPage: data2.next == null
         });
+    }
+
+    fetchNewList = async () => {
+        let res = await Axios.get(`/business-list/?format=json&page=${this.state.page}&${this.state.queryParams.filter(p => p != '').join('&')}`);
+        let data = await res.data;
+        this.setState({
+            businessList: data.results,
+            lastPage: data.next == null
+        })
     }
 
     handleOption = (index) => {
@@ -41,7 +53,7 @@ class BusinessesForSale extends Component {
         this.setState({
             filterOps: tempOps
         }, () => {
-            if(index == 0) {
+            if (index == 0) {
                 this.updateQuery('gst', this.state.filterOps[0].checked)
             } else {
                 this.updateQuery('bank', this.state.filterOps[0].checked)
@@ -49,9 +61,26 @@ class BusinessesForSale extends Component {
         })
     }
 
+    handlePageChange = async (type) => {
+        switch (type) {
+            case 'next':
+                this.setState((prevState) => ({
+                    page: prevState.page + 1
+                }), this.fetchNewList)
+                break;
+            case 'prev':
+                this.setState((prevState) => ({
+                    page: prevState.page - 1
+                }), this.fetchNewList)
+                break;
+            default:
+                break;
+        }
+    }
+
     updateQuery = async (param, value) => {
         let params = [...this.state.queryParams];
-        switch(param) {
+        switch (param) {
             case 'state':
                 value.length == 0 ? params[0] = '' : params[0] = `state=${value.join(',')}`;
                 break;
@@ -86,7 +115,7 @@ class BusinessesForSale extends Component {
                 params[12] = value ? 'bank=True' : '';
                 break;
             case 'sort':
-                if(value == 0) {
+                if (value == 0) {
                     params[13] = '';
                 } else {
                     params[13] = `sort_by=${value}`;
@@ -99,9 +128,10 @@ class BusinessesForSale extends Component {
             queryParams: params
         }, async () => {
             let res = await Axios.get(`/business-list/?format=json&page=${this.state.page}&${params.filter(p => p != '').join('&')}`);
-            let data = await res.data.results;
+            let data = await res.data;
             this.setState({
-                businessList: data
+                businessList: data.results,
+                lastPage: data.next == null
             })
         })
     }
@@ -111,11 +141,11 @@ class BusinessesForSale extends Component {
             <div className={styles.BusinessesForSale}>
                 <NavbarMobile />
                 <Navbar />
-    
+
                 <div className={styles.container}>
-                    <FilterDiv 
-                        sliderMaxVals={this.state.sliderMaxVals} 
-                        updateQuery={this.updateQuery} 
+                    <FilterDiv
+                        sliderMaxVals={this.state.sliderMaxVals}
+                        updateQuery={this.updateQuery}
                         filterOps={this.state.filterOps}
                         handleOption={this.handleOption}
                     />
@@ -145,10 +175,30 @@ class BusinessesForSale extends Component {
                                 ))
                             }
                         </div>
+                        <div style={{ margin: '44px auto' }}>
+                            <Button
+                                label="<< Previous"
+                                type={this.state.page == 1 ? "#DADEE4" : "#FFFFFF"}
+                                color="black"
+                                textStyle={{ padding: '12px 20px' }}
+                                style={{ margin: '0 6px' }}
+                                disabled={this.state.page == 1}
+                                pressed={() => this.handlePageChange('prev')}
+                            />
+                            <Button
+                                label="Next >>"
+                                type={this.state.lastPage ? "#DADEE4" : "#FFFFFF"}
+                                color="black"
+                                textStyle={{ padding: '12px 0', minWidth: 136.77 }}
+                                style={{ margin: '0 6px' }}
+                                disabled={this.state.lastPage}
+                                pressed={() => this.handlePageChange('next')}
+                            />
+                        </div>
                     </div>
                 </div>
-                <FilterSortMobile 
-                    sliderMaxVals={this.state.sliderMaxVals} 
+                <FilterSortMobile
+                    sliderMaxVals={this.state.sliderMaxVals}
                     updateQuery={this.updateQuery}
                     filterOps={this.state.filterOps}
                     handleOption={this.handleOption}
