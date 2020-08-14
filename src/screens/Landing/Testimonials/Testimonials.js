@@ -31,7 +31,7 @@ class Testimonials extends Component {
                     {this.state.testimonialCards.map(card => (
                         <TestimonialSlide 
                             key={card.id}
-                            img={card.picture}
+                            imgUrl={card.picture}
                             name={card.name}
                             meta={card.designation}
                             testimonialText={card.text}

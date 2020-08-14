@@ -13,10 +13,10 @@ class Blogs extends Component {
 
     async componentDidMount() {
         try {
-            let res = await Axios.get('/blog');
+            let res = await Axios.get('/blog/');
             let data = await res.data;
             this.setState({
-                blogCard: data
+                blogCards: data
             })
         } catch (e) { console.log(e.response); }
     }
@@ -36,14 +36,9 @@ class Blogs extends Component {
                             date={moment(card.created_at).format("MMM DD, Y")}
                             author={card.posted_by}
                             blogText={card.blog_text}
+                            imgUrl={card.picture}
                         />
                     ))}
-                    <BlogSlide 
-                            title='Points to be noted while filling a form while listing your business."'
-                            date='May 23'
-                            author='Ashu Batra'
-                            blogText='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sem sem, tempus in ipsum non, convallis ullamcorper leo. Maecenas tincidunt laoreet enim, a commodo lorem facilisis id. Praesent nec imperdiet lectus. Nulla suscipit accumsan dignissim. Aliquam malesuada vel lorem in sollicitudin. Ut gravida eu ante eu dignissim. Cras fermentum tellus eu dignissim tempus. Nulla lobortis non magna ut dapibus. Sed sollicitudin eros non mauris porta, eu mollis magna pretium. Donec eget metus mauris. Morbi et ornare ligula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget bibendum neque. Morbi sit amet gravida mauris. Mauris ut velit pharetra, malesuada elit ac, euismod risus. Cras varius sit amet massa id auctor.'
-                        />
                 </div>
                 <div className={styles.btnContainer}>
                     <Link to="/blogs">

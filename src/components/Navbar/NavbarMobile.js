@@ -64,6 +64,7 @@ const NavbarMobile = (props) => {
                         id="search"
                         placeholder="ex. businesses for sale"
                         style={{ display: showSearchBar ? 'block' : 'none' }}
+                        autoComplete="off"
                     />
                 </div> {/* Search Bar */}
                 <div className={styles.navBtn}>

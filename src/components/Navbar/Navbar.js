@@ -62,6 +62,7 @@ const Navbar = (props) => {
                     <input 
                         id="search"
                         placeholder="ex. businesses for sale"
+                        autoComplete="off"
                     />
                     <Search 
                         color={transparent && dynamic ? "white" : "black"} 

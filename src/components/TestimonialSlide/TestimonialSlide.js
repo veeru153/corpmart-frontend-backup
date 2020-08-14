@@ -2,12 +2,14 @@ import React from 'react';
 import styles from './TestimonialSlide.module.css';
 
 const TestimonialSlide = (props) => {
-    const { name, meta, testimonialText } = props
+    const { name, meta, testimonialText, imgUrl } = props
     return (
         <div className={styles.slide}>
             <div className={styles.author}>
                 <div className={styles.authorImg}>
-                    <div className={styles.defaultImg}></div>
+                    {!imgUrl || imgUrl.length == 0
+                    ?  <div className={styles.defaultImg}></div>
+                    :  <img src={imgUrl} className={styles.authorImg}/>}
                 </div>
                 <div className={styles.authorInfo}>
                     <p className={styles.authorName}>{name}</p>
