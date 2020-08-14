@@ -13,7 +13,8 @@ const BlogSlide = (props) => {
                     title: title,
                     date: date,
                     author: author,
-                    imgUrl: imgUrl
+                    imgUrl: imgUrl,
+                    blogText: blogText
                 }
             }} 
             style={{ display: 'flex', justifyContent: 'center' }}
