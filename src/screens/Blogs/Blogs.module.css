@@ -23,6 +23,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 80%;
+}
+
+.mobileCards {
+    display: block;
 }
 
 @media only screen and (min-width: 600px) {
@@ -35,19 +40,16 @@
 }
 
 @media only screen and (min-width: 768px) {
-    .carousel {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        padding: 0 60px;
-        row-gap: 5px;
-    }
+    .mobileCards {
+        display: none;
+    }    
 }
 
-@media only screen and (min-width: 1208px) {
+/* @media only screen and (min-width: 1208px) {
     .carousel {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         padding: 0 60px;
         row-gap: 15px;
     }
-}
+} */

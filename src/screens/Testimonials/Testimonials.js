@@ -31,13 +31,22 @@ class Testimonials extends Component {
                     </div>
                     <div className={styles.carousel}>
                         {this.state.testimonialCards.map(card => (
-                            <TestimonialSlide
-                                key={card.id}
-                                imgUrl={card.picture}
-                                name={card.name}
-                                meta={card.designation}
-                                testimonialText={card.text}
-                            />
+                            <>
+                                <TestimonialSlide
+                                    key={card.id}
+                                    imgUrl={card.picture}
+                                    name={card.name}
+                                    meta={card.designation}
+                                    testimonialText={card.text}
+                                />
+                                <TestimonialSlide
+                                    key={card.id}
+                                    imgUrl={card.picture}
+                                    name={card.name}
+                                    meta={card.designation}
+                                    testimonialText={card.text}
+                                />
+                            </>
                         ))}
                     </div>
                 </div>
