@@ -12,12 +12,8 @@ const CorpmartInMedia = () => {
                 <div className={styles.subtitle}>CorpMart in Media</div>
             </div>
             <div className={styles.mediaShowcase}>
-                <div>
-                    <img src={isoCert} />
-                </div>
-                <div>
-                    <img src={startupIndia} />
-                </div>
+                <div><img src={isoCert} /></div>
+                <div><img src={startupIndia} /></div>
             </div>
         </div>
     )
