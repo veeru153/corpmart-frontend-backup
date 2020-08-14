@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 80vh;
 }
 
 .header {
@@ -12,16 +12,22 @@
 
 .title {
     font-weight: 600;
-    font-size: clamp(24px, 6.4vw, 48px);
-    margin: 7.5px;
+    font-size: clamp(24px, 6.4vw, 36px);
 }
 
 .subtitle {
-    font-size: clamp(16px, 4.28vw, 24px);
+    font-size: clamp(16px, 4.28vw, 20px);
     margin: 7.5px 20px 44px 20px;
 }
 
 .mediaShowcase {
     flex: 9;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
 
+.mediaShowcase div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
