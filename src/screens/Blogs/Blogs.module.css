@@ -26,6 +26,11 @@
     width: 80%;
 }
 
+.carousel a {
+    text-decoration: none;
+    color: black
+}
+
 .mobileCards {
     display: block;
 }

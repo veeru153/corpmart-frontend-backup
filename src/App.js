@@ -6,6 +6,7 @@ import BusinessesForSale from './screens/BusinessesForSale/BusinessesForSale';
 import BusinessDetails from './screens/BusinessDetails/BusinessDetails';
 import Testimonials from './screens/Testimonials/Testimonials';
 import Blogs from './screens/Blogs/Blogs';
+import BlogExpanded from './screens/BlogExpanded/BlogExpanded';
 import ListingForm from './screens/ListingForm/ListingForm';
 import AdditionalForm from './screens/ListingForm/AdditionalForm';
 import Verification from './screens/Verification/Verification';
@@ -27,6 +28,7 @@ function App() {
                     <Route path="/business-details/:id" render={(props) => <BusinessDetails {...props} />} />
                     <Route path="/testimonials" component={Testimonials} />
                     <Route path="/blogs" component={Blogs} />
+                    <Route path="/blog/:id" component={BlogExpanded} />
                     <Route path="/list-your-business" component={ListingForm} />
                     <Route path="/additional-data" component={AdditionalForm} />
                     <Route path="/preview" component={ListingForm} />

@@ -37,6 +37,7 @@ class Blogs extends Component {
                                 <div className={styles.mobileCards}>
                                     <BlogSlide
                                         key={card.id}
+                                        id={card.id}
                                         title={card.blog_title}
                                         date={moment(card.created_at).format("MMM DD, Y")}
                                         author={card.posted_by}
@@ -46,6 +47,7 @@ class Blogs extends Component {
                                 </div>
                                 <BlogSlideLarge
                                     key={card.id}
+                                    id={card.id}
                                     title={card.blog_title}
                                     date={moment(card.created_at).format("MMM DD, Y")}
                                     author={card.posted_by}
