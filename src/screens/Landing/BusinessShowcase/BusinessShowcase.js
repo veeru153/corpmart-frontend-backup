@@ -15,6 +15,7 @@ const BusinessForSale = () => {
             </div>
             <div className={styles.carousel}>
                 <BusinessSlide 
+                    desc="Lorem Ipsum Dolor Metit, etc."
                     type="Pvt. Ltd."
                     subtype="Pvt. Ltd."
                     industry="Pharmaceutical"

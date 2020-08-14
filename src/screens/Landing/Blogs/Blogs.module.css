@@ -4,7 +4,7 @@
     align-items: center;
     flex-direction: column;
     min-height: 100vh;
-    background-color: #E8EAED;
+    /* background-color: #E8EAED; */
 }
 
 .title {
@@ -41,5 +41,16 @@
     }
     .subtitle {
         font-size: clamp(16px, 4.28vw, 20px);
+    }
+}
+@media only screen and (min-width: 768px) {
+    .Blogs {
+        background: url(./background.png) no-repeat center;
+        background-size: contain; 
+    }
+}
+@media only screen and (min-width: 1440px) {
+    .Blogs {
+        background-size: cover;
     }
 }

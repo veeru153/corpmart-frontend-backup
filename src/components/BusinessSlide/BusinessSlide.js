@@ -8,7 +8,7 @@ const BusinessSlide = (props) => {
     const { id, type, subtype, subtypeOther, industry, industryOther, state, authCapital, paidCapital, askingPrice, desc } = props;
     return (
         <div className={[styles.slide, props.className].join(' ')}>
-            <p className={styles.businessDesc}>{desc.length == 0 ? "Currently Not Available. Please check later." : desc}</p>
+            <p className={styles.businessDesc}>{!desc || desc.length == 0 ? "Currently Not Available. Please check later." : desc}</p>
             <div className={styles.verified}>
                 <CheckCircleIcon style={{ fontSize: 16, color: '#55B546'}}/>
                 <p>Contact Verified</p>
