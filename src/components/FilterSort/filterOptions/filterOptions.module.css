@@ -5,8 +5,9 @@
 .header {
     all: unset;
     display: grid;
-    grid-template-columns: 9fr 1fr;
+    grid-template-columns: 7fr 3fr;
     width: 100%;
+    margin: 1px auto;
 }
 
 .header p {
@@ -16,20 +17,27 @@
 
 .headerIcon {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
+}
+
+.headerIcon svg {
+    margin-right: 10px;
 }
 
 .filterOptions {
     scrollbar-width: 0;
     -ms-overflow-style: none;
 }
-.filterOptions::-webkit-scrollbar { display: none; }
+
+.filterOptions::-webkit-scrollbar {
+    display: none;
+}
 
 .option {
     all: unset;
     display: grid;
-    grid-template-columns: 9fr 1fr;
+    grid-template-columns: 7fr 3fr;
     width: 100%;
     justify-content: center;
     align-items: center;
@@ -47,9 +55,22 @@
     text-align: left;
 }
 
+.checkbox svg {
+    margin-right: 10px;
+}
+
+.sliderContainer {
+    max-height: 120px;
+    background-color: #E8EAED;
+}
+.sliderContainer p {
+    text-align: left;
+    margin: 1px 30px;
+}
+
 .searchBox {
     all: unset;
-    border: 2px solid #000000;  
+    border: 2px solid #000000;
     box-sizing: border-box;
     border-radius: 10px;
     margin: 12px auto;

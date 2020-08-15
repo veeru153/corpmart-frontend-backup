@@ -34,13 +34,14 @@ class PaidCapital extends Component {
                         {this.state.expanded ? <ChevronUp size={16} rotate={180} /> : <ChevronDown size={16} />}
                     </div>
                 </button>
-                <div style={{
-                    height: this.state.expanded ? '100%' : '0',
-                    overflow: this.state.expanded ? 'scroll' : "hidden",
-                    maxHeight: '120px',
-                    backgroundColor: '#E8EAED',
-                    // padding: '40px 0'
-                }}>
+                <div
+                    className={styles.sliderContainer}
+                    style={{
+                        height: this.state.expanded ? '100%' : '0',
+                        overflow: this.state.expanded ? 'scroll' : "hidden",
+                        // padding: '40px 0'
+                    }}
+                >
                     <Slider 
                         values={this.state.values} 
                         setValues={this.handleValues} 

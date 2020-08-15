@@ -4,8 +4,6 @@ import { ChevronDown, ChevronUp } from 'react-feather';
 import { CheckBoxOutlined, CheckBoxOutlineBlank } from '@material-ui/icons';
 import defaultStateList from './stateList';
 
-// TODO: Disable autofill in search bar
-
 class State extends Component {
     state = {
         expanded: false,

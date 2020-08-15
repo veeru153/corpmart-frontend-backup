@@ -32,6 +32,7 @@ class FilterContent extends Component {
                     display: this.props.expanded && this.props.type == 'filter' ? 'block' : 'none',
                     overflow: this.props.expanded ? 'scroll' : 'hidden',
                     marginBottom: 104,
+                    marginTop: 1,
                 }}
             >
                 <State updateQuery={this.props.updateQuery} />
@@ -50,7 +51,7 @@ class FilterContent extends Component {
                         onClick={() => this.props.handleOption(index)}
                     >
                         <p className={styles.optionExpLabel}>{op.name}</p>
-                        <div>
+                        <div className={styles.checkbox}>
                             {op.checked
                                 ? <CheckBoxOutlined />
                                 : <CheckBoxOutlineBlank />

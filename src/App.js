@@ -15,8 +15,8 @@ import Signup from './screens/Signup/Signup';
 import RegistrationSuccess from './screens/RegistrationSuccess/RegistrationSuccess';
 import ContactUs from './screens/ContactUs/ContactUs';
 import UserDashboard from './screens/UserDashboard/UserDashboard';
-
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import Admin from './screens/Admin/Admin';
 
 function App() {
     return (
@@ -38,6 +38,7 @@ function App() {
                     <Route path="/welcome" component={RegistrationSuccess} />
                     <Route path="/contact-us" component={ContactUs} />
                     <Route path="/dashboard" component={UserDashboard} />
+                    <Route exact path="/admin" component={Admin}/>
                 </div>
             </Switch>
         </BrowserRouter>

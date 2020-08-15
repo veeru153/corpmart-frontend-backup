@@ -10,6 +10,7 @@ const NavbarMobile = (props) => {
     const [showSearchBar, setShowSearchBar] = useState(false);
     const [loggedIn, setLoggedIn] = useState(false);
     const { dynamic } = props;
+    const [user, setUser] = useState({})
 
     document.body.style.overflowY = expanded ? "hidden" : "scroll";
 
@@ -29,6 +30,7 @@ const NavbarMobile = (props) => {
         async function validateSession() {
             let validity = await validateToken();
             if(validity.status == 200) {
+                setUser(validity.data);
                 setLoggedIn(true);
             } else {
                 setLoggedIn(false);
@@ -52,7 +54,8 @@ const NavbarMobile = (props) => {
                         size={28} 
                         style={{ padding: '20px 18px 16px 18px', transition: 'all 0.4s ease-in-out' }}
                     />
-                </button>
+                </button> 
+                {/* Search Bar */}
                 <div 
                     className={[
                         styles.searchBar, 
@@ -66,7 +69,7 @@ const NavbarMobile = (props) => {
                         style={{ display: showSearchBar ? 'block' : 'none' }}
                         autoComplete="off"
                     />
-                </div> {/* Search Bar */}
+                </div>
                 <div className={styles.navBtn}>
                     <Search 
                         color={transparent && dynamic ? "white" : "black"} 
@@ -92,7 +95,7 @@ const NavbarMobile = (props) => {
                     { 
                         loggedIn
                         ? <>
-                            <p className={styles.navName}>Shubham Ahuja</p>
+                            <p className={styles.navName}>{user.first_name} {user.last_name}</p>
                             <Link to="/dashboard" className={styles.navLink}><p>My Dashboard</p></Link>
                           </> 
                         : null

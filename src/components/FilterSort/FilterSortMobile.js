@@ -52,7 +52,7 @@ const FilterSortMobile = (props) => {
                 onClick={(e) => e.stopPropagation()}
                 style={{
                     height: expanded ? '100%' : '0',
-                    maxHeight: expanded && type == 'filter' ? '52vh' : '48vh',
+                    maxHeight: expanded && type == 'filter' ? '60vh' : '48vh',
                     overflow: expanded ? 'scroll' : 'hidden',
                 }}
             >

@@ -17,6 +17,7 @@ const signupSchema = yup.object({
 const Signup = (props) => {
     const [error, setError] = useState(false);
     const [errorMsg, setErrorMsg] = useState(false);
+    const [disableBtn, setDisableBtn] = useState(false);
 
     return (
         <div className={styles.Signup}>
@@ -25,6 +26,7 @@ const Signup = (props) => {
                 validationSchema={signupSchema}
                 validateOnBlur
                 onSubmit={ async (values, actions) => {
+                    setDisableBtn(true);
                     let payload = {
                         email: values.email,
                         first_name: values.firstName,
@@ -49,6 +51,7 @@ const Signup = (props) => {
                         console.log(e.response); 
                         setError(true);
                         setErrorMsg("An Error Occured");
+                        setDisableBtn(false);
                     }
                 }}
             >
@@ -149,7 +152,14 @@ const Signup = (props) => {
                             <p className={styles.subtitle}>
                                 Already have an account? <Link to="/login">Log In</Link>.
                             </p>
-                            <Button label="Next" type="blue" pressed={props.handleSubmit} className={styles.submitBtn} />
+                            <Button
+                                label="Next"
+                                type={disableBtn ? "#DADEE4" : "blue"}
+                                color={disableBtn ? "black" : "white"}
+                                pressed={props.handleSubmit}
+                                className={styles.submitBtn}
+                                disabled={disableBtn}
+                            />
                         </div>
                     </form>
                 )}

@@ -29,6 +29,7 @@ const ListingForm = (props) => {
     const [previewMode, setPreviewMode] = useState(false);
     const [loggedIn, setLoggedIn] = useState(false);
     const [user, setUser] = useState({});
+    const [disableBtn, setDisableBtn] = useState(false);
 
     useEffect(() => {
         async function validateSession() {
@@ -69,6 +70,7 @@ const ListingForm = (props) => {
             // validationSchema={listingSchema}
             // validateOnBlur
             onSubmit={ async (values, actions) => {
+                setDisableBtn(true);
                 if(previewMode) {
                     if(loggedIn) {
                         props.history.push('/additional-data', {
@@ -82,7 +84,11 @@ const ListingForm = (props) => {
                             res = await Axios.post('/generate_otp/', {
                                 mobile: values.mobileNo
                             });
-                        } catch (e) { res = e.response; console.log(e.response); }
+                        } catch (e) { 
+                            res = e.response; 
+                            console.log(e.response);
+                            setDisableBtn(false);
+                        }
                         // res.status == 200 means user exists and we have an OTP so redirect to verification so user can login
                         if(res.status == 200) {
                             props.history.push('/verification', {
@@ -114,7 +120,10 @@ const ListingForm = (props) => {
                                     type: 'listing',
                                     formPayload: values
                                 })
-                            } catch (e) { console.log(e.response); }
+                            } catch (e) {
+                                console.log(e.response); 
+                                setDisableBtn(false);
+                            }
                         }
                     }
                 } else {
@@ -236,8 +245,22 @@ const ListingForm = (props) => {
                     </div>
                     {
                         previewMode
-                        ?   <Button label="Submit" type="blue" pressed={props.handleSubmit} className={styles.submitBtn}/>
-                        :   <Button label="Continue" type="blue" pressed={props.handleSubmit} className={styles.submitBtn}/>
+                        ?   <Button 
+                                label="Submit" 
+                                type={disableBtn ? "#DADEE4" : "blue" }
+                                color={disableBtn ? "black" : "white"}
+                                pressed={props.handleSubmit} 
+                                className={styles.submitBtn}
+                                disabled={disableBtn}
+                            />
+                        :   <Button 
+                                label="Continue" 
+                                type={disableBtn ? "#DADEE4" : "blue" }
+                                color={disableBtn ? "black" : "white"}
+                                pressed={props.handleSubmit} 
+                                className={styles.submitBtn}
+                                disabled={disableBtn}
+                            />
                     }
                 </form>
             )}
