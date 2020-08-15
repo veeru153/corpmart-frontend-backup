@@ -12,7 +12,7 @@ const otpSchema = yup.object({
 })
 
 const Verification = (props) => {
-    // if(props.location.state == undefined) props.history.pop();
+    if(props.location.state == undefined) props.history.pop();
     const [resend, setResend] = useState(false);
     const [timer, setTimer] = useState(60);
     const [error, setError] = useState(false);
