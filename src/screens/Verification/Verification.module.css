@@ -61,6 +61,14 @@
     outline: none;
 }
 
+.otpButton {
+    color: #4AB9CA;
+    cursor: pointer;
+}
+.otpButton:hover {
+    text-decoration: underline;
+}
+
 .submitBtn {
     padding: 10px 20px;
     margin: 20px 0; 

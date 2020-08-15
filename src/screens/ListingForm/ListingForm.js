@@ -93,7 +93,8 @@ const ListingForm = (props) => {
                         if(res.status == 200) {
                             props.history.push('/verification', {
                                 type: 'listing',
-                                formPayload: values
+                                formPayload: values,
+                                mobile: values.mobileNo
                             })
 
                         } else {
@@ -118,7 +119,8 @@ const ListingForm = (props) => {
                                 // User should be signed up here and will have an OTP, redirect to /verification.
                                 props.history.push('/verification', {
                                     type: 'listing',
-                                    formPayload: values
+                                    formPayload: values,
+                                    mobile: values.mobileNo
                                 })
                             } catch (e) {
                                 console.log(e.response); 
@@ -164,6 +166,7 @@ const ListingForm = (props) => {
                                         onChange={props.handleChange('firstName')}
                                         value={props.values.firstName}
                                         className={styles.inputField}
+                                        autoComplete="off"
                                     />
                                 </div>
                                 <div className={styles.formGroup}>
@@ -173,6 +176,7 @@ const ListingForm = (props) => {
                                         onChange={props.handleChange('lastName')}
                                         value={props.values.lastName}
                                         className={styles.inputField}
+                                        autoComplete="off"
                                     />
                                 </div>
                             </div>
@@ -187,6 +191,7 @@ const ListingForm = (props) => {
                                     onChange={props.handleChange('mobileNo')}
                                     value={props.values.mobileNo}
                                     className={styles.inputField}
+                                    autoComplete="off"
                                 />
                             </div>
                         }
@@ -200,6 +205,7 @@ const ListingForm = (props) => {
                                     onChange={props.handleChange('emailId')}
                                     value={props.values.emailId}
                                     className={styles.inputField}
+                                    autoComplete="off"
                                 />
                             </div>
                         }
@@ -210,6 +216,7 @@ const ListingForm = (props) => {
                                 onChange={props.handleChange('businessName')}
                                 value={props.values.businessName}
                                 className={styles.inputField}
+                                autoComplete="off"
                             />
                         </div>
                         <div className={styles.formGroup}>
@@ -237,6 +244,7 @@ const ListingForm = (props) => {
                                 onChange={props.handleChange('sellingPrice')}
                                 value={props.values.sellingPrice}
                                 className={styles.inputField}
+                                autoComplete="off"
                             />
                         </div>
                     </div>

@@ -44,14 +44,15 @@ const Login = (props) => {
                         let req = await Axios.post('/generate_otp/?format=json', payload)
                         props.history.push('/verification', {
                             payload: payload,
-                            type: 'login'
+                            type: 'login',
+                            mobile: payload.mobile,
                         })
                     } catch (e) {
                         setError(true);
                         if (e.response.data.startsWith("DoesNotExist")) {
                             setErrorMsg("This user does not exist.")
                         } else {
-                            setErrorMsg("An Error Occured.")
+                            setErrorMsg("An Error Occurred.")
                         }
                         setDisableBtn(false);
                     }
@@ -79,6 +80,7 @@ const Login = (props) => {
                                     onChange={(e, formikProps) => handleIdInput(e, props)}
                                     value={props.values.loginId}
                                     className={styles.inputField}
+                                    autoComplete="off"
                                 />
                             </div>
                         </div>

@@ -45,12 +45,13 @@ const Signup = (props) => {
                         })
                         props.history.push('/verification', {
                             payload: payload,
-                            type: 'signup'
+                            type: 'signup',
+                            mobile: payload.mobile,
                         });
                     } catch (e) { 
                         console.log(e.response); 
                         setError(true);
-                        setErrorMsg("An Error Occured");
+                        setErrorMsg("An Error Occurred");
                         setDisableBtn(false);
                     }
                 }}
@@ -77,6 +78,7 @@ const Signup = (props) => {
                                         onChange={props.handleChange('firstName')}
                                         value={props.values.firstName}
                                         className={styles.inputField}
+                                        autoComplete="off"
                                     />
                                 </div>
                                 <div className={styles.formGroup}>
@@ -91,6 +93,7 @@ const Signup = (props) => {
                                         onChange={props.handleChange('lastName')}
                                         value={props.values.lastName}
                                         className={styles.inputField}
+                                        autoComplete="off"
                                     />
                                 </div>
                             </div>
@@ -108,6 +111,7 @@ const Signup = (props) => {
                                             value={props.values.countryCode}
                                             className={styles.inputField}
                                             style={{ width: '100%' }}
+                                            autoComplete="off"
                                         />
                                         <input
                                             id="mobile"
@@ -115,6 +119,7 @@ const Signup = (props) => {
                                             value={props.values.mobile}
                                             className={styles.inputField}
                                             style={{ width: '100%' }}
+                                            autoComplete="off"
                                         />
                                     </div>
                                 </div>
@@ -130,6 +135,7 @@ const Signup = (props) => {
                                         onChange={props.handleChange('email')}
                                         value={props.values.email}
                                         className={styles.inputField}
+                                        autoComplete="off"
                                     />
                                 </div>
                             </div>
@@ -145,6 +151,7 @@ const Signup = (props) => {
                                     onChange={props.handleChange('orgName')}
                                     value={props.values.orgName}
                                     className={styles.inputField}
+                                    autoComplete="off"
                                 />
                             </div>
                         </div>

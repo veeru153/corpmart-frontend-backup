@@ -133,6 +133,7 @@ const AdditionalForm = (props) => {
                                     value={props.values.saleDesc}
                                     rows={4}
                                     className={[styles.inputField, styles.saleDesc].join(' ')}
+                                    autoComplete="off"
                                 ></textarea>
                             </div>
                             <div className={styles.yearAgeFields}>
@@ -143,6 +144,7 @@ const AdditionalForm = (props) => {
                                         onChange={props.handleChange('incorporationYear')}
                                         value={props.values.incorporationYear}
                                         className={styles.inputField}
+                                        autoComplete="off"
                                     />
                                 </div>
                                 <p className={styles.orText}>OR</p>
@@ -153,6 +155,7 @@ const AdditionalForm = (props) => {
                                         onChange={props.handleChange('companyAge')}
                                         value={props.values.companyAge}
                                         className={styles.inputField}
+                                        autoComplete="off"
                                     />
                                 </div>
                             </div>
@@ -271,6 +274,8 @@ const AdditionalForm = (props) => {
                                     onChange={props.handleChange('licenseDetails')}
                                     value={props.values.licenseDetails}
                                     className={styles.inputField}
+                                    autoComplete="off"
+                                    disabled={props.values.licenses}
                                 />
                             </div>
                             <div className={styles.formGroup}>
@@ -280,6 +285,7 @@ const AdditionalForm = (props) => {
                                     onChange={props.handleChange('authCapital')}
                                     value={props.values.authCapital}
                                     className={styles.inputField}
+                                    autoComplete="off"
                                 />
                             </div>
                             <div className={styles.formGroup}>
@@ -289,6 +295,7 @@ const AdditionalForm = (props) => {
                                     onChange={props.handleChange('paidupCapital')}
                                     value={props.values.paidupCapital}
                                     className={styles.inputField}
+                                    autoComplete="off"
                                 />
                             </div>
                         </div>
