@@ -5,6 +5,7 @@
     flex-direction: column;
     min-height: 100vh;
     /* background: #4AB9CA; */
+    margin: 8px 0;
 }
 
 .title {
@@ -23,6 +24,10 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+}
+.carousel a {
+    text-decoration: none;
+    color: inherit;
 }
 
 .btnContainer {
