@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Signup.module.css';
 import { Formik, ErrorMessage } from 'formik';
 import Button from '../../components/UI/Button/Button';
 import Axios from '../../axios';
 import { withRouter, Link } from 'react-router-dom';
 import * as yup from 'yup';
+import { validateToken } from '../../components/util';
 
 const signupSchema = yup.object({
     firstName: yup.string().required("A First Name is required."),
@@ -18,6 +19,21 @@ const Signup = (props) => {
     const [error, setError] = useState(false);
     const [errorMsg, setErrorMsg] = useState(false);
     const [disableBtn, setDisableBtn] = useState(false);
+    const [loggedIn, setLoggedIn] = useState(false);
+
+    useEffect(() => {
+        async function validateSession() {
+            let validity = await validateToken();
+            if(validity && validity.status == 200) {
+                setLoggedIn(true);
+            } else {
+                setLoggedIn(false);
+            }
+        }
+        validateSession();
+    }, [])
+
+    if(loggedIn) props.history.push('/');
 
     return (
         <div className={styles.Signup}>

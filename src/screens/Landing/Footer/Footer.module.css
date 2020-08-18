@@ -1,7 +1,7 @@
 .FooterMobile {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    background-color: #4AB9CA;
+    background-color: #484848;
     color: white;
     text-align: left;
     padding: 20px 20px;
@@ -56,7 +56,7 @@
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         height: 36vh;
-        background-color: #4AB9CA;
+        background-color: #484848;
         color: white;
         text-align: left;
         padding: 20px 20px;

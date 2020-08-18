@@ -33,6 +33,12 @@
     max-width: 330px;
     padding: 20px;
     margin: 10px 0;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.detailsCard::-webkit-scrollbar {
+    display: none;
 }
 
 .businessDesc {

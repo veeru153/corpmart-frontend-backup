@@ -30,6 +30,8 @@ class BusinessDetails extends Component {
         balancesheet: false,
         balancesheetId: null,
         other: {},
+        error: false,
+        errorMsg: '',
     }
 
     async componentDidMount() {
@@ -75,26 +77,42 @@ class BusinessDetails extends Component {
         const cookies = new Cookies();
         const token = cookies.get('userToken');
         const id = this.state.id;
-        let res = await Axios.get(`/balancesheet/?balancesheet_id=${id}`, {
-            headers: {
-                'Authorization': `Token ${token}`
-            }
-        });
-        let link = await res.data[0].file;
-        window.open(link, '_blank');
+        try {
+            let res = await Axios.get(`/balancesheet/?balancesheet_id=${id}`, {
+                headers: {
+                    'Authorization': `Token ${token}`
+                }
+            });
+            let link = await res.data[0].file;
+            window.open(link, '_blank');
+        } catch (e) { console.log(e.response); }
     }
 
     postContact = async () => {
         const cookies = new Cookies();
         const token = cookies.get('userToken');
         const id = this.state.id;
-        let res = await Axios.post(`contact-request`, {
-            "business": id
-        }, {
-            headers: {
-                'Authorization': `Token ${token}`
+        try {
+            if(token) {
+                let res = await Axios.post(`contact-request`, {
+                    "business": id
+                }, {
+                    headers: {
+                        'Authorization': `Token ${token}`
+                    }
+                });
+            } else {
+                this.props.history.push('/login');
             }
-        });
+        } catch (e) { 
+            console.log(e.response); 
+            if(e.response.data["non_field_errors"][0].includes('unique field')) {
+                this.setState({
+                    error: true,
+                    errorMsg: "Already Contacted"
+                })
+            }
+        }
     }
 
     render() {
@@ -203,19 +221,26 @@ class BusinessDetails extends Component {
                                 <div className={styles.bsImg}></div>
                                 <Button
                                     label="View"
-                                    type="orange"
+                                    type={this.state.balancesheet ? "orange" : "#DADEE4"}
+                                    color={this.state.balancesheet ? "white" : "#676767"}
                                     style={{ padding: '12px 16px' }}
                                     textStyle={{ margin: 0 }}
-                                    pressed={this.postContact}
+                                    pressed={this.fetchBalancesheet}
+                                    disabled={!this.state.balancesheet}
                                 />
                             </div>
                             <div className={styles.bsDiv2}>
                                 <p>Interseted in acquiring this business?</p>
+                                {this.state.error && this.state.errorMsg == "Already Contacted"
+                                ?   <p style={{ color: 'red'}}>We have already received your Contact Request</p>
+                                :   null}
+                                <p></p>
                                 <Button
                                     label="contact"
                                     type="orange"
                                     style={{ padding: '12px 16px' }}
                                     textStyle={{ margin: 0 }}
+                                    pressed={this.postContact}
                                 />
                             </div>
                         </div>

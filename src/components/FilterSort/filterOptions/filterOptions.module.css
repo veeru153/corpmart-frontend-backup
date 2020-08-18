@@ -27,6 +27,7 @@
 
 .filterOptions {
     scrollbar-width: 0;
+    background-color: #DADEE4;
     -ms-overflow-style: none;
 }
 
@@ -61,7 +62,13 @@
 
 .sliderContainer {
     max-height: 120px;
-    background-color: #E8EAED;
+    background-color: #DADEE4;
+    overflow-y: scroll;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+.sliderContainer::-webkit-scrollbar {
+    display: none;
 }
 .sliderContainer p {
     text-align: left;

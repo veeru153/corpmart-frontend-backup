@@ -9,7 +9,6 @@ const CorpmartInMedia = () => {
         <div className={styles.CorpmartInMedia}>
             <div className={styles.header}>
                 <div className={styles.title}>Accreditations</div>
-                <div className={styles.subtitle}>CorpMart in Media</div>
             </div>
             <div className={styles.mediaShowcase}>
                 <div><img src={isoCert} /></div>

@@ -44,6 +44,15 @@
 }
 .expanded::-webkit-scrollbar { display: none; }
 
+.filterExp {
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.filterExp::-webkit-scrollbar {
+    display: none;
+}
+
 .option {
     all: unset;
     display: grid;

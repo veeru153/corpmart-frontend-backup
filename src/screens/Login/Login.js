@@ -1,15 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Login.module.css'
 import { Formik, ErrorMessage } from 'formik';
 import Button from '../../components/UI/Button/Button';
 import Axios from '../../axios';
 import { withRouter, Link } from 'react-router-dom';
 import * as yup from 'yup';
+import { validateToken } from '../../components/util';
 
 const Login = (props) => {
     const [error, setError] = useState();
     const [errorMsg, setErrorMsg] = useState('');
     const [disableBtn, setDisableBtn] = useState(false);
+    const [loggedIn, setLoggedIn] = useState(false);
+
+    useEffect(() => {
+        async function validateSession() {
+            let validity = await validateToken();
+            if(validity && validity.status == 200) {
+                setLoggedIn(true);
+            } else {
+                setLoggedIn(false);
+            }
+        }
+        validateSession();
+    }, [])
+
+    if(loggedIn) props.history.push('/');
 
     const validationSchema = yup.object({
         loginId: yup.lazy(val => {

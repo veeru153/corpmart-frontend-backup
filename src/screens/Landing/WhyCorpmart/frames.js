@@ -28,7 +28,7 @@ const frames = [
     },
     {
         title: 'Sell within clicks',
-        desc: 'List your company within clicks. Let CorpMart find a suitable buyer for you.',
+        desc: 'List your company within clicks and let us find a suitable buyer for you.',
         img: sellWithinClicks,
     },
     {

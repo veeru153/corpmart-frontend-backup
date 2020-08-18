@@ -17,10 +17,10 @@ const SortContent = (props) => {
             <p onClick={() =>  updateQuery('sort', 2)}>Year of Establishment (oldest first)</p>
             <p onClick={() =>  updateQuery('sort', 3)}>Authorised Capital (low to high)</p>
             <p onClick={() =>  updateQuery('sort', 4)}>Authorised Capital (high to low)</p>
-            <p onClick={() =>  updateQuery('sort', 3)}>Paid-up Capital (low to high)</p>
-            <p onClick={() =>  updateQuery('sort', 4)}>Paid-up Capital (high to low)</p>
-            <p onClick={() =>  updateQuery('sort', 5)}>Selling price (low to high)</p>
-            <p onClick={() =>  updateQuery('sort', 6)}>Selling price (high to low)</p>
+            <p onClick={() =>  updateQuery('sort', 5)}>Paid-up Capital (low to high)</p>
+            <p onClick={() =>  updateQuery('sort', 6)}>Paid-up Capital (high to low)</p>
+            <p onClick={() =>  updateQuery('sort', 7)}>Selling price (low to high)</p>
+            <p onClick={() =>  updateQuery('sort', 8)}>Selling price (high to low)</p>
         </div>
     )
 }

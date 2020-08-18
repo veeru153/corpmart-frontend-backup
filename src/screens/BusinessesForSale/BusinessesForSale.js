@@ -5,6 +5,7 @@ import Navbar from '../../components/Navbar/Navbar';
 import BusinessSlide from '../../components/BusinessSlide/BusinessSlide';
 import FilterSortMobile from '../../components/FilterSort/FilterSortMobile';
 import FilterDiv from '../../components/FilterSort/FilterDiv/FilterDiv';
+import SortDropdown from '../../components/FilterSort/SortDropdown/SortDropdown';
 import Footer from '../Landing/Footer/Footer';
 import Axios from '../../axios';
 import Button from '../../components/UI/Button/Button';
@@ -154,6 +155,12 @@ class BusinessesForSale extends Component {
                             <p className={styles.title}>Businesses For Sale</p>
                             <p className={styles.subtitle}>Explore the extensive range of pre-approved businesses to find the one that suits your requirement.</p>
                         </div>
+                        <div className={styles.sortDropdownContainer}>
+                            <SortDropdown 
+                                updateQuery={this.updateQuery}
+                                currVal={this.state.queryParams[13]}
+                            />
+                        </div>
                         <div className={styles.showcase}>
                             {
                                 this.state.businessList.map(b => (
@@ -179,7 +186,7 @@ class BusinessesForSale extends Component {
                             <Button
                                 label="<< Previous"
                                 type={this.state.page == 1 ? "#DADEE4" : "#FFFFFF"}
-                                color="black"
+                                color={this.state.page == 1 ? "#676767" : "#FFFFFF"}
                                 textStyle={{ padding: '12px 20px' }}
                                 style={{ margin: '0 6px' }}
                                 disabled={this.state.page == 1}
@@ -188,7 +195,7 @@ class BusinessesForSale extends Component {
                             <Button
                                 label="Next >>"
                                 type={this.state.lastPage ? "#DADEE4" : "#FFFFFF"}
-                                color="black"
+                                color={this.state.page == 1 ? "#676767" : "#FFFFFF"}
                                 textStyle={{ padding: '12px 0', minWidth: 136.77 }}
                                 style={{ margin: '0 6px' }}
                                 disabled={this.state.lastPage}

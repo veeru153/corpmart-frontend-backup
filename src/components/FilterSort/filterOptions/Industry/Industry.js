@@ -53,7 +53,6 @@ class Industry extends Component {
                         height: this.state.expanded ? '100%' : '0', 
                         overflow: this.state.expanded ? 'scroll' : "hidden", 
                         maxHeight: 'calc(31px * 8)',
-                        backgroundColor: '#E8EAED',
                     }}
                 >
                     {this.state.industryList.map((industry, index) => (
