@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 80vh;
+    min-height: 60vh;
     margin: 8px 0;
 }
 
@@ -25,6 +25,7 @@
     flex: 9;
     display: grid;
     grid-template-columns: repeat(1, 1fr);
+    margin: 40px 0;
 }
 
 .mediaShowcase div {

@@ -1,6 +1,7 @@
 .Verification {
     display: flex;
-    background-color: rgba(0,0,0,0.5);
+    background-color: #4AB9CA;
+    /* background-color: rgba(0,0,0,0.5); */
     /* background-color: #E5E5E5; */
     justify-content: center;
     align-items: center;
@@ -8,7 +9,7 @@
 }
 
 .header {
-    margin: 15px 6%;
+    margin: 4px 6%;
 }
 
 .title {
@@ -26,7 +27,7 @@
 .form {
     background-color: white;
     width: 88%;
-    margin: 48px 0;
+    margin: 92px 0 20px 0;
     border-radius: 10px;
     padding: 20px 0;
     display: grid;
@@ -104,19 +105,19 @@
         margin: 15px 0;
     }
     .submitBtn {
-        margin: 20px 0 50px 0;
+        margin: 20px 0 20px 0;
     }
 }
 
-@media only screen and (min-width: 1440px) {
+@media only screen and (min-width: 1280px) {
     .title {
         margin: 25px 0;
     }
     .subtitle {
-        margin: 20px 120px;
+        margin: 2px 120px;
     }
     .formGroup {
-        margin-top: 76px;
-        margin-bottom: 100px;
+        margin-top: 20px;
+        margin-bottom: 44px;
     }
 }

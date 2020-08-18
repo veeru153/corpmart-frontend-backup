@@ -94,7 +94,10 @@ const AdditionalForm = (props) => {
                             <p className={styles.title}>Additional Information</p>
                             <p className={styles.subtitle}>Businesses with additional information are likely to be listed faster.</p>
                             {error
-                                ? <p className={styles.subtitle} style={{ color: 'red' }}>{errorMsg}</p> 
+                                ? <p 
+                                className={styles.subtitle} 
+                                style={{ color: 'red', margin: '2px 0', fontSize: 16 }}
+                            >{errorMsg}</p>
                                 : null}
                         </div>
                         <div>
@@ -299,7 +302,7 @@ const AdditionalForm = (props) => {
                                 />
                             </div>
                         </div>
-                        <Button label="Submit" type="blue" pressed={props.handleSubmit} className={styles.submitBtn} />
+                        <Button label="Submit" type="orange" pressed={props.handleSubmit} className={styles.submitBtn} />
                     </form>
                 )}
             </Formik>

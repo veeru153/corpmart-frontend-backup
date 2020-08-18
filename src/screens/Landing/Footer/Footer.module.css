@@ -55,7 +55,7 @@
     .Footer {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        height: 36vh;
+        min-height: 36vh;
         background-color: #484848;
         color: white;
         text-align: left;

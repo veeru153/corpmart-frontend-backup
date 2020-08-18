@@ -1,7 +1,8 @@
 .FilterDiv {
     display: none;
     margin-top: 64px;
-    background: #DADEE4;
+    /* background: #DADEE4; */
+    background: white;
     padding: 0 8px;
     overflow-y: scroll;
     scrollbar-width: none;

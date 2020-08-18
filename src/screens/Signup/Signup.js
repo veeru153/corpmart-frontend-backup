@@ -6,6 +6,8 @@ import Axios from '../../axios';
 import { withRouter, Link } from 'react-router-dom';
 import * as yup from 'yup';
 import { validateToken } from '../../components/util';
+import NavbarMobile from '../../components/Navbar/NavbarMobile';
+import Navbar from '../../components/Navbar/Navbar';
 
 const signupSchema = yup.object({
     firstName: yup.string().required("A First Name is required."),
@@ -24,7 +26,7 @@ const Signup = (props) => {
     useEffect(() => {
         async function validateSession() {
             let validity = await validateToken();
-            if(validity && validity.status == 200) {
+            if (validity && validity.status == 200) {
                 setLoggedIn(true);
             } else {
                 setLoggedIn(false);
@@ -33,160 +35,182 @@ const Signup = (props) => {
         validateSession();
     }, [])
 
-    if(loggedIn) props.history.push('/');
+    if (loggedIn) props.history.push('/');
 
     return (
-        <div className={styles.Signup}>
-            <Formik
-                initialValues={{ firstName: '', lastName: '', countryCode: '+91', mobile: '', email: '', orgName: '' }}
-                validationSchema={signupSchema}
-                validateOnBlur
-                onSubmit={ async (values, actions) => {
-                    setDisableBtn(true);
-                    let payload = {
-                        email: values.email,
-                        first_name: values.firstName,
-                        last_name: values.lastName,
-                        country_code: parseInt(values.countryCode.substr(1)),
-                        mobile: parseInt(values.mobile),
-                        organisation_name: values.orgName,
-                    }
-                    try {
-                        let req = await Axios.post('/signup/?format=json', payload);
-                    } catch (e) { console.log(e);}
+        <div>
+            <NavbarMobile />
+            <Navbar />
+            <div className={styles.Signup}>
+                <Formik
+                    initialValues={{ firstName: '', lastName: '', countryCode: '+91', mobile: '', email: '', orgName: '' }}
+                    validationSchema={signupSchema}
+                    validateOnBlur
+                    onSubmit={async (values, actions) => {
+                        setDisableBtn(true);
+                        let payload = {
+                            email: values.email,
+                            first_name: values.firstName,
+                            last_name: values.lastName,
+                            country_code: parseInt(values.countryCode.substr(1)),
+                            mobile: parseInt(values.mobile),
+                            organisation_name: values.orgName,
+                        }
+                        try {
+                            let req = await Axios.post('/signup/?format=json', payload);
+                        } catch (e) { console.log(e); }
 
-                    try {
-                        let otp = await Axios.post('/generate_otp/?format=json', {
-                            email: values.email
-                        })
-                        props.history.push('/verification', {
-                            payload: payload,
-                            type: 'signup',
-                            mobile: payload.mobile,
-                        });
-                    } catch (e) { 
-                        console.log(e.response); 
-                        setError(true);
-                        setErrorMsg("An Error Occurred");
-                        setDisableBtn(false);
-                    }
-                }}
-            >
-                {(props) => (
-                    <form className={styles.form}>
-                        <div className={styles.header}>
-                            <p className={styles.title}>Sign Up</p>
-                            {error
-                                ? <p className={styles.subtitle} style={{ color: 'red' }}>{errorMsg}</p> 
-                                : null}
-                        </div>
-                        <div className={styles.formFields}>
-                            <div className={styles.nameFields}>
-                                <div className={styles.formGroup}>
-                                    <p className={styles.inputLabel}>First Name*</p>
-                                    <ErrorMessage name="firstName">
-                                        {(msg) => {
-                                            return <p className={styles.subtitle} style={{ color: 'red' }}>{msg}</p> 
-                                        }}
-                                    </ErrorMessage> 
-                                    <input
-                                        id="firstName"
-                                        onChange={props.handleChange('firstName')}
-                                        value={props.values.firstName}
-                                        className={styles.inputField}
-                                        autoComplete="off"
-                                    />
-                                </div>
-                                <div className={styles.formGroup}>
-                                    <p className={styles.inputLabel}>Last Name*</p>
-                                    <ErrorMessage name="lastName">
-                                        {(msg) => {
-                                            return <p className={styles.subtitle} style={{ color: 'red' }}>{msg}</p> 
-                                        }}
-                                    </ErrorMessage> 
-                                    <input
-                                        id="lastName"
-                                        onChange={props.handleChange('lastName')}
-                                        value={props.values.lastName}
-                                        className={styles.inputField}
-                                        autoComplete="off"
-                                    />
-                                </div>
+                        try {
+                            let otp = await Axios.post('/generate_otp/?format=json', {
+                                email: values.email
+                            })
+                            props.history.push('/verification', {
+                                payload: payload,
+                                type: 'signup',
+                                mobile: payload.mobile,
+                            });
+                        } catch (e) {
+                            console.log(e.response);
+                            setError(true);
+                            setErrorMsg("An Error Occurred");
+                            setDisableBtn(false);
+                        }
+                    }}
+                >
+                    {(props) => (
+                        <form className={styles.form}>
+                            <div className={styles.header}>
+                                <p className={styles.title}>Sign Up</p>
+                                {error
+                                    ? <p 
+                                    className={styles.subtitle} 
+                                    style={{ color: 'red', margin: '2px 0', fontSize: 16 }}
+                                >{errorMsg}</p>
+                                    : null}
                             </div>
-                            <div className={styles.contactFields}>
-                                <div className={styles.formGroup}>
-                                    <p className={styles.inputLabel}>Mobile Number*</p>
-                                    <ErrorMessage name="mobile">
+                            <div className={styles.formFields}>
+                                <div className={styles.nameFields}>
+                                    <div className={styles.formGroup}>
+                                        <p className={styles.inputLabel}>First Name*</p>
+                                        <ErrorMessage name="firstName">
                                         {(msg) => {
-                                            return <p className={styles.subtitle} style={{ color: 'red' }}>{msg}</p> 
+                                            return <p 
+                                                className={styles.subtitle} 
+                                                style={{ color: 'red', margin: '2px 0', fontSize: 16 }}
+                                            >{msg}</p>
                                         }}
-                                    </ErrorMessage> 
-                                    <div className={styles.mobileNoFields}>
+                                        </ErrorMessage>
                                         <input
-                                            id="countryCode"
-                                            value={props.values.countryCode}
+                                            id="firstName"
+                                            onChange={props.handleChange('firstName')}
+                                            value={props.values.firstName}
                                             className={styles.inputField}
-                                            style={{ width: '100%' }}
                                             autoComplete="off"
                                         />
+                                    </div>
+                                    <div className={styles.formGroup}>
+                                        <p className={styles.inputLabel}>Last Name*</p>
+                                        <ErrorMessage name="lastName">
+                                        {(msg) => {
+                                            return <p 
+                                                className={styles.subtitle} 
+                                                style={{ color: 'red', margin: '2px 0', fontSize: 16 }}
+                                            >{msg}</p>
+                                        }}
+                                        </ErrorMessage>
                                         <input
-                                            id="mobile"
-                                            onChange={props.handleChange('mobile')}
-                                            value={props.values.mobile}
+                                            id="lastName"
+                                            onChange={props.handleChange('lastName')}
+                                            value={props.values.lastName}
                                             className={styles.inputField}
-                                            style={{ width: '100%' }}
+                                            autoComplete="off"
+                                        />
+                                    </div>
+                                </div>
+                                <div className={styles.contactFields}>
+                                    <div className={styles.formGroup}>
+                                        <p className={styles.inputLabel}>Mobile Number*</p>
+                                        <ErrorMessage name="mobile">
+                                        {(msg) => {
+                                            return <p 
+                                                className={styles.subtitle} 
+                                                style={{ color: 'red', margin: '2px 0', fontSize: 16 }}
+                                            >{msg}</p>
+                                        }}
+                                        </ErrorMessage>
+                                        <div className={styles.mobileNoFields}>
+                                            <input
+                                                id="countryCode"
+                                                value={props.values.countryCode}
+                                                className={styles.inputField}
+                                                style={{ width: '100%' }}
+                                                autoComplete="off"
+                                            />
+                                            <input
+                                                id="mobile"
+                                                onChange={props.handleChange('mobile')}
+                                                value={props.values.mobile}
+                                                className={styles.inputField}
+                                                style={{ width: '100%' }}
+                                                autoComplete="off"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className={styles.formGroup}>
+                                        <p className={styles.inputLabel}>Email ID*</p>
+                                        <ErrorMessage name="email">
+                                        {(msg) => {
+                                            return <p 
+                                                className={styles.subtitle} 
+                                                style={{ color: 'red', margin: '2px 0', fontSize: 16 }}
+                                            >{msg}</p>
+                                        }}
+                                        </ErrorMessage>
+                                        <input
+                                            id="email"
+                                            onChange={props.handleChange('email')}
+                                            value={props.values.email}
+                                            className={styles.inputField}
                                             autoComplete="off"
                                         />
                                     </div>
                                 </div>
                                 <div className={styles.formGroup}>
-                                    <p className={styles.inputLabel}>Email ID*</p>
-                                    <ErrorMessage name="email">
-                                        {(msg) => {
-                                            return <p className={styles.subtitle} style={{ color: 'red' }}>{msg}</p> 
+                                    <p className={styles.inputLabel}>Name of Organisation</p>
+                                    <ErrorMessage name="orgName">
+                                    {(msg) => {
+                                            return <p 
+                                                className={styles.subtitle} 
+                                                style={{ color: 'red', margin: '2px 0', fontSize: 16 }}
+                                            >{msg}</p>
                                         }}
-                                    </ErrorMessage> 
+                                    </ErrorMessage>
                                     <input
-                                        id="email"
-                                        onChange={props.handleChange('email')}
-                                        value={props.values.email}
+                                        id="orgName"
+                                        onChange={props.handleChange('orgName')}
+                                        value={props.values.orgName}
                                         className={styles.inputField}
                                         autoComplete="off"
                                     />
                                 </div>
                             </div>
-                            <div className={styles.formGroup}>
-                                <p className={styles.inputLabel}>Name of Organisation</p>
-                                <ErrorMessage name="orgName">
-                                    {(msg) => {
-                                        return <p className={styles.subtitle} style={{ color: 'red' }}>{msg}</p> 
-                                    }}
-                                </ErrorMessage> 
-                                <input
-                                    id="orgName"
-                                    onChange={props.handleChange('orgName')}
-                                    value={props.values.orgName}
-                                    className={styles.inputField}
-                                    autoComplete="off"
+                            <div>
+                                <p className={styles.subtitle}>
+                                    Already have an account? <Link to="/login">Log In</Link>.
+                            </p>
+                                <Button
+                                    label="Next"
+                                    type={disableBtn ? "#DADEE4" : "orange"}
+                                    color={disableBtn ? "black" : "white"}
+                                    pressed={props.handleSubmit}
+                                    className={styles.submitBtn}
+                                    disabled={disableBtn}
                                 />
                             </div>
-                        </div>
-                        <div>
-                            <p className={styles.subtitle}>
-                                Already have an account? <Link to="/login">Log In</Link>.
-                            </p>
-                            <Button
-                                label="Next"
-                                type={disableBtn ? "#DADEE4" : "blue"}
-                                color={disableBtn ? "black" : "white"}
-                                pressed={props.handleSubmit}
-                                className={styles.submitBtn}
-                                disabled={disableBtn}
-                            />
-                        </div>
-                    </form>
-                )}
-            </Formik>
+                        </form>
+                    )}
+                </Formik>
+            </div>
         </div>
     )
 }

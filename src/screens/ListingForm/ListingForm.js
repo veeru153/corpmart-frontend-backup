@@ -255,7 +255,7 @@ const ListingForm = (props) => {
                         previewMode
                         ?   <Button 
                                 label="Submit" 
-                                type={disableBtn ? "#DADEE4" : "blue" }
+                                type={disableBtn ? "#DADEE4" : "orange" }
                                 color={disableBtn ? "black" : "white"}
                                 pressed={props.handleSubmit} 
                                 className={styles.submitBtn}
@@ -263,7 +263,7 @@ const ListingForm = (props) => {
                             />
                         :   <Button 
                                 label="Continue" 
-                                type={disableBtn ? "#DADEE4" : "blue" }
+                                type={disableBtn ? "#DADEE4" : "orange" }
                                 color={disableBtn ? "black" : "white"}
                                 pressed={props.handleSubmit} 
                                 className={styles.submitBtn}

@@ -20,10 +20,10 @@ const BlogExpanded = (props) => {
                         <p className={styles.date}>{date}</p>
                     </div>
                 </div>
-                <div className={styles.text}>{blogText}</div>
                 {!imgUrl || imgUrl.length == 0
                 ? null
                 : <div className={styles.image}><img src={imgUrl} alt="Blog Image" /></div>}
+                <div className={styles.text}>{blogText}</div>
             </div>
             <Footer />
         </div>

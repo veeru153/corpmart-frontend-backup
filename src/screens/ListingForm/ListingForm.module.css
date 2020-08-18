@@ -1,6 +1,7 @@
 .ListingForm {
     display: flex;
-    background-color: rgba(0,0,0,0.5);
+    background-color: #4AB9CA;
+    /* background-color: rgba(0,0,0,0.5); */
     /* background-color: #E5E5E5; */
     justify-content: center;
     align-items: center;

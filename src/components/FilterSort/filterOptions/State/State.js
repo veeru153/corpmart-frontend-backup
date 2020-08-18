@@ -72,7 +72,7 @@ class State extends Component {
                 >
                     <input 
                         id="stateFilter"
-                        placeholder="Filter States"
+                        placeholder="Search States"
                         onChange={(e) => this.handleSearch(e)}
                         className={styles.searchBox}
                         autoComplete="false"

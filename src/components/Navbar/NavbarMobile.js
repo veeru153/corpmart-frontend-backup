@@ -4,6 +4,8 @@ import { Menu, Search } from 'react-feather';
 import { Link } from 'react-router-dom';
 import { handleLogout, validateToken } from '../util';
 
+// TODO: Make Navbar slide inwards (remove black background when navbar is entirely hidden)
+
 const NavbarMobile = (props) => {
     const [transparent, setTransparent] = useState(true);
     const [expanded, setExpanded] = useState(false);
@@ -87,8 +89,10 @@ const NavbarMobile = (props) => {
                 <div 
                     className={styles.navExpContents}
                     style={{ 
-                        width: expanded ? 'calc(75% - 40px)' : '0',
-                        padding: expanded ? '20px 20px' : '20px 0'
+                        position: 'absolute',
+                        left: expanded ? 0 : '-100%',
+                        width: 'calc(75% - 40px)',
+                        padding: '20px 20px'
                     }}
                     onClick={(e) => e.stopPropagation()}
                 >
