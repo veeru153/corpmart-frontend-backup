@@ -10,6 +10,8 @@ import Cookies from 'universal-cookie';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import CancelRoundedIcon from '@material-ui/icons/CancelRounded';
 
+// TODO: Make the Other Business Card work.
+
 class BusinessDetails extends Component {
     state = {
         loggedIng: false,
@@ -142,7 +144,7 @@ class BusinessDetails extends Component {
                                 </div>
                                 <div className={styles.businessInfoRow}>
                                     <div className={styles.businessInfoLabel}>Industry</div>
-                                    <div className={styles.businessInfoValue} style={{ textTransform: 'capitalize' }}>{this.state.industry.toLowerCase()}</div>
+                                    <div className={styles.businessInfoValue} style={{ textTransform: 'capitalize' }}>{this.state.industry ? this.state.industry.toLowerCase() : "Available after contact"}</div>
                                 </div>
                                 <div className={styles.businessInfoRow}>
                                     <div className={styles.businessInfoLabel}>State</div>
@@ -150,15 +152,15 @@ class BusinessDetails extends Component {
                                 </div>
                                 <div className={styles.businessInfoRow}>
                                     <div className={styles.businessInfoLabel}>Authorised Capital</div>
-                                    <div className={styles.businessInfoValue}>{this.state.authCapital.toString()}</div>
+                                    <div className={styles.businessInfoValue} style={{ fontFamily: 'Helvetica Neue', fontWeight: 'normal' }}>{this.state.authCapital ? `₹${this.state.authCapital}` : "Available After Contact"}</div>
                                 </div>
                                 <div className={styles.businessInfoRow}>
                                     <div className={styles.businessInfoLabel}>Paid-Up Capital</div>
-                                    <div className={styles.businessInfoValue}>{this.state.paidupCapital.toString()}</div>
+                                    <div className={styles.businessInfoValue} style={{ fontFamily: 'Helvetica Neue', fontWeight: 'normal' }}>{this.state.paidCapital ? `₹${this.state.paidCapital}` : "Available After Contact"}</div>
                                 </div>
                                 <div className={styles.businessInfoRow}>
                                     <div className={styles.businessInfoLabel}>Asking Price</div>
-                                    <div className={styles.businessInfoValue} style={{ fontWeight: 'normal' }}>{this.state.askingPrice.toString()}</div>
+                                    <div className={styles.businessInfoValue} style={{ fontFamily: 'Helvetica Neue', fontWeight: 'normal', fontSize: 16 }}>{this.state.askingPrice ? `₹${this.state.askingPrice}` : "Available After Contact"}</div>
                                 </div>
                                 <div className={styles.businessRegRow}>
                                     {this.state.gst

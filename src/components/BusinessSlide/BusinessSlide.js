@@ -38,15 +38,15 @@ const BusinessSlide = (props) => {
                 </div>
                 <div className={styles.businessInfoRow}>
                     <div className={styles.businessInfoLabel}>Auth. Captial</div>
-                    <div className={styles.businessInfoValue}>{authCapital ?? "Available After Contact"}</div>
+                    <div className={styles.businessInfoValue} style={{ fontFamily: 'Helvetica Neue', fontWeight: 'normal' }}>{authCapital ? `₹${authCapital}` : "Available After Contact"}</div>
                 </div>
                 <div className={styles.businessInfoRow}>
                     <div className={styles.businessInfoLabel}>Paid-up Capital</div>
-                    <div className={styles.businessInfoValue}>{paidCapital ?? "Available After Contact"}</div>
+                    <div className={styles.businessInfoValue} style={{ fontFamily: 'Helvetica Neue', fontWeight: 'normal' }}>{paidCapital ? `₹${paidCapital}` : "Available After Contact"}</div>
                 </div>
                 <div className={styles.businessInfoRow}>
                     <div className={styles.businessInfoLabel}>Asking Price</div>
-                    <div className={styles.businessInfoValue} style={{ fontWeight: 'normal', fontSize: 16 }}>{askingPrice ?? "Available After Contact"}</div>
+                    <div className={styles.businessInfoValue} style={{ fontFamily: 'Helvetica Neue', fontWeight: 'normal', fontSize: 16 }}>{askingPrice ? `₹${askingPrice}` : "Available After Contact"}</div>
                 </div>
             </div>
             <div className={styles.btnContainer}>

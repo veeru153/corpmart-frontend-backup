@@ -51,7 +51,6 @@ const FormDropdown = (props) => {
             }}
         >
             {choices.map(option => (
-            // {typeList.map(type => (
                 <option value={option.name == 'Select an Option...' ? null : option.name}>
                     {name == "industry" ? option.name.toLowerCase() : option.name}
                 </option>

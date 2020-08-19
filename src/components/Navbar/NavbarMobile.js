@@ -4,7 +4,8 @@ import { Menu, Search } from 'react-feather';
 import { Link } from 'react-router-dom';
 import { handleLogout, validateToken } from '../util';
 
-// TODO: Make Navbar slide inwards (remove black background when navbar is entirely hidden)
+// [LOW] TODO: Make Navbar slide inwards (remove black background when navbar is entirely hidden)
+// TODO: Implement Search (need to change page to Businesses For Sale with )
 
 const NavbarMobile = (props) => {
     const [transparent, setTransparent] = useState(true);
@@ -101,6 +102,7 @@ const NavbarMobile = (props) => {
                         ? <>
                             <p className={styles.navName}>{user.first_name} {user.last_name}</p>
                             <Link to="/dashboard" className={styles.navLink}><p>My Dashboard</p></Link>
+                            <Link to="/list-your-business" className={styles.navLink}><p>Add Listing</p></Link>
                           </> 
                         : null
                     }

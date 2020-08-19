@@ -11,17 +11,6 @@ import * as yup from 'yup';
 import Navbar from '../../components/Navbar/Navbar';
 import NavbarMobile from '../../components/Navbar/NavbarMobile';
 
-// const listingSchema = yup.object({
-//     firstName: yup.string().required("First Name is required."), 
-//     lastName: yup.string().required("Last Name is required."), 
-//     mobileNo: yup.string().required("A Mobile number is required.").matches(/^[0-9]*$/g, "Mobile numbers must only contain numbers.").length(10, "Mobile numbers should be 10 digits long."), 
-//     emailId: yup.string().required("An Email address is required.").email("Invalid Email Address"),          
-//     businessName: yup.string().required("Business Name is required."), 
-//     state: yup.string().required("State is required."), 
-//     country: yup.string().required("Country is required."), 
-//     sellingPrice: yup.string().required("Selling Price is required.")
-// })
-
 const countryList = [
     { name: 'India', checked: false },
     { name: 'Other', checked: false },
@@ -32,6 +21,28 @@ const ListingForm = (props) => {
     const [loggedIn, setLoggedIn] = useState(false);
     const [user, setUser] = useState({});
     const [disableBtn, setDisableBtn] = useState(false);
+
+    let listingSchema;
+
+    if(loggedIn) {
+        listingSchema = yup.object({
+            businessName: yup.string().required("Business Name is required."),
+            state: yup.string().required("State is required."),
+            country: yup.string().required("Country is required."),
+            sellingPrice: yup.string().required("Selling Price is required.")
+        })
+    } else {
+        listingSchema = yup.object({
+            firstName: yup.string().required("First Name is required."),
+            lastName: yup.string().required("Last Name is required."),
+            mobileNo: yup.string().required("A Mobile number is required.").matches(/^[0-9]*$/g, "Mobile numbers must only contain numbers.").length(10, "Mobile numbers should be 10 digits long."),
+            emailId: yup.string().required("An Email address is required.").email("Invalid Email Address"),
+            businessName: yup.string().required("Business Name is required."),
+            state: yup.string().required("State is required."),
+            country: yup.string().required("Country is required."),
+            sellingPrice: yup.string().required("Selling Price is required.")
+        })
+    }
 
     useEffect(() => {
         async function validateSession() {
@@ -72,8 +83,8 @@ const ListingForm = (props) => {
             <div className={styles.ListingForm}>
                 <Formik
                     initialValues={initVals}
-                    // validationSchema={listingSchema}
-                    // validateOnBlur
+                    validationSchema={listingSchema}
+                    validateOnBlur
                     onSubmit={async (values, actions) => {
                         setDisableBtn(true);
                         if (previewMode) {
@@ -166,6 +177,14 @@ const ListingForm = (props) => {
                                         : <div className={styles.nameFields}>
                                             <div className={styles.formGroup}>
                                                 <p className={styles.inputLabel}>First Name*</p>
+                                                <ErrorMessage name="firstName">
+                                                    {(msg) => {
+                                                        return <p
+                                                            className={styles.subtitle}
+                                                            style={{ color: 'red', margin: '2px 0', fontSize: 16 }}
+                                                        >{msg}</p>
+                                                    }}
+                                                </ErrorMessage>
                                                 <input
                                                     id="firstName"
                                                     onChange={props.handleChange('firstName')}
@@ -176,6 +195,14 @@ const ListingForm = (props) => {
                                             </div>
                                             <div className={styles.formGroup}>
                                                 <p className={styles.inputLabel}>Last Name*</p>
+                                                <ErrorMessage name="lastName">
+                                                    {(msg) => {
+                                                        return <p
+                                                            className={styles.subtitle}
+                                                            style={{ color: 'red', margin: '2px 0', fontSize: 16 }}
+                                                        >{msg}</p>
+                                                    }}
+                                                </ErrorMessage>
                                                 <input
                                                     id="lastName"
                                                     onChange={props.handleChange('lastName')}
@@ -191,6 +218,14 @@ const ListingForm = (props) => {
                                         ? null
                                         : <div className={styles.formGroup}>
                                             <p className={styles.inputLabel}>Mobile Number*</p>
+                                            <ErrorMessage name="mobileNo">
+                                                {(msg) => {
+                                                    return <p
+                                                        className={styles.subtitle}
+                                                        style={{ color: 'red', margin: '2px 0', fontSize: 16 }}
+                                                    >{msg}</p>
+                                                }}
+                                            </ErrorMessage>
                                             <input
                                                 id="mobileNo"
                                                 onChange={props.handleChange('mobileNo')}
@@ -205,6 +240,14 @@ const ListingForm = (props) => {
                                         ? null
                                         : <div className={styles.formGroup}>
                                             <p className={styles.inputLabel}>Email ID*</p>
+                                            <ErrorMessage name="emailId">
+                                                {(msg) => {
+                                                    return <p
+                                                        className={styles.subtitle}
+                                                        style={{ color: 'red', margin: '2px 0', fontSize: 16 }}
+                                                    >{msg}</p>
+                                                }}
+                                            </ErrorMessage>
                                             <input
                                                 id="emailId"
                                                 onChange={props.handleChange('emailId')}
@@ -216,6 +259,14 @@ const ListingForm = (props) => {
                                 }
                                 <div className={styles.formGroup}>
                                     <p className={styles.inputLabel}>Business/Company Name*</p>
+                                    <ErrorMessage name="businessName">
+                                        {(msg) => {
+                                            return <p
+                                                className={styles.subtitle}
+                                                style={{ color: 'red', margin: '2px 0', fontSize: 16 }}
+                                            >{msg}</p>
+                                        }}
+                                    </ErrorMessage>
                                     <input
                                         id="businessName"
                                         onChange={props.handleChange('businessName')}
@@ -226,6 +277,14 @@ const ListingForm = (props) => {
                                 </div>
                                 <div className={styles.formGroup}>
                                     <p className={styles.inputLabel}>State*</p>
+                                    <ErrorMessage name="state">
+                                        {(msg) => {
+                                            return <p
+                                                className={styles.subtitle}
+                                                style={{ color: 'red', margin: '2px 0', fontSize: 16 }}
+                                            >{msg}</p>
+                                        }}
+                                    </ErrorMessage>
                                     <FormDropdown
                                         name="state"
                                         onChange={props.handleChange('state')}
@@ -235,6 +294,14 @@ const ListingForm = (props) => {
                                 </div>
                                 <div className={styles.formGroup}>
                                     <p className={styles.inputLabel}>Country*</p>
+                                    <ErrorMessage name="country">
+                                        {(msg) => {
+                                            return <p
+                                                className={styles.subtitle}
+                                                style={{ color: 'red', margin: '2px 0', fontSize: 16 }}
+                                            >{msg}</p>
+                                        }}
+                                    </ErrorMessage>
                                     <FormDropdown
                                         name="country"
                                         onChange={props.handleChange('country')}
@@ -244,6 +311,14 @@ const ListingForm = (props) => {
                                 </div>
                                 <div className={styles.formGroup}>
                                     <p className={styles.inputLabel}>Expected Selling Price (in INR)</p>
+                                    <ErrorMessage name="sellingPrice">
+                                        {(msg) => {
+                                            return <p
+                                                className={styles.subtitle}
+                                                style={{ color: 'red', margin: '2px 0', fontSize: 16 }}
+                                            >{msg}</p>
+                                        }}
+                                    </ErrorMessage>
                                     <input
                                         id="sellingPrice"
                                         onChange={props.handleChange('sellingPrice')}
