@@ -53,7 +53,7 @@ class BusinessForSale extends Component {
                     >
                     {
                                 this.state.businessCards.map(b => (
-                                    <div style={{  padding: '10px 0' }}>
+                                    <div style={{  padding: '10px 0', display: 'flex', justifyContent: 'center', alignItems: 'items', width: '100%' }}>
                                         <BusinessSlide
                                             key={b.id}
                                             id={b.id}

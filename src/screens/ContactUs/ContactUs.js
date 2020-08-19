@@ -2,10 +2,18 @@ import React from 'react';
 import styles from './ContactUs.module.css';
 import Navbar from '../../components/Navbar/Navbar';
 import NavbarMobile from '../../components/Navbar/NavbarMobile';
-import { Formik } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import Button from '../../components/UI/Button/Button';
 import { Facebook, LinkedIn, Twitter, Instagram } from '@material-ui/icons';
 import Footer from '../Landing/Footer/Footer';
+import Axios from '../../axios';
+import * as yup from 'yup';
+
+const contactSchema = yup.object({
+    name: yup.string().required('Please eneter your name.'),
+    emailId: yup.string().required('Please enter your email.').email('The email entered is invalid.'),
+    query: yup.string().required('Please type in a suggestion/query.'),
+})
 
 const ContactUs = () => {
     return (
@@ -16,6 +24,20 @@ const ContactUs = () => {
                 <div className={styles.ContactForm}>
                     <Formik
                         initialValues={{ name: '', emailId: '', query: '' }}
+                        validationSchema={contactSchema}
+                        onSubmit={async (values, actions) => {
+                            console.log('submitted')
+                            try {
+                                let req = await Axios.post('/chatbot-request', {
+                                    name: values.name,
+                                    emailId: values.name,
+                                    query: values.name,
+                                })
+                                console.log(req);
+                            } catch (e) {
+                                console.log(e.response);
+                            }
+                        }}
                     >
                         {(props) => (
                             <form className={styles.form}>
@@ -26,6 +48,14 @@ const ContactUs = () => {
                                 <div className={styles.formFields}>
                                     <div className={styles.formGroup}>
                                         <p className={styles.inputLabel}>Name</p>
+                                        <ErrorMessage name="name">
+                                            {(msg) => {
+                                                return <p
+                                                    className={styles.subtitle}
+                                                    style={{ color: 'red', margin: '2px 0', fontSize: 16 }}
+                                                >{msg}</p>
+                                            }}
+                                        </ErrorMessage>
                                         <input
                                             id="name"
                                             onChange={props.handleChange('name')}
@@ -35,6 +65,14 @@ const ContactUs = () => {
                                     </div>
                                     <div className={styles.formGroup}>
                                         <p className={styles.inputLabel}>Email ID</p>
+                                        <ErrorMessage name="emailId">
+                                            {(msg) => {
+                                                return <p
+                                                    className={styles.subtitle}
+                                                    style={{ color: 'red', margin: '2px 0', fontSize: 16 }}
+                                                >{msg}</p>
+                                            }}
+                                        </ErrorMessage>
                                         <input
                                             id="emailId"
                                             onChange={props.handleChange('emailId')}
@@ -44,6 +82,14 @@ const ContactUs = () => {
                                     </div>
                                     <div className={styles.formGroup}>
                                         <p className={styles.inputLabel}>Suggestion or query</p>
+                                        <ErrorMessage name="query">
+                                            {(msg) => {
+                                                return <p
+                                                    className={styles.subtitle}
+                                                    style={{ color: 'red', margin: '2px 0', fontSize: 16 }}
+                                                >{msg}</p>
+                                            }}
+                                        </ErrorMessage>
                                         <textarea
                                             id="query"
                                             onChange={props.handleChange('query')}
