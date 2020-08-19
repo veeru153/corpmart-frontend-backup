@@ -2,7 +2,7 @@ import React from 'react';
 import styles from '../FilterSort/FilterSortMobile.module.css';
 
 const DashboardContentSelector = (props) => {
-    const { expanded, type, changePanel } = props;
+    const { expanded, type, changePanel, panel, setPanel } = props;
     return (
         <div
             className={styles.sortExp}
@@ -12,8 +12,18 @@ const DashboardContentSelector = (props) => {
                 marginBottom: 104,
             }}
         >
-            <p onClick={() => changePanel('yourListings')}>Your Listing</p>
-            <p onClick={() => changePanel('recentlyViewed')}>Recently Viewed</p>
+            <p 
+                style={{ color: panel == 'yourListings' ? '#4AB9CA' : 'black'}}
+                onClick={() => {
+                    changePanel('yourListings');
+                    setPanel('yourListings')
+            }}>Your Listings</p>
+            <p 
+                style={{ color: panel == 'recentlyViewed' ? '#4AB9CA' : 'black'}}
+                onClick={() => {
+                    changePanel('recentlyViewed');
+                    setPanel('recentlyViewed');
+            }}>Recently Viewed</p>
         </div>
     )
 }

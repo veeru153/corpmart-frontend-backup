@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from '../FilterSort/FilterSortMobile.module.css';
-import { Filter } from 'react-feather';
+import { ChevronUp } from 'react-feather';
 import Sort from '@material-ui/icons/Sort';
 import DashboardContentSelector from './DashboardContentSelector';
 import SortContent from './SortContent';
@@ -8,6 +8,7 @@ import SortContent from './SortContent';
 const DashboardNavMobile = (props) => {
     const [expanded, setExpanded] = useState(false);
     const [type, setType] = useState('');
+    const [panel, setPanel] = useState('yourListings');
 
     const openMenu = (type) => {
         setExpanded(true);
@@ -26,14 +27,14 @@ const DashboardNavMobile = (props) => {
             <div className={styles.tabs}>
                 <button
                     className={styles.tab}
-                    style={{ borderBottom: expanded && type == 'filter' ? '4px solid #4AB9CA' : 'none' }}
+                    style={{ borderBottom: expanded && type == 'contentSelector' ? '4px solid #4AB9CA' : 'none' }}
                     onClick={(e) => {
                         openMenu('contentSelector');
                         e.stopPropagation();
                     }}
                 >
-                    <Filter size={16} />
-                    <p>Filter</p>
+                    <ChevronUp size={16} />
+                    <p>{panel == 'yourListings' ? 'Your Listings' : 'Recently Viewed'}</p>
                 </button>
                 <button
                     className={styles.tab}
@@ -51,8 +52,8 @@ const DashboardNavMobile = (props) => {
                 className={styles.expanded}
                 onClick={(e) => e.stopPropagation()}
                 style={{
-                    height: expanded ? '100%' : '0',
-                    maxHeight: expanded && type == 'contentSelector' ? '20vh' : '48vh',
+                    height: expanded ? '60vh' : '0',
+                    maxHeight: expanded ? '60vh' : '0',
                     overflow: expanded ? 'scroll' : 'hidden',
                 }}
             >
@@ -60,6 +61,8 @@ const DashboardNavMobile = (props) => {
                     expanded={expanded} 
                     type={type} 
                     changePanel={props.changePanel}
+                    panel={panel}
+                    setPanel={setPanel}
                 />
                 <SortContent 
                     expanded={expanded} 

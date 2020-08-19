@@ -36,12 +36,14 @@
 .text {
     display: flex;
     text-align: left;
+    margin-top: 16px;
+    margin-bottom: 36px;
 }
 
 .image {
-    width: 64%;
-    height: 300px;
-    margin: 36px;
+    /* width: 64%; */
+    /* height: 300px; */
+    /* margin: 36px; */
 }
 .image img {
     max-width: 100%;

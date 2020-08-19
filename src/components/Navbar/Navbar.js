@@ -4,6 +4,7 @@ import styles from './Navbar.module.css';
 import { Link } from 'react-router-dom';
 import { Search } from 'react-feather';
 import { handleLogout, validateToken } from '../util';
+import { Formik } from 'formik';
 
 const Navbar = (props) => {
     const [transparent, setTransparent] = useState(true);
@@ -52,7 +53,7 @@ const Navbar = (props) => {
                 <div className={styles.navBtn}>
                     <Link to="/explore">Businesses for Sale</Link>
                 </div>
-                <div 
+                <form 
                     className={[
                         styles.navBtn, 
                         styles.searchBar,
@@ -69,7 +70,7 @@ const Navbar = (props) => {
                         size={28} 
                         style={{ padding: '8px', transition: 'all 0.4s ease-in-out', flex: 1 }} 
                     />
-                </div>
+                </form>
                 <div className={styles.navBtn}>
                     {
                         loggedIn

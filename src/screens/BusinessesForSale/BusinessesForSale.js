@@ -15,27 +15,36 @@ class BusinessesForSale extends Component {
     state = {
         businessList: [],
         sliderMaxVals: [0, 0, 0],
-        queryParams: ['', '', '', '', '', '', '', '', '', '', '', '', '', '',],
+        queryParams: ['', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
         page: 1,
         lastPage: true,
         filterOps: [
             { name: 'GST No. Availability', checked: false },
             { name: 'Bank Account Availability', checked: false },
         ],
-        selectedOps: []
+        selectedOps: [],
+        loaded: false,
     }
 
     async componentDidMount() {
+        if(document.location.search.match(/\?search=\S{1,}/gmi)) {
+            let params = [...this.state.queryParams];
+            params[14] = document.location.search.substring(1);
+            this.setState({
+                queryParams: params
+            })
+        }
         let res = await Axios.get('/max-value?format=json');
         let data = await res.data;
 
-        let res2 = await Axios.get(`/business-list/?format=json&page=${this.state.page}`);
+        let res2 = await Axios.get(`/business-list/?format=json&page=${this.state.page}&&${this.state.queryParams.filter(p => p != '').join('&')}`);
         let data2 = await res2.data;
 
         this.setState({
             sliderMaxVals: [data.max_auth_capital, data.max_paidup_capital, data.max_selling_price],
             businessList: data2.results,
-            lastPage: data2.next == null
+            lastPage: data2.next == null,
+            loaded: true,
         });
     }
 
@@ -162,7 +171,7 @@ class BusinessesForSale extends Component {
                             />
                         </div>
                         <div className={styles.showcase}>
-                            {
+                            { this.state.loaded ? this.state.businessList.length != 0 ? 
                                 this.state.businessList.map(b => (
                                     <BusinessSlide
                                         key={b.id}
@@ -179,7 +188,9 @@ class BusinessesForSale extends Component {
                                         askingPrice={b.admin_defined_selling_price ?? 0}
                                         className={styles.card}
                                     />
-                                ))
+                                )) :
+                                <p className={styles.subtitle} style={{ color: 'red' }}>No matching results.</p>
+                                : <p className={styles.subtitle}>Loading...</p>
                             }
                         </div>
                         <div style={{ margin: '44px auto' }}>
@@ -209,6 +220,7 @@ class BusinessesForSale extends Component {
                     updateQuery={this.updateQuery}
                     filterOps={this.state.filterOps}
                     handleOption={this.handleOption}
+                    queryParams={this.state.queryParams}
                 />
                 <Footer />
             </div>

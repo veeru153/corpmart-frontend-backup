@@ -17,7 +17,8 @@ const useStyles = makeStyles({
     },
     select: {
         background: 'white',
-        height: '100%'
+        height: '100%',
+        paddingLeft: 8,
     },
     icon: {
         display: 'none'

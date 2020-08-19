@@ -9,6 +9,7 @@ import CorpmartInMedia from './CorpmartInMedia/CorpmartInMedia';
 import Footer from './Footer/Footer';
 import NavbarMobile from '../../components/Navbar/NavbarMobile';
 import Navbar from '../../components/Navbar/Navbar';
+import MyChatbot from '../../components/MyChatbot/MyChatbot';
 
 const Landing = () => {
     return (
@@ -22,6 +23,7 @@ const Landing = () => {
             <Blogs />
             <CorpmartInMedia />
             <Footer />
+            <MyChatbot />
         </div>
     )
 }

@@ -29,6 +29,7 @@ class BusinessDetails extends Component {
         otherLicenses: false,
         balancesheet: false,
         balancesheetId: null,
+        hasContacted: false,
         other: {},
         error: false,
         errorMsg: '',
@@ -69,6 +70,8 @@ class BusinessDetails extends Component {
                 otherLicenses: data.has_other_license,
                 balancesheet: data.balancesheet_available,
                 balancesheetId: data.balancesheet_id,
+                hasContacted: data.has_contacted,
+                contactedNow: false,
             }))
         } catch (e) { console.log(e.response); }
     }
@@ -101,6 +104,10 @@ class BusinessDetails extends Component {
                         'Authorization': `Token ${token}`
                     }
                 });
+                this.setState({
+                    contactedNow: true,
+                    hasContacted: true,
+                })
             } else {
                 this.props.history.push('/login');
             }
@@ -217,7 +224,10 @@ class BusinessDetails extends Component {
                         </div>
                         <div className={styles.balancesheet}>
                             <div className={styles.bsDiv1}>
-                                <p>Balancesheet of this business is available</p>
+                                {this.state.balancesheet
+                                    ? <p>Balancesheet of this business is available</p>
+                                    : <p>Balancesheet of this business is not available</p>
+                                }
                                 <div className={styles.bsImg}></div>
                                 <Button
                                     label="View"
@@ -231,10 +241,12 @@ class BusinessDetails extends Component {
                             </div>
                             <div className={styles.bsDiv2}>
                                 <p>Interseted in acquiring this business?</p>
-                                {this.state.error && this.state.errorMsg == "Already Contacted"
-                                ?   <p style={{ color: 'red'}}>We have already received your Contact Request</p>
+                                {this.state.hasContacted
+                                ?   <p style={{ color: 'red'}}>We have already received your Contact Request.</p>
                                 :   null}
-                                <p></p>
+                                {this.state.contactedNow && !this.state.hasContacted
+                                ?   <p style={{ color: '#4AB9CA'}}>Our executives will get back to you soon.</p>
+                                :   null}
                                 <Button
                                     label="contact"
                                     type="orange"

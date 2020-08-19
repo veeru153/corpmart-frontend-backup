@@ -5,6 +5,7 @@
     background: #E5E5E5;
     min-height: calc(100vh - 68px);
     padding-top: 68px;
+    padding-bottom: 36px;
 }
 
 .title {

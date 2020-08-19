@@ -58,7 +58,15 @@ const Signup = (props) => {
                         }
                         try {
                             let req = await Axios.post('/signup/?format=json', payload);
-                        } catch (e) { console.log(e); }
+                        } catch (e) { 
+                            if(e.response.data.includes("email address already exists")) {
+                                setErrorMsg('User with this Email ID already exists');
+                                setError(true);
+                            } else if(e.response.data.includes("mobile already exists")) {
+                                setErrorMsg('User with this Mobile Number already exists');
+                                setError(true);
+                            }
+                        }
 
                         try {
                             let otp = await Axios.post('/generate_otp/?format=json', {
