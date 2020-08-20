@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './Landing.module.css';
 import Main from './Main/Main';
 import WhyCorpmart from './WhyCorpmart/WhyCorpmart';
@@ -12,6 +12,9 @@ import Navbar from '../../components/Navbar/Navbar';
 import MyChatbot from '../../components/MyChatbot/MyChatbot';
 
 const Landing = () => {
+
+    useEffect(() => window.scrollTo(0,0), []);
+
     return (
         <div className={styles.Landing}>
             <NavbarMobile dynamic/>

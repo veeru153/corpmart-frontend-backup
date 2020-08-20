@@ -22,6 +22,8 @@ const ListingForm = (props) => {
     const [user, setUser] = useState({});
     const [disableBtn, setDisableBtn] = useState(false);
 
+    useEffect(() => window.scrollTo(0,0), []);
+
     let listingSchema;
 
     if(loggedIn) {

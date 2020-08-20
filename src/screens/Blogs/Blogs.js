@@ -14,6 +14,7 @@ class Blogs extends Component {
     }
 
     async componentDidMount() {
+        window.scrollTo(0,0);
         let res = await Axios.get('/blog/');
         let data = await res.data;
         this.setState({

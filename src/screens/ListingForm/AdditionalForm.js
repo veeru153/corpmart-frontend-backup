@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './ListingForm.module.css'
 import { Formik } from 'formik';
 import Button from '../../components/UI/Button/Button';
@@ -31,6 +31,8 @@ const AdditionalForm = (props) => {
     if(!props.location.state || props.location.state == undefined) {
         props.history.push('/list-your-business');
     }
+
+    useEffect(() => window.scrollTo(0,0), []);
 
     const [error, setError] = useState(false);
     const [errorMsg, setErrorMsg] = useState('');

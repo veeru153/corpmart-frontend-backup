@@ -22,6 +22,8 @@ const Verification = (props) => {
     const prevState = props.location.state;
     const cookies = new Cookies();
 
+    useEffect(() => window.scrollTo(0,0), []);
+    
     useEffect(() => {
         if (timer <= 0) {
             setResend(true);

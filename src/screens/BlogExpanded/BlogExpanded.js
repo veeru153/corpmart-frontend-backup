@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './BlogExpanded.module.css';
 import Navbar from '../../components/Navbar/Navbar';
 import NavbarMobile from '../../components/Navbar/NavbarMobile';
@@ -6,6 +6,7 @@ import Footer from '../Landing/Footer/Footer';
 
 const BlogExpanded = (props) => {
     if (!props.location.pathname.match(/\/blog\/.*/)) props.history.push('/blogs/');
+    useEffect(() => window.scrollTo(0,0), []);
 
     const { id, title, date, author, blogText, imgUrl } = props.location.state;
     return (

@@ -38,6 +38,7 @@ class BusinessDetails extends Component {
     }
 
     async componentDidMount() {
+        window.scrollTo(0,0);
         const cookies = new Cookies();
         const token = cookies.get('userToken');
         const { match: { params } } = this.props;

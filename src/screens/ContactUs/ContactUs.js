@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './ContactUs.module.css';
 import Navbar from '../../components/Navbar/Navbar';
 import NavbarMobile from '../../components/Navbar/NavbarMobile';
@@ -16,6 +16,9 @@ const contactSchema = yup.object({
 })
 
 const ContactUs = () => {
+
+    useEffect(() => window.scrollTo(0,0), []);
+
     return (
         <div>
             <Navbar />

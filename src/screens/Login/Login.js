@@ -15,6 +15,8 @@ const Login = (props) => {
     const [disableBtn, setDisableBtn] = useState(false);
     const [loggedIn, setLoggedIn] = useState(false);
 
+    useEffect(() => window.scrollTo(0,0), []);
+
     useEffect(() => {
         async function validateSession() {
             let validity = await validateToken();

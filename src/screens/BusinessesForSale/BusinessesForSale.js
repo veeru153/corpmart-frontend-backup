@@ -9,6 +9,7 @@ import SortDropdown from '../../components/FilterSort/SortDropdown/SortDropdown'
 import Footer from '../Landing/Footer/Footer';
 import Axios from '../../axios';
 import Button from '../../components/UI/Button/Button';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 
 class BusinessesForSale extends Component {
@@ -27,6 +28,7 @@ class BusinessesForSale extends Component {
     }
 
     async componentDidMount() {
+        window.scrollTo(0,0);
         if(document.location.search.match(/\?search=\S{1,}/gmi)) {
             let params = [...this.state.queryParams];
             params[14] = document.location.search.substring(1);
@@ -204,7 +206,10 @@ class BusinessesForSale extends Component {
                                     />
                                 )) :
                                 <p className={styles.subtitle} style={{ color: 'red' }}>No matching results.</p>
-                                : <p className={styles.subtitle}>Loading...</p>
+                                : <div className={styles.loading}>
+                                    <Spinner />
+                                    <p className={styles.subtitle}>Loading...</p>
+                                </div>
                             }
                         </div>
                         <div style={{ margin: '44px auto' }}>

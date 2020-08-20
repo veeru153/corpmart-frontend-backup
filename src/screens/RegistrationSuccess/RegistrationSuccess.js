@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './RegistrationSuccess.module.css';
 import Button from '../../components/UI/Button/Button';
 
 const RegistrationSuccess = () => {
+    useEffect(() => window.scrollTo(0,0), []);
     return (
         <div className={styles.RegistrationSuccess}>
             <div className={styles.card}>
