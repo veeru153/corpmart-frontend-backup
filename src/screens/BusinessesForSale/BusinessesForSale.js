@@ -37,7 +37,7 @@ class BusinessesForSale extends Component {
         let res = await Axios.get('/max-value?format=json');
         let data = await res.data;
 
-        let res2 = await Axios.get(`/business-list/?format=json&page=${this.state.page}&&${this.state.queryParams.filter(p => p != '').join('&')}`);
+        let res2 = await Axios.get(`/business-list/?format=json&page=${this.state.page}&${this.state.queryParams.filter(p => p != '').join('&')}`);
         let data2 = await res2.data;
 
         this.setState({
@@ -46,6 +46,20 @@ class BusinessesForSale extends Component {
             lastPage: data2.next == null,
             loaded: true,
         });
+    }
+
+    handleExploreSearch = async (query) => {
+        let params = [...this.state.queryParams];
+        params[14] = `search=${query}`;
+        this.setState({
+            queryParams: params
+        })
+        let res2 = await Axios.get(`/business-list/?format=json&page=${this.state.page}&${this.state.queryParams.filter(p => p != '').join('&')}`);
+        let data2 = await res2.data;
+
+        this.setState({
+            businessList: data2.results,
+        })
     }
 
     fetchNewList = async () => {
@@ -149,8 +163,8 @@ class BusinessesForSale extends Component {
     render() {
         return (
             <div className={styles.BusinessesForSale}>
-                <NavbarMobile />
-                <Navbar />
+                <NavbarMobile explorePage handleExploreSearch={this.handleExploreSearch}/>
+                <Navbar explorePage handleExploreSearch={this.handleExploreSearch}/>
 
                 <div className={styles.container}>
                     <FilterDiv

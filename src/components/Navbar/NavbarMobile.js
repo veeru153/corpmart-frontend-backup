@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styles from './NavbarMobile.module.css';
 import { Menu, Search } from 'react-feather';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { handleLogout, validateToken } from '../util';
+import { Formik } from 'formik';
 
 // [LOW] TODO: Make Navbar slide inwards (remove black background when navbar is entirely hidden)
 // TODO: Implement Search (need to change page to Businesses For Sale with )
@@ -18,7 +19,7 @@ const NavbarMobile = (props) => {
     document.body.style.overflowY = expanded ? "hidden" : "scroll";
 
     const handleScroll = () => {
-        if(window.scrollY > 64) {
+        if (window.scrollY > 64) {
             setTransparent(false);
         } else {
             setTransparent(true)
@@ -32,7 +33,7 @@ const NavbarMobile = (props) => {
     useEffect(() => {
         async function validateSession() {
             let validity = await validateToken();
-            if(validity && validity.status == 200) {
+            if (validity && validity.status == 200) {
                 setUser(validity.data);
                 setLoggedIn(true);
             } else {
@@ -44,52 +45,82 @@ const NavbarMobile = (props) => {
 
     return (
         <>
-            <div 
-                className={styles.Navbar} 
-                style={{ 
+            <div
+                className={styles.Navbar}
+                style={{
                     backgroundColor: transparent && dynamic ? 'rgba(0,0,0,0)' : 'white',
                     boxShadow: transparent && dynamic ? 'none' : '0px 0px 10px rgba(0, 0, 0, 0.25)',
                 }}
             >
                 <button className={styles.navBtn} onClick={() => setExpanded(true)}>
-                    <Menu 
+                    <Menu
                         color={transparent && dynamic ? "white" : "black"}
-                        size={28} 
+                        size={28}
                         style={{ padding: '20px 18px 16px 18px', transition: 'all 0.4s ease-in-out' }}
                     />
-                </button> 
+                </button>
                 {/* Search Bar */}
-                <div 
+                <div
                     className={[
-                        styles.searchBar, 
+                        styles.searchBar,
                         transparent && dynamic ? styles.searchBarWhite : styles.searchBarBlack
                     ].join(' ')}
-                    style={{ opacity: showSearchBar ? '100%' : '0%' }}
+                    style={{ display: 'flex', opacity: showSearchBar ? '1' : '0' }}
                 >
-                    <input 
-                        id="search"
-                        placeholder="ex. businesses for sale"
-                        style={{ display: showSearchBar ? 'block' : 'none' }}
-                        autoComplete="off"
-                    />
+                    <Formik
+                        initialValues={{
+                            query: document.location.search.match(/\?search=\S{1,}/gmi)
+                                ? document.location.search.substring(8)
+                                : null
+                        }}
+                        onSubmit={(values) => {
+                            if (values.query.length == 0) return;
+                            if (props.explorePage) {
+                                window.history.pushState('', '', `/explore/?search=${values.query}`);
+                                props.handleExploreSearch(values.query);
+                            } else {
+                                console.log('pls')
+                                props.history.push(`/explore/?search=${encodeURIComponent(values.query)}`);
+                            }
+                        }}
+                    >{(props) => (
+                        <form
+                            onSubmit={props.handleSubmit}
+                            onKeyDown={(e) => {
+                                if (e.key == 'Enter') {
+                                    e.target.blur();
+                                    props.handleSubmit()
+                                };
+                            }}
+                        >
+                            <input
+                                id="search"
+                                placeholder="ex. businesses for sale"
+                                autoComplete="off"
+                                value={props.values.query}
+                                onChange={props.handleChange('query')}
+                            />
+                        </form>
+                    )}
+                    </Formik>
                 </div>
                 <div className={styles.navBtn}>
-                    <Search 
-                        color={transparent && dynamic ? "white" : "black"} 
-                        size={28} 
+                    <Search
+                        color={transparent && dynamic ? "white" : "black"}
+                        size={28}
                         style={{ padding: '20px 18px 16px 18px', transition: 'all 0.4s ease-in-out' }}
-                        onClick={() => setShowSearchBar(!showSearchBar)} 
+                        onClick={() => setShowSearchBar(!showSearchBar)}
                     />
                 </div>
             </div>
-            <div 
-                className={styles.navbarExpand} 
+            <div
+                className={styles.navbarExpand}
                 style={{ width: expanded ? '100%' : '0' }}
                 onClick={() => setExpanded(false)}
             >
-                <div 
+                <div
                     className={styles.navExpContents}
-                    style={{ 
+                    style={{
                         position: 'absolute',
                         left: expanded ? 0 : '-100%',
                         width: 'calc(75% - 40px)',
@@ -97,14 +128,14 @@ const NavbarMobile = (props) => {
                     }}
                     onClick={(e) => e.stopPropagation()}
                 >
-                    { 
+                    {
                         loggedIn
-                        ? <>
-                            <p className={styles.navName}>{user.first_name} {user.last_name}</p>
-                            <Link to="/dashboard" className={styles.navLink}><p>My Dashboard</p></Link>
-                            <Link to="/list-your-business" className={styles.navLink}><p>Add Listing</p></Link>
-                          </> 
-                        : null
+                            ? <>
+                                <p className={styles.navName}>{user.first_name} {user.last_name}</p>
+                                <Link to="/dashboard" className={styles.navLink}><p>My Dashboard</p></Link>
+                                <Link to="/list-your-business" className={styles.navLink}><p>Add Listing</p></Link>
+                            </>
+                            : null
                     }
                     <Link to="/" className={styles.navLink}><p>Home</p></Link>
                     <Link to="/explore" className={styles.navLink}><p>Businesses for Sale</p></Link>
@@ -114,11 +145,11 @@ const NavbarMobile = (props) => {
                     <Link to="/contact-us" className={styles.navLink}><p>Contact Us</p></Link>
                     {
                         loggedIn
-                        ? <div onClick={handleLogout} className={styles.navLink}><p>Logout</p></div>
-                        : <>
-                            <Link to="/login" className={styles.navLink}><p>Login</p></Link>
-                            <Link to="/signup" className={styles.navLink}><p>Sign up</p></Link>
-                          </>
+                            ? <div onClick={handleLogout} className={styles.navLink}><p>Logout</p></div>
+                            : <>
+                                <Link to="/login" className={styles.navLink}><p>Login</p></Link>
+                                <Link to="/signup" className={styles.navLink}><p>Sign up</p></Link>
+                            </>
                     }
                 </div>
             </div>
@@ -126,4 +157,4 @@ const NavbarMobile = (props) => {
     )
 }
 
-export default NavbarMobile;
+export default withRouter(NavbarMobile);
