@@ -65,6 +65,11 @@
     color: #484848;
     font-weight: 300;
     font-size: clamp(14px, 4vw, 16px);
+    overflow:  hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 }
 
 .businessInfoValue {
@@ -128,6 +133,18 @@
     /* justify-content: center; */
     align-items: center;
     margin-bottom: 60px;
+    width: 100%;
+}
+
+.carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.carousel a {
+    text-decoration: none;
+    color: inherit;
 }
 
 @media only screen and (min-width: 768px) {
