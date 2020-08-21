@@ -1,0 +1,47 @@
+.SortDropdown {
+    display: none;
+    min-width: 300px;
+}
+
+.dummyBtn {
+    padding: 12px clamp(4px, 5vw, 44px);
+    cursor: pointer;
+    margin-left: 146px;
+}
+
+.dropdown {
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    text-align: left;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    overflow: hidden;
+}
+
+.dropdown div {
+    padding: 4px 8px;
+    cursor: pointer;
+}
+.dropdown div:not(.active):hover {
+    background-color: #dadada;
+}
+.dropdown div:nth-of-type(1) {
+    padding-top: 8px;
+}
+.dropdown div:nth-last-of-type(1) {
+    padding-bottom: 8px;
+}
+
+.active {
+    background-color: #4AB9CA;
+    color: white;
+}
+
+@media only screen and (min-width: 1024px) {
+    .SortDropdown {
+        display: block;
+    }
+}

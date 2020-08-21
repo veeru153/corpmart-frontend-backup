@@ -6,7 +6,6 @@ import { handleLogout, validateToken } from '../util';
 import { Formik } from 'formik';
 
 // [LOW] TODO: Make Navbar slide inwards (remove black background when navbar is entirely hidden)
-// TODO: Implement Search (need to change page to Businesses For Sale with )
 
 const NavbarMobile = (props) => {
     const [transparent, setTransparent] = useState(true);

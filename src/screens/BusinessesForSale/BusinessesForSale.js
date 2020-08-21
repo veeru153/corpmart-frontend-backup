@@ -181,7 +181,7 @@ class BusinessesForSale extends Component {
                             <p className={styles.subtitle}>Explore the extensive range of pre-approved businesses to find the one that suits your requirement.</p>
                         </div>
                         <div className={styles.sortDropdownContainer}>
-                            <SortDropdown 
+                            <SortDropdown
                                 updateQuery={this.updateQuery}
                                 currVal={this.state.queryParams[13]}
                             />

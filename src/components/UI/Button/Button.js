@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Button.module.css';
 
 const Button = (props) => {
-    const { color, type, label, disabled } = props;
+    const { id, color, type, label, disabled } = props;
 
     const btnStyle = {
         backgroundColor: type == 'blue' ? '#4AB9CA' : type == 'orange' ? '#FF9900' : type,
@@ -12,12 +12,13 @@ const Button = (props) => {
 
     return (
         <button 
+            id={id}
             onClick={props.pressed}
             style={{...btnStyle, ...props.style}} 
             className={[styles.btn, props.className].join(' ')}
             disabled={props.disabled}
         >
-            <p style={{ margin: 0, ...props.textStyle }}>{label}</p>
+            <p id={id} style={{ margin: 0, ...props.textStyle }}>{label}</p>
         </button>
     )
 }

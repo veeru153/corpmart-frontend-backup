@@ -1,56 +1,91 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './SortDropdown.module.css';
-import makeStyles from '@material-ui/core/styles/makeStyles';
-import NativeSelect from '@material-ui/core/NativeSelect';
+import Button from '../../UI/Button/Button';
 
-const useStyles = makeStyles({
-    root: {
-        all: 'unset',
-        boxSizing: 'border-box',
-        overflow: 'hidden',
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignContent: 'center',
-        textAlign: 'center',
-        width: 150,
-        borderRadius: 10,
-        color: 'white',
-        fontWeight: 600,
-        fontSize: 16,
-    },
-    select: {
-        background: '#4AB9CA',
-        display: 'flex',
-        justifyContent: 'center',
-        alignContent: 'center',
-        textAlign: 'center',
-        padding: '12px 24px'
-    },
-    icon: {
-        display: 'none'
-    },
-    iconOpen: {
-        display: 'none'
+const SortDrop = (props) => {
+    const { updateQuery } = props;
+    const [opened, setOpened] = useState(false);
+    const [currVal, setCurrVal] = useState(0);
+
+    const handleSort = (e, val) => {
+        // e.stopPropagation();
+        e.preventDefault();
+        setCurrVal(val);
+        updateQuery('sort', val);
     }
-})
 
-const SortDropdown = (props) => {
-    const classes = useStyles();
-    const { updateQuery, currVal } = props;
+    useEffect(() => document.addEventListener('click', (e) => {
+        // Had to do this in a hacky way (used same ID multiple times). I'm sorry future developer :((
+        if(opened && !["dropdownBtn", "dropdown", "dropdownOption"].includes(e.target.id)) {
+            setOpened(false);
+        }
+    }))
+
     return (
-        <div>
-            <NativeSelect
+        <div className={styles.SortDropdown}>
+            <Button 
+                id="dropdownBtn"
+                type="blue"
+                label="Sort By"
+                className={styles.dummyBtn}
+                style={{ borderBottomLeftRadius: opened ? 0 : 10, borderBottomRightRadius: opened ? 0 : 10 }}
+                pressed={() => setOpened(!opened)}
+            />
+            <div 
+                id="dropdown"
+                className={styles.dropdown} 
+                style={{ display: opened ? 'block' : 'none' }} 
+            >
+                <div 
+                    id="dropdownOption"
+                    onClick={(e) => handleSort(e, 0)}
+                    className={ currVal == 0 ? styles.active : ""}
+                >Recently Listed</div>
+                <div 
+                    id="dropdownOption"
+                    onClick={(e) => handleSort(e, 1)}
+                    className={ currVal == 1 ? styles.active : ""}
+                >Year of Establishment (newest first)</div>
+                <div 
+                    id="dropdownOption"
+                    onClick={(e) => handleSort(e, 2)}
+                    className={ currVal == 2 ? styles.active : ""}
+                >Year of Establishment (oldest first)</div>
+                <div 
+                    id="dropdownOption"
+                    onClick={(e) => handleSort(e, 3)}
+                    className={ currVal == 3 ? styles.active : ""}
+                >Authorised Capital (low to high)</div>
+                <div 
+                    id="dropdownOption"
+                    onClick={(e) => handleSort(e, 4)}
+                    className={ currVal == 4 ? styles.active : ""}
+                >Authorised Capital (high to low)</div>
+                <div 
+                    id="dropdownOption"
+                    onClick={(e) => handleSort(e, 5)}
+                    className={ currVal == 5 ? styles.active : ""}
+                >Paid-up Capital (low to high)</div>
+                <div 
+                    id="dropdownOption"
+                    onClick={(e) => handleSort(6)}
+                    className={ currVal == 6 ? styles.active : ""}
+                >Paid-up Capital (high to low)</div>
+                <div 
+                    id="dropdownOption"
+                    onClick={(e) => handleSort(e, 7)}
+                    className={ currVal == 7 ? styles.active : ""}
+                >Selling price (low to high)</div>
+                <div 
+                    id="dropdownOption"
+                    onClick={(e) => handleSort(e, 8)}
+                    className={ currVal == 8 ? styles.active : ""}
+                >Selling price (high to low)</div>
+            </div>
+            {/* <select
                 name="SortDropdown"
-                value={currVal}
                 onChange={(e) => updateQuery('sort', e.target.value)}
-                disableUnderline
-                className={classes.root}
-                classes={{
-                    select: classes.select,
-                    icon: classes.icon,
-                    iconOpen: classes.iconOpen,
-                }}
+                className={styles.dropdownHeader}
             >
                 <option value="-1">Sort By</option>
                 <option value="0">Recently Listed</option>
@@ -62,9 +97,9 @@ const SortDropdown = (props) => {
                 <option value="6">Paid-up Capital (high to low)</option>
                 <option value="7">Selling price (low to high)</option>
                 <option value="8">Selling price (high to low)</option>
-            </NativeSelect>
+            </select> */}
         </div>
     )
 }
 
-export default SortDropdown;
+export default SortDrop;
