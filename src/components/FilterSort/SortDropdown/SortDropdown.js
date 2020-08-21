@@ -82,22 +82,6 @@ const SortDrop = (props) => {
                     className={ currVal == 8 ? styles.active : ""}
                 >Selling price (high to low)</div>
             </div>
-            {/* <select
-                name="SortDropdown"
-                onChange={(e) => updateQuery('sort', e.target.value)}
-                className={styles.dropdownHeader}
-            >
-                <option value="-1">Sort By</option>
-                <option value="0">Recently Listed</option>
-                <option value="1">Year of Establishment (newest first)</option>
-                <option value="2">Year of Establishment (oldest first)</option>
-                <option value="3">Authorised Capital (low to high)</option>
-                <option value="4">Authorised Capital (high to low)</option>
-                <option value="5">Paid-up Capital (low to high)</option>
-                <option value="6">Paid-up Capital (high to low)</option>
-                <option value="7">Selling price (low to high)</option>
-                <option value="8">Selling price (high to low)</option>
-            </select> */}
         </div>
     )
 }

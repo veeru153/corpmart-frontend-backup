@@ -5,7 +5,7 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import { withRouter } from 'react-router-dom';
 
 const BusinessSlide = (props) => {
-    const { id, type, subtype, subtypeOther, industry, industryOther, state, authCapital, paidCapital, askingPrice, desc } = props;
+    const { id, type, subtype, subtypeOther, industry, industryOther, state, authCapital, paidCapital, askingPrice, desc, openBusiness } = props;
     return (
         <div className={[styles.slide, props.className].join(' ')}>
             <p className={styles.businessDesc}>{!desc || desc.length == 0 ? "Currently Not Available. Please check later." : desc}</p>
@@ -55,7 +55,10 @@ const BusinessSlide = (props) => {
                     type="orange"
                     style={{ padding: '12px 16px' }}
                     textStyle={{ margin: 0 }}
-                    pressed={() => props.history.push(`/business-details/${id}`)}
+                    pressed={() => {
+                        if(openBusiness) openBusiness();
+                        else props.history.push(`/business-details/${id}`);
+                    }}
                 />
             </div>
         </div>
