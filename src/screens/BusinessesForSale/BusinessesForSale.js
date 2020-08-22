@@ -18,7 +18,8 @@ class BusinessesForSale extends Component {
         sliderMaxVals: [0, 0, 0],
         queryParams: ['', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
         page: 1,
-        lastPage: true,
+        nextPage: null,
+        prevPage: null,
         filterOps: [
             { name: 'GST No. Availability', checked: false },
             { name: 'Bank Account Availability', checked: false },
@@ -45,7 +46,8 @@ class BusinessesForSale extends Component {
         this.setState({
             sliderMaxVals: [data.max_auth_capital, data.max_paidup_capital, data.max_selling_price],
             businessList: data2.results,
-            lastPage: data2.next == null,
+            nextPage: data2.next,
+            prevPage: data2.previous,
             loaded: true,
         });
     }
@@ -61,6 +63,8 @@ class BusinessesForSale extends Component {
 
         this.setState({
             businessList: data2.results,
+            nextPage: data2.next,
+            prevPage: data2.prev,
         })
     }
 
@@ -69,7 +73,8 @@ class BusinessesForSale extends Component {
         let data = await res.data;
         this.setState({
             businessList: data.results,
-            lastPage: data.next == null
+            nextPage: data.next,
+            prevPage: data.previous,
         })
     }
 
@@ -90,11 +95,13 @@ class BusinessesForSale extends Component {
     handlePageChange = async (type) => {
         switch (type) {
             case 'next':
+                if(this.state.nextPage == null) return;
                 this.setState((prevState) => ({
                     page: prevState.page + 1
                 }), this.fetchNewList)
                 break;
             case 'prev':
+                if(this.state.prevPage == null) return;
                 this.setState((prevState) => ({
                     page: prevState.page - 1
                 }), this.fetchNewList)
@@ -157,7 +164,8 @@ class BusinessesForSale extends Component {
             let data = await res.data;
             this.setState({
                 businessList: data.results,
-                lastPage: data.next == null
+                nextPage: data.next,
+                prevPage: data.previous,
             })
         })
     }
@@ -215,20 +223,20 @@ class BusinessesForSale extends Component {
                         <div style={{ margin: '44px auto' }}>
                             <Button
                                 label="<< Previous"
-                                type={this.state.page == 1 ? "#DADEE4" : "#FFFFFF"}
-                                color={this.state.page == 1 ? "#676767" : "#FFFFFF"}
+                                type={this.state.prevPage == null ? "#DADEE4" : "#FFFFFF"}
+                                color={this.state.prevPage == null ? "#676767" : "#000000"}
                                 textStyle={{ padding: '12px 20px' }}
                                 style={{ margin: '0 6px' }}
-                                disabled={this.state.page == 1}
+                                disabled={this.state.prevPage}
                                 pressed={() => this.handlePageChange('prev')}
                             />
                             <Button
                                 label="Next >>"
-                                type={this.state.lastPage ? "#DADEE4" : "#FFFFFF"}
-                                color={this.state.page == 1 ? "#676767" : "#FFFFFF"}
+                                type={this.state.nextPage == null ? "#DADEE4" : "#FFFFFF"}
+                                color={this.state.nextPage == null ? "#676767" : "#000000"}
                                 textStyle={{ padding: '12px 0', minWidth: 136.77 }}
                                 style={{ margin: '0 6px' }}
-                                disabled={this.state.lastPage}
+                                disabled={this.state.nextPage}
                                 pressed={() => this.handlePageChange('next')}
                             />
                         </div>
