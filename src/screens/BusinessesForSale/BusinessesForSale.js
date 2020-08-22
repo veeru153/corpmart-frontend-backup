@@ -52,7 +52,7 @@ class BusinessesForSale extends Component {
 
     handleExploreSearch = async (query) => {
         let params = [...this.state.queryParams];
-        params[14] = `search=${query}`;
+        params[14] = query ? `search=${query}` : '';
         this.setState({
             queryParams: params
         })
@@ -82,7 +82,7 @@ class BusinessesForSale extends Component {
             if (index == 0) {
                 this.updateQuery('gst', this.state.filterOps[0].checked)
             } else {
-                this.updateQuery('bank', this.state.filterOps[0].checked)
+                this.updateQuery('bank', this.state.filterOps[1].checked)
             }
         })
     }

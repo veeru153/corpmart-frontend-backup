@@ -48,7 +48,7 @@ class FilterContent extends Component {
                         key={op.name}
                         className={styles.option}
                         style={{ padding: '1px 0' }}
-                        onClick={() => this.props.handleOption(index)}
+                        onClick={() => {this.props.handleOption(index); console.log(index)}}
                     >
                         <p className={styles.optionExpLabel}>{op.name}</p>
                         <div className={styles.checkbox}>

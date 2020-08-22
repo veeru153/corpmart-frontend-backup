@@ -60,9 +60,11 @@ const Navbar = (props) => {
                                 : null
                     }}
                     onSubmit={(values) => {
-                        if(values.query.length == 0) return;
+                        if(values.query.length == 0 && !props.explorePage) return;
                         if(props.explorePage) {
-                            window.history.pushState('', '', `/explore/?search=${values.query}`);
+                            values.query.length != 0
+                                ? window.history.pushState('', '', `/explore/?search=${values.query}`)
+                                : window.history.pushState('', '', `/explore`);
                             props.handleExploreSearch(values.query);
                         } else {
                             props.history.push(`/explore/?search=${encodeURIComponent(values.query)}`);
