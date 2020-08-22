@@ -41,8 +41,8 @@
 }
 
 .image {
-    /* width: 64%; */
-    /* height: 300px; */
+    width: 100%;
+    height: 278px;
     /* margin: 36px; */
 }
 .image img {

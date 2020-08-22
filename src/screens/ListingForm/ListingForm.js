@@ -172,7 +172,7 @@ const ListingForm = (props) => {
                                     }
                                 </p>
                             </div>
-                            <div>
+                            <div style={{ padding: '0 48px'}}>
                                 {
                                     !previewMode && loggedIn
                                         ? null

@@ -107,7 +107,7 @@ const AdditionalForm = (props) => {
                                     >{errorMsg}</p>
                                     : null}
                             </div>
-                            <div>
+                            <div style={{ padding: '0 48px'}}>
                                 <div className={styles.formGroup}>
                                     <p className={styles.inputLabel}>Type of Company</p>
                                     <FormDropdown

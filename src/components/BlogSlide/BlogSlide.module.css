@@ -75,3 +75,9 @@
     -webkit-line-clamp: 10;
     -webkit-box-orient: vertical;
 } */
+
+@media only screen and (min-width: 1536px) {
+    .slide {
+        width: 83%;
+    }
+}

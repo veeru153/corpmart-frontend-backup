@@ -16,6 +16,17 @@ const theme = {
     userFontColor: '#4a4a4a',
 };
 
+const styles = {
+    root: {
+        height: 440,
+        textAlign: 'end',
+    },
+    content: {
+        height: 324,
+        overflow: 'scroll'
+    },
+}
+
 class MyChatbot extends Component {
 
     handleEnd = async ({ values }) => {
@@ -40,9 +51,9 @@ class MyChatbot extends Component {
             {
                 id: 'initOptions',
                 options: [
-                    { value: 'acquire', label: 'Acquire a Business', trigger: () => this.props.history.push('/explore/') },
-                    { value: 'sell', label: 'Sell a Business', trigger: () => this.props.history.push('/list-your-business/') },
-                    { value: 'query', label: 'Any other query? Arrange a callback!', trigger: 'contactMsg' },
+                    { value: 'acquire', label: 'Acquire a business', trigger: () => this.props.history.push('/explore/') },
+                    { value: 'sell', label: 'Sell a business', trigger: () => this.props.history.push('/list-your-business/') },
+                    { value: 'query', label: 'Any query? Arrange a callback', trigger: 'contactMsg' },
                 ]
             },
             {
@@ -96,8 +107,9 @@ class MyChatbot extends Component {
             <ThemeProvider theme={theme}>
                 <ChatBot
                     floating
+                    contentStyle={styles.content}
                     steps={steps}
-                    style={{ height: 440, textAlign: 'end' }}
+                    style={styles.root}
                     bubbleStyle={{ textAlign: 'start' }}
                     handleEnd={this.handleEnd}
                 />
