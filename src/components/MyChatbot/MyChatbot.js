@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { ThemeProvider } from 'styled-components';
 import ChatBot from 'react-simple-chatbot';
-import styles from './MyChatbot.module.css';
+import { withRouter } from 'react-router-dom';
+import Axios from '../../axios';
 
 const theme = {
     background: '#f5f8fb',
@@ -13,36 +14,58 @@ const theme = {
     botFontColor: '#fff',
     userBubbleColor: '#fff',
     userFontColor: '#4a4a4a',
-  };
+};
 
 class MyChatbot extends Component {
 
-    componentDidMount() {
-        // if(window.innerWidth )
+    handleEnd = async ({ values }) => {
+        console.log(values);
+        try {
+            let req = await Axios.post('/chatbot-request', {
+                name: 'Chatbot User',
+                mobile: values[1],
+                email: values[2],
+                query: 'Chatbot Request',
+            })
+        } catch (e) { console.log(e.response); }
     }
 
     render() {
         const steps = [
             {
-                id: 'opener',
-                message: 'Hi, do you have any query?',
-                trigger: 'yn'
+                id: 'init',
+                message: 'Are you looking to acquire a business or sell a business?',
+                trigger: 'initOptions',
             },
             {
-                id: 'yn',
+                id: 'initOptions',
                 options: [
-                    { value: 'yes', label: 'Yes', trigger: 'nameLabel' },
-                    { value: 'no', label: 'No', trigger: 'contactUs' },
-                ],
+                    { value: 'acquire', label: 'Acquire a Business', trigger: () => this.props.history.push('/explore/') },
+                    { value: 'sell', label: 'Sell a Business', trigger: () => this.props.history.push('/list-your-business/') },
+                    { value: 'query', label: 'Any other query? Arrange a callback!', trigger: 'contactMsg' },
+                ]
             },
             {
-                id: 'nameLabel',
-                message: 'What is your Name?',
-                trigger: 'name',
+                id: 'contactMsg',
+                message: 'Please provide us with your contact details.',
+                trigger: 'mobileMsg',
             },
             {
-                id: 'name',
+                id: 'mobileMsg',
+                message: 'What is your Mobile Number?',
+                trigger: 'mobileNo',
+            },
+            {
+                id: 'mobileNo',
                 user: true,
+                validator: (value) => {
+                    const regex = new RegExp(/^[0-9]*$/g)
+                    if(!regex.test(value) || value.length != 10) {
+                        return "Enter a Valid Mobile Number."
+                    } else {
+                        return true;
+                    }
+                },
                 trigger: 'emailLabel',
             },
             {
@@ -53,37 +76,34 @@ class MyChatbot extends Component {
             {
                 id: 'email',
                 user: true,
-                option: [{ value: 'noEmail', label: "Don't wish to reveal", trigger: 'mobileLabel' }],
-                trigger: 'mobileLabel',
+                validator: (value) => {
+                    const regex = /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/g;
+                    if(!regex.test(value)) {
+                        return "Enter a Valid Email ID."
+                    } else {
+                        return true;
+                    }
+                },
+                trigger: 'finish',
             },
             {
-                id: 'mobileLabel',
-                message: 'What is your Mobile Number?',
-                trigger: 'mobile',
-            },
-            {
-                id: 'mobile',
-                user: true,
-                option: [{ value: 'noEmail', label: "Don't wish to reveal", trigger: 'queryLabel' }],
-                end: true,
-            },
-            {
-                id: 'contactUs',
-                message: 'Okay! You can contact us at xyz@email.com',
+                id: 'finish',
+                message: 'Our executives will getback to you shortly. Till then you may explore businesses for sale.',
                 end: true,
             }]
-    
+
         return (
             <ThemeProvider theme={theme}>
-                <ChatBot 
-                    floating 
-                    steps={steps} 
+                <ChatBot
+                    floating
+                    steps={steps}
                     style={{ height: 440, textAlign: 'end' }}
                     bubbleStyle={{ textAlign: 'start' }}
+                    handleEnd={this.handleEnd}
                 />
             </ThemeProvider>
         )
     }
 }
 
-export default MyChatbot;
+export default withRouter(MyChatbot);
