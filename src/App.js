@@ -15,7 +15,7 @@ import Signup from './screens/Signup/Signup';
 import RegistrationSuccess from './screens/RegistrationSuccess/RegistrationSuccess';
 import ContactUs from './screens/ContactUs/ContactUs';
 import UserDashboard from './screens/UserDashboard/UserDashboard';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Admin from './screens/Admin/Admin';
 
 function App() {
