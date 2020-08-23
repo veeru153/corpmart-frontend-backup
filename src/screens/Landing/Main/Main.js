@@ -23,7 +23,7 @@ const Main = () => {
                     </Link>
                 </div>
                 <div className={styles.option} style={{ marginBottom: 8 }}>
-                    <p className={styles.optionLabel}>Want to aquire a business?</p>
+                    <p className={styles.optionLabel}>Want to acquire a business?</p>
                     <Link to="/explore">
                         <Button 
                             label="Explore Businesses" 

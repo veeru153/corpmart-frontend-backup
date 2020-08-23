@@ -10,7 +10,7 @@
 
 .Navbar {
     display: grid;
-    grid-template-columns: 1.25fr 1.5fr 1.25fr 1fr 1fr;
+    grid-template-columns: 1.1fr 1.5fr 1.25fr 1fr 1.15fr;
     text-transform: uppercase;
     height: 100%;
 }
@@ -67,6 +67,26 @@
     color: inherit;
 }
 
+.logoMini{
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.logoMini img {
+    max-width: 52%;
+    max-height: 52%;
+}
+.logo {
+    display: none;
+}
+.logo img {
+    max-width: 100%;
+    max-height: 100%;
+}
+.homeLink {
+    display: none
+}
+
 .signupBtn {
     padding: 12px clamp(4px, 1.6vw, 40px);
     transition: all 0.2s ease-in-out;
@@ -79,6 +99,12 @@
     }
 }
 
+@media only screen and (min-width: 768px) {
+    .logoMini{
+        display: flex;
+    }
+}
+
 @media only screen and (min-width: 960px) {
     .signupBtn {
         padding: 12px clamp(20px, 2.4vw, 40px);
@@ -88,7 +114,18 @@
 @media only screen and (min-width: 1024px) {
     .Navbar {
         width: 92.5%;   
-        grid-template-columns: 1.25fr 1fr 1.5fr 0.64fr 0.64fr;
+        /* grid-template-columns: 1.25fr 1fr 1.5fr 0.64fr 0.64fr; */
+        grid-template-columns: 1fr 0.6fr 1fr 1.5fr 0.64fr 0.84fr;
+        margin: auto;
+    }
+    .logoMini{
+        display: none;
+    }
+    .logo {
+        display: flex;
+    }
+    .homeLink {
+        display: block;
     }
     .homeBtn {
         justify-content: flex-end;
@@ -101,7 +138,7 @@
 
 @media only screen and (min-width: 1148px) {
     .Navbar {
-        grid-template-columns: 1.8fr 1fr 1.5fr 0.7fr 0.7fr;
+        grid-template-columns: 0.9fr 0.6fr 1fr 1.5fr 0.7fr 0.7fr;
     }
 }
 

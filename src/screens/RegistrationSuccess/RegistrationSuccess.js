@@ -10,7 +10,7 @@ const RegistrationSuccess = (props) => {
     useEffect(() => window.scrollTo(0, 0), []);
 
     return (
-        <div>
+        <div className={styles.container}>
             <NavbarMobile />
             <Navbar />
             <div className={styles.RegistrationSuccess}>

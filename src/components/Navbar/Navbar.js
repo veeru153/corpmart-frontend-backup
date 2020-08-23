@@ -6,6 +6,11 @@ import { Search } from 'react-feather';
 import { handleLogout, validateToken } from '../util';
 import { Formik } from 'formik';
 
+import logoWhite from '../../assets/images/CorpMart-logo-white.png';
+import logoWhiteMini from '../../assets/images/CorpMart-white.png';
+import logo from '../../assets/images/CorpMart-logo.png';
+import logoMini from '../../assets/images/CorpMart-icon.png';
+
 const Navbar = (props) => {
     const [transparent, setTransparent] = useState(true);
     const [loggedIn, setLoggedIn] = useState(false);
@@ -47,8 +52,20 @@ const Navbar = (props) => {
                 className={styles.Navbar}
                 style={{ color: transparent && dynamic ? 'white' : 'black' }}
             >
+                <div className={[styles.navBtn, styles.logo].join(' ')}>
+                    {transparent && dynamic
+                        ?  <img src={logoWhite} style={{ maxWidth: '100%', maxHeight: '100%' }}/>
+                        :  <img src={logo} style={{ maxWidth: '100%', maxHeight: '100%' }}/>
+                    }
+                </div>
                 <div className={[styles.navBtn, styles.homeBtn].join(' ')}>
-                    <Link to="/">Home</Link>
+                    <Link to="/" className={styles.logoMini} >
+                        {transparent && dynamic
+                            ?  <img src={logoWhiteMini} />
+                            :  <img src={logoMini} />
+                        }
+                    </Link>
+                    <Link to="/" className={styles.homeLink}>Home</Link>
                 </div>
                 <div className={styles.navBtn}>
                     <Link to="/explore">Businesses for Sale</Link>
