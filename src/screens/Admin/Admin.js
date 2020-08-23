@@ -14,7 +14,7 @@ const styles = {
 const Admin = () => {
     useEffect(() => {
         setTimeout(() => {
-            window.location.href ='https://corpmart.el.r.appspot.com/admin';
+            window.location.href ='http://db.corpmart.in/admin/';
         }, 2500)
     }, [])
     return (

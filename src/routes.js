@@ -19,6 +19,8 @@ export default (
             <Route path="/welcome" />
             <Route path="/contact-us" />
             <Route path="/dashboard" />
+            <Route path="/terms-of-service" />
+            <Route path="/faq" />
             <Route exact path="/admin" />
         </Switch>
     </BrowserRouter>
