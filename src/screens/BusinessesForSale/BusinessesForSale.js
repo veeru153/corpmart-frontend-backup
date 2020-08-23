@@ -228,7 +228,7 @@ class BusinessesForSale extends Component {
                                 color={this.state.prevPage == null ? "#676767" : "#000000"}
                                 textStyle={{ padding: '12px 20px' }}
                                 style={{ margin: '0 6px' }}
-                                disabled={this.state.prevPage}
+                                disabled={!this.state.prevPage}
                                 pressed={() => this.handlePageChange('prev')}
                             />
                             <Button
@@ -237,7 +237,7 @@ class BusinessesForSale extends Component {
                                 color={this.state.nextPage == null ? "#676767" : "#000000"}
                                 textStyle={{ padding: '12px 0', minWidth: 136.77 }}
                                 style={{ margin: '0 6px' }}
-                                disabled={this.state.nextPage}
+                                disabled={!this.state.nextPage}
                                 pressed={() => this.handlePageChange('next')}
                             />
                         </div>

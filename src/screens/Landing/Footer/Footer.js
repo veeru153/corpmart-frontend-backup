@@ -20,31 +20,31 @@ const Footer = () => {
                     <div className={styles.corpmart}>
                         <p className={styles.sectionHeader}>CorpMart</p>
                         <div className={styles.links}>
-                            <a href="https://www.whatsapp.com" target="_blank" rel="noopener noreferrer">
+                            <a href="https://wa.me/919711600250" target="_blank" rel="noopener noreferrer">
                                 <WhatsApp />
                                 <p style={{ margin: '0 12px' }}>WhatsApp</p>
                             </a>
                         </div>
                         <div className={styles.links}>
-                            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+                            <a href="https://www.facebook.com/CorpMart-107352017757169" target="_blank" rel="noopener noreferrer">
                                 <Facebook />
                                 <p style={{ margin: '0 12px' }}>Facebook</p>
                             </a>
                         </div>
                         <div className={styles.links}>
-                            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+                            <a href="https://www.linkedin.com/in/corpmart-8075931b5" target="_blank" rel="noopener noreferrer">
                                 <LinkedIn />
                                 <p style={{ margin: '0 12px' }}>LinkedIn</p>
                             </a>
                         </div>
                         <div className={styles.links}>
-                            <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
+                            <a href="https://twitter.com/corp_mart" target="_blank" rel="noopener noreferrer">
                                 <Twitter />
                                 <p style={{ margin: '0 12px' }}>Twitter</p>
                             </a>
                         </div>
                         <div className={styles.links}>
-                            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+                            <a href="https://www.instagram.com/corpmartindia" target="_blank" rel="noopener noreferrer">
                                 <Instagram />
                                 <p style={{ margin: '0 12px' }}>Instagram</p>
                             </a>
@@ -78,7 +78,7 @@ const Footer = () => {
                     </p>
                 </div>
                 <div className={styles.company}>
-                    <p className={styles.sectionHeader}>Company</p>
+                    <p className={styles.sectionHeader}>CorpMart</p>
                     <p className={styles.links}>
                         <Link to="/">Home</Link>
                     </p>
@@ -98,31 +98,31 @@ const Footer = () => {
                 <div className={styles.corpmart}>
                     <p className={styles.sectionHeader}>CorpMart</p>
                     <div className={styles.links}>
-                        <a href="https://www.whatsapp.com" target="_blank" rel="noopener noreferrer">
+                        <a href="https://wa.me/919711600250" target="_blank" rel="noopener noreferrer">
                             <WhatsApp />
                             <p style={{ margin: '0 12px' }}>WhatsApp</p>
                         </a>
                     </div>
                     <div className={styles.links}>
-                        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.facebook.com/CorpMart-107352017757169" target="_blank" rel="noopener noreferrer">
                             <Facebook />
                             <p style={{ margin: '0 12px' }}>Facebook</p>
                         </a>
                     </div>
                     <div className={styles.links}>
-                        <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.linkedin.com/in/corpmart-8075931b5" target="_blank" rel="noopener noreferrer">
                             <LinkedIn />
                             <p style={{ margin: '0 12px' }}>LinkedIn</p>
                         </a>
                     </div>
                     <div className={styles.links}>
-                        <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
+                        <a href="https://twitter.com/corp_mart" target="_blank" rel="noopener noreferrer">
                             <Twitter />
                             <p style={{ margin: '0 12px' }}>Twitter</p>
                         </a>
                     </div>
                     <div className={styles.links}>
-                        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.instagram.com/corpmartindia" target="_blank" rel="noopener noreferrer">
                             <Instagram />
                             <p style={{ margin: '0 12px' }}>Instagram</p>
                         </a>
@@ -131,7 +131,7 @@ const Footer = () => {
             </div>
             <div className={styles.copyright}>
                 <div>Copyright © 2020 CorpMart. All Rights Reserved.</div>
-                <div className={[styles.tos, styles.link].join(' ')}><Link to="/terms-of-service">Terms of Service</Link></div>
+                <div className={styles.tos}><Link to="/terms-of-service">Terms of Service</Link></div>
             </div>
         </>
     )

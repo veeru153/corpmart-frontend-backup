@@ -185,15 +185,27 @@ class BusinessDetails extends Component {
                                 </div>
                                 <div className={styles.businessInfoRow}>
                                     <div className={styles.businessInfoLabel}>Authorised Capital</div>
-                                    <div className={styles.businessInfoValue} style={{ fontFamily: 'Helvetica Neue', fontWeight: 'normal' }}>{this.state.currBusiness.authCapital ? `₹${this.state.currBusiness.authCapital}` : "Available After Contact"}</div>
+                                    <div className={styles.businessInfoValue} style={{ fontWeight: 'normal' }}>
+                                        {this.state.currBusiness.authCapital
+                                            ? <p style={{ margin: 0 }}><span style={{ fontFamily: "Arial" }}>₹</span>{this.state.currBusiness.authCapital}</p>
+                                            : "Available After Contact"}
+                                    </div>
                                 </div>
                                 <div className={styles.businessInfoRow}>
                                     <div className={styles.businessInfoLabel}>Paid-Up Capital</div>
-                                    <div className={styles.businessInfoValue} style={{ fontFamily: 'Helvetica Neue', fontWeight: 'normal' }}>{this.state.currBusiness.paidCapital ? `₹${this.state.currBusiness.paidCapital}` : "Available After Contact"}</div>
+                                    <div className={styles.businessInfoValue} style={{ fontWeight: 'normal' }}>
+                                        {this.state.currBusiness.paidCapital
+                                            ? <p style={{ margin: 0 }}><span style={{ fontFamily: "Arial" }}>₹</span>{this.state.currBusiness.paidCapital}</p>
+                                            : "Available After Contact"}
+                                    </div>
                                 </div>
                                 <div className={styles.businessInfoRow}>
                                     <div className={styles.businessInfoLabel}>Asking Price</div>
-                                    <div className={styles.businessInfoValue} style={{ fontFamily: 'Helvetica Neue', fontWeight: 'normal', fontSize: 16 }}>{this.state.currBusiness.askingPrice ? `₹${this.state.currBusiness.askingPrice}` : "Available After Contact"}</div>
+                                    <div className={styles.businessInfoValue} style={{ fontWeight: 'normal', fontSize: 16 }}>
+                                        {this.state.currBusiness.askingPrice
+                                            ? <p style={{ margin: 0 }}><span style={{ fontFamily: "Arial" }}>₹</span>{this.state.currBusiness.askingPrice}</p>
+                                            : "Available After Contact"}
+                                    </div>
                                 </div>
                                 <div className={styles.businessRegRow}>
                                     {this.state.currBusiness.gst
