@@ -29,6 +29,7 @@ class BusinessesForSale extends Component {
     }
 
     async componentDidMount() {
+        document.title = "Businesses For Sale - CorpMart - One Stop Solution for Business Acquisition";
         window.scrollTo(0,0);
         if(document.location.search.match(/\?search=\S{1,}/gmi)) {
             let params = [...this.state.queryParams];

@@ -1,21 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 <url> <loc>https://corpmart.in/</loc> </url>
-<url> <loc>https://corpmart.in/</loc> </url>
-<url> <loc>https://corpmart.in/</loc> </url>
 <url> <loc>https://corpmart.in/explore</loc> </url>
 <url> <loc>https://corpmart.in/business-details/:id</loc> </url>
 <url> <loc>https://corpmart.in/testimonials</loc> </url>
 <url> <loc>https://corpmart.in/blogs</loc> </url>
 <url> <loc>https://corpmart.in/blog/:id</loc> </url>
 <url> <loc>https://corpmart.in/list-your-business</loc> </url>
-<url> <loc>https://corpmart.in/additional-data</loc> </url>
-<url> <loc>https://corpmart.in/preview</loc> </url>
-<url> <loc>https://corpmart.in/verification</loc> </url>
 <url> <loc>https://corpmart.in/login</loc> </url>
 <url> <loc>https://corpmart.in/signup</loc> </url>
 <url> <loc>https://corpmart.in/welcome</loc> </url>
 <url> <loc>https://corpmart.in/contact-us</loc> </url>
-<url> <loc>https://corpmart.in/dashboard</loc> </url>
-<url> <loc>https://corpmart.in/admin</loc> </url>
 </urlset>

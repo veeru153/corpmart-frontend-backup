@@ -34,6 +34,7 @@ const AdditionalForm = (props) => {
         props.history.push('/list-your-business');
     }
 
+    document.title = "List Your Business - CorpMart - One Stop Solution for Business Acquisition";
     useEffect(() => window.scrollTo(0, 0), []);
 
     const [error, setError] = useState(false);
@@ -88,7 +89,7 @@ const AdditionalForm = (props) => {
                                     "Content-Type": "application/json"
                                 }
                             })
-                            props.history.push('/');
+                            props.history.push('/success');
                         } catch (e) {
                             console.log(e.response);
                             setError(true);

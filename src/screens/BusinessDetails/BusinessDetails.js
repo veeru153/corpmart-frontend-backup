@@ -42,6 +42,7 @@ class BusinessDetails extends Component {
     }
 
     async componentDidMount() {
+        document.title = "Business Details - CorpMart - One Stop Solution for Business Acquisition";
         window.scrollTo(0, 0);
         const cookies = new Cookies();
         const token = cookies.get('userToken');

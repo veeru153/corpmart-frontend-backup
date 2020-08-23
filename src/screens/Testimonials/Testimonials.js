@@ -12,6 +12,7 @@ class Testimonials extends Component {
     }
 
     async componentDidMount() {
+        document.title = "Testimonials - CorpMart - One Stop Solution for Business Acquisition";
         window.scrollTo(0,0);
         let res = await Axios.get('/testimonial/');
         let data = await res.data;

@@ -22,6 +22,7 @@ const Verification = (props) => {
     const prevState = props.location.state;
     const cookies = new Cookies();
 
+    document.title = "Verification - CorpMart - One Stop Solution for Business Acquisition";
     useEffect(() => window.scrollTo(0,0), []);
     
     useEffect(() => {
@@ -94,7 +95,7 @@ const Verification = (props) => {
                             }
 
                         } else {
-                            // otherwise, continue the login-signup and redirect to landing
+                            // otherwise, continue the login-signup and redirect to registration success
                             if (prevState.payload.email) {
                                 payload = {
                                     email: prevState.payload.email,
@@ -114,7 +115,6 @@ const Verification = (props) => {
                                     sameSite: 'strict',
                                     maxAge: 172800,
                                 })
-                                props.history.push('/');
                             } catch (e) { 
                                 console.log(e.response);
                                 if(e.response.data.error.includes('OTP expired')) {
@@ -129,7 +129,7 @@ const Verification = (props) => {
                                 }
                             }
                             if (cookies.get('userToken')) {
-                                props.history.push('/');
+                                props.history.push('/success');
                             }
                         }
                     }}

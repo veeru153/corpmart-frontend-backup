@@ -23,7 +23,6 @@ const styles = {
     },
     content: {
         height: 324,
-        overflow: 'scroll'
     },
 }
 

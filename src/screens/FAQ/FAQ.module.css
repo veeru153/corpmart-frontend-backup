@@ -1,0 +1,49 @@
+.FAQ {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background: #E5E5E5;
+    min-height: calc(100vh - 68px);
+    padding-top: 68px;
+    padding-bottom: 36px;
+}
+
+.header {
+    margin: 0 16px;
+    text-align: center;
+}
+.title {
+    font-weight: 600;
+    font-size: clamp(24px, 6.4vw, 48px);
+}
+
+.content {
+    margin: 0 16px;
+    text-align: justify;
+}
+.section span {
+    font-weight: 600;
+}
+.sectionTitle {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+
+@media only screen and (min-width: 600px) {
+    .title {
+        font-size: clamp(24px, 6vw, 44px);
+    }
+    .content {
+        margin: 0 64px;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .content {
+        width: 64%;
+    }
+    .sectionTitle {
+        font-size: 20px;
+    }
+}

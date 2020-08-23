@@ -14,6 +14,7 @@ class Blogs extends Component {
     }
 
     async componentDidMount() {
+        document.title = "Blogs - CorpMart - One Stop Solution for Business Acquisition"
         window.scrollTo(0,0);
         let res = await Axios.get('/blog/');
         let data = await res.data;

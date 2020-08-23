@@ -15,6 +15,7 @@ const Login = (props) => {
     const [disableBtn, setDisableBtn] = useState(false);
     const [loggedIn, setLoggedIn] = useState(false);
 
+    document.title = "Log In - CorpMart - One Stop Solution for Business Acquisition";
     useEffect(() => window.scrollTo(0,0), []);
 
     useEffect(() => {

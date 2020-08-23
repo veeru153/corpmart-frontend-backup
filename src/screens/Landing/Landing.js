@@ -13,6 +13,7 @@ import MyChatbot from '../../components/MyChatbot/MyChatbot';
 
 const Landing = () => {
 
+    document.title = "CorpMart - One Stop Solution for Business Acquisition";
     useEffect(() => window.scrollTo(0,0), []);
 
     return (

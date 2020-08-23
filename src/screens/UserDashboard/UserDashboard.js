@@ -30,6 +30,7 @@ class UserDashboard extends Component {
     }
 
     componentDidMount() {
+        document.title = "User Dashboard - CorpMart - One Stop Solution for Business Acquisition";
         window.scrollTo(0,0);
         this.getBusinesses(this.state.currPanel);
     }

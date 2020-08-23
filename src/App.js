@@ -15,6 +15,8 @@ import Signup from './screens/Signup/Signup';
 import RegistrationSuccess from './screens/RegistrationSuccess/RegistrationSuccess';
 import ContactUs from './screens/ContactUs/ContactUs';
 import UserDashboard from './screens/UserDashboard/UserDashboard';
+import TnC from './screens/TnC/TnC';
+import FAQ from './screens/FAQ/FAQ';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Admin from './screens/Admin/Admin';
 
@@ -35,9 +37,11 @@ function App() {
                     <Route path="/verification" component={Verification} />
                     <Route path="/login" component={Login} />
                     <Route path="/signup" component={Signup} />
-                    <Route path="/welcome" component={RegistrationSuccess} />
+                    <Route path="/success" component={RegistrationSuccess} />
                     <Route path="/contact-us" component={ContactUs} />
                     <Route path="/dashboard" component={UserDashboard} />
+                    <Route path="/terms-of-service" component={TnC} />
+                    <Route path="/faq" component={FAQ} />
                     <Route exact path="/admin" component={Admin}/>
                 </div>
             </Switch>

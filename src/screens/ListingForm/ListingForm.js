@@ -22,6 +22,7 @@ const ListingForm = (props) => {
     const [user, setUser] = useState({});
     const [disableBtn, setDisableBtn] = useState(false);
 
+    document.title = "List Your Business - CorpMart - One Stop Solution for Business Acquisition";
     useEffect(() => window.scrollTo(0,0), []);
 
     let listingSchema;

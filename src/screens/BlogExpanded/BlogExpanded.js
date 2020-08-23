@@ -17,6 +17,7 @@ class BlogExpanded extends Component {
     }
 
     async componentDidMount() {
+        document.title = "Blog - CorpMart - One Stop Solution for Business Acquisition";
         if (!this.props.location.pathname.match(/\/blog\/.*/)) this.props.history.push('/blogs/');
         window.scrollTo(0,0);
         if(this.props.location.state != undefined) {

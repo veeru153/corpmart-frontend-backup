@@ -17,6 +17,7 @@ const contactSchema = yup.object({
 
 const ContactUs = () => {
 
+    document.title = "Contact Us - CorpMart - One Stop Solution for Business Acquisition";
     useEffect(() => window.scrollTo(0,0), []);
 
     return (
@@ -114,12 +115,10 @@ const ContactUs = () => {
                         <p className={styles.title}>Company</p>
                     </div>
                     <div className={styles.address}>
-                        <p>CorpMart Pvt. Ltd.,</p>
-                        <p>Helios Business Park,</p>
-                        <p>Level 10, Wing C, 150 Outer Ring Road,</p>
-                        <p>Kadubeesanahalli, Varthur Hobli,</p>
-                        <p>Bangalore, India - 560103</p>
-                        <p>CIN: U74900KA2015PTC082128</p>
+                        <p>CorpMart</p>
+                        <p>(a unit of M/s Priash Tradecorp)</p>
+                        <p>Corporate Office:- G5.2/11, SF, Vatika India Next,</p>
+                        <p>Sector 82, Gurugram, Haryana India, PIN:- 122004</p>
                     </div>
                     <div className={styles.header}>
                         <p className={styles.title}>Social</p>
