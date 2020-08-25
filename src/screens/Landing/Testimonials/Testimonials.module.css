@@ -45,7 +45,7 @@
 }
 @media only screen and (min-width: 768px) {
     .Testimonials {
-        background: url(./background.png) no-repeat center;
+        background: url(./background.webp) no-repeat center;
         background-size: contain; 
     }
 }

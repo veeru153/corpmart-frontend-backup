@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './CorpmartInMedia.module.css';
 
-import isoCert from './images/isocert.png';
+import isoCert from './images/isocert.webp';
 import startupIndia from './images/startupindia.png';
 
 const CorpmartInMedia = () => {
