@@ -156,6 +156,8 @@ const Signup = (props) => {
                                                 className={styles.inputField}
                                                 style={{ width: '100%' }}
                                                 autoComplete="off"
+                                                contentEditable="false"
+                                                disabled="true"
                                             />
                                             <input
                                                 id="mobile"

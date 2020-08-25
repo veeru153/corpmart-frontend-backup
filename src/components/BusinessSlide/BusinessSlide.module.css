@@ -5,6 +5,7 @@
     width: 80%;
     max-width: 330px;
     padding: 16px 20px;
+    cursor: default;
 }
 
 .businessDesc {

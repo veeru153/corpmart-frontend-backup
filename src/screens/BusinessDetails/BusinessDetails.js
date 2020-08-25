@@ -11,6 +11,7 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import CancelRoundedIcon from '@material-ui/icons/CancelRounded';
 import Carousel from 'react-elastic-carousel';
 import { withRouter } from 'react-router-dom';
+import { validateToken } from '../../components/util';
 
 
 class BusinessDetails extends Component {
@@ -38,16 +39,24 @@ class BusinessDetails extends Component {
         error: false,
         errorMsg: '',
         itemsToShow: 1,
-        carouselWidth: '100%'
+        carouselWidth: '100%',
+        loggedIn: false,
     }
 
     async componentDidMount() {
         document.title = "Business Details - CorpMart - One Stop Solution for Business Acquisition";
         window.scrollTo(0, 0);
+
+        let validity = await validateToken();
+        if (validity && validity.status == 200) {
+            this.setState({ loggedIn: true });
+        } else {
+            this.setState({ loggedin: false });
+        }
+        
         const cookies = new Cookies();
         const token = cookies.get('userToken');
-        const { match: { params } } = this.props;
-        const { id } = params;
+        let id = window.location.pathname.split('/')[2];    
         this.fetchBusinessDetails(token, id);
         this.fetchOtherBusinesses();
         if (window.innerWidth >= 1024) {
@@ -64,6 +73,7 @@ class BusinessDetails extends Component {
     }
 
     fetchBusinessDetails = async (token, id) => {
+        console.log(id);
         try {
             let res;
             if (token) {
@@ -114,7 +124,7 @@ class BusinessDetails extends Component {
     fetchBalancesheet = async () => {
         const cookies = new Cookies();
         const token = cookies.get('userToken');
-        const id = this.state.id;
+        const id = this.state.currBusiness.id;
         try {
             let res = await Axios.get(`/balancesheet/?balancesheet_id=${id}`, {
                 headers: {
@@ -129,7 +139,7 @@ class BusinessDetails extends Component {
     postContact = async () => {
         const cookies = new Cookies();
         const token = cookies.get('userToken');
-        const id = this.state.id;
+        const id = this.state.currBusiness.id;
         try {
             if (token) {
                 let res = await Axios.post(`contact-request`, {
@@ -147,7 +157,6 @@ class BusinessDetails extends Component {
                 this.props.history.push('/login');
             }
         } catch (e) {
-            console.log(e.response);
             if (e.response.data["non_field_errors"][0].includes('unique field')) {
                 this.setState({
                     error: true,
@@ -282,7 +291,12 @@ class BusinessDetails extends Component {
                                     color={this.state.currBusiness.balancesheet ? "white" : "#676767"}
                                     style={{ padding: '12px 16px' }}
                                     textStyle={{ margin: 0 }}
-                                    pressed={this.fetchBalancesheet}
+                                    pressed={() => {
+                                        if(this.state.loggedIn) 
+                                            this.fetchBalancesheet();
+                                        else
+                                            this.props.history.push('/login');
+                                    }}
                                     disabled={!this.state.currBusiness.balancesheet}
                                 />
                             </div>
@@ -296,10 +310,12 @@ class BusinessDetails extends Component {
                                     : null}
                                 <Button
                                     label="contact"
-                                    type="orange"
+                                    type={this.state.currBusiness.hasContacted ? "#DADEE4" : "orange"}
+                                    color={this.state.currBusiness.hasContacted ? "#676767" : "white"}
                                     style={{ padding: '12px 16px' }}
                                     textStyle={{ margin: 0 }}
                                     pressed={this.postContact}
+                                    disabled={this.state.currBusiness.hasContacted}
                                 />
                             </div>
                         </div>

@@ -5,12 +5,14 @@ import TestimonialSlide from '../../../components/TestimonialSlide/TestimonialSl
 import { Link } from 'react-router-dom';
 import Axios from '../../../axios';
 import Carousel from 'react-elastic-carousel';
+import Spinner from '../../../components/UI/Spinner/Spinner';
 
 class Testimonials extends Component {
     state = {
         testimonialCards: [],
         itemsToShow: 1,
-        carouselWidth: '100%'
+        carouselWidth: '100%',
+        loading: true,
     }
 
     async componentDidMount() {
@@ -18,7 +20,8 @@ class Testimonials extends Component {
             let res = await Axios.get('/testimonial/');
             let data = await res.data;
             this.setState({
-                testimonialCards: data,
+                testimonialCards: data.slice(0, 8),
+                loading: false,
             })
         } catch (e) { console.log(e.response); }
 
@@ -42,24 +45,27 @@ class Testimonials extends Component {
                     <p className={styles.title}>Testimonials</p>
                     <p className={styles.subtitle}>Here's what our happy clients have to say about their experience.</p>
                 </div>
-                <Carousel
-                    className={styles.carousel}
-                    style={{ width: this.state.carouselWidth }}
-                    itemsToShow={this.state.itemsToShow}
-                    enableAutoPlay
-                    renderPagination={() => <div></div>}
-                    showArrows={false}
-                >
-                    {this.state.testimonialCards.map(card => (
-                        <TestimonialSlide
-                            key={card.id}
-                            imgUrl={card.picture}
-                            name={card.name}
-                            meta={card.designation}
-                            testimonialText={card.text}
-                        />
-                    ))}
-                </Carousel>
+                {this.state.loading
+                    ?  <Spinner />
+                    :  <Carousel
+                            className={styles.carousel}
+                            style={{ width: this.state.carouselWidth }}
+                            itemsToShow={this.state.itemsToShow}
+                            enableAutoPlay
+                            renderPagination={() => <div></div>}
+                            showArrows={false}
+                        >
+                            {this.state.testimonialCards.map(card => (
+                                <TestimonialSlide
+                                    key={card.id}
+                                    imgUrl={card.picture}
+                                    name={card.name}
+                                    meta={card.designation}
+                                    testimonialText={card.text}
+                                />
+                            ))}
+                        </Carousel>
+                }
                 <div className={styles.btnContainer}>
                     <Link to="/testimonials">
                         <Button

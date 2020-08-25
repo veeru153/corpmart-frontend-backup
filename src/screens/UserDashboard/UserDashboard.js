@@ -80,12 +80,18 @@ class UserDashboard extends Component {
                         >
                             <p
                                 className={styles.sidebarOptionsText}
-                                style={{ fontWeight: this.state.currPanel == 'yourListings' ? 'normal' : '300' }}
+                                style={{ 
+                                    fontWeight: this.state.currPanel == 'yourListings' ? 'normal' : '300',
+                                    color: this.state.currPanel == 'yourListings' ? '#4AB9CE' : 'inherit',
+                                 }}
                                 onClick={() => this.changePanel('yourListings')}
                             >Your Listing</p>
                             <p
                                 className={styles.sidebarOptionsText}
-                                style={{ fontWeight: this.state.currPanel == 'recentlyViewed' ? 'normal' : '300' }}
+                                style={{ 
+                                    fontWeight: this.state.currPanel == 'recentlyViewed' ? 'normal' : '300',
+                                    color: this.state.currPanel == 'recentlyViewed' ? '#4AB9CE' : 'inherit',
+                                 }}
                                 onClick={() => this.changePanel('recentlyViewed')}
                             >Recently Viewed</p>
                         </div>

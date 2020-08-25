@@ -19,7 +19,7 @@ class BusinessForSale extends Component {
             let res = await Axios.get('/business-list/?format=json&page=1');
             let data = await res.data;
             this.setState({
-                businessCards: data.results,
+                businessCards: data.results.slice(0, 8),
             })
         } catch (e) { console.log(e.response); }
 

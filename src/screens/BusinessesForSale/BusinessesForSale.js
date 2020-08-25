@@ -38,19 +38,31 @@ class BusinessesForSale extends Component {
                 queryParams: params
             })
         }
+        if(document.location.search.match(/\?page=\d*$/gmi)) {
+            this.setState({
+                page: document.location.search.substring(6)
+            })
+        }
         let res = await Axios.get('/max-value?format=json');
         let data = await res.data;
 
-        let res2 = await Axios.get(`/business-list/?format=json&page=${this.state.page}&${this.state.queryParams.filter(p => p != '').join('&')}`);
-        let data2 = await res2.data;
-
-        this.setState({
-            sliderMaxVals: [data.max_auth_capital, data.max_paidup_capital, data.max_selling_price],
-            businessList: data2.results,
-            nextPage: data2.next,
-            prevPage: data2.previous,
-            loaded: true,
-        });
+        try {
+            let res2 = await Axios.get(`/business-list/?format=json&page=${this.state.page}&${this.state.queryParams.filter(p => p != '').join('&')}`);
+            let data2 = await res2.data;
+            this.setState({
+                sliderMaxVals: [data.max_auth_capital, data.max_paidup_capital, data.max_selling_price],
+                businessList: data2.results,
+                nextPage: data2.next,
+                prevPage: data2.previous,
+                loaded: true,
+            });
+        } catch (e) {
+            if(e.response.data.detail.toLowerCase().includes("invalid page")) {
+                this.setState({ page: 1 });
+                window.history.pushState('', '', `/explore/?page=${this.state.page}`);
+                this.fetchNewList();
+            }
+        }
     }
 
     handleExploreSearch = async (query) => {
@@ -99,13 +111,21 @@ class BusinessesForSale extends Component {
                 if(this.state.nextPage == null) return;
                 this.setState((prevState) => ({
                     page: prevState.page + 1
-                }), this.fetchNewList)
+                }), () => {
+                    window.history.pushState('', '', `/explore/?page=${this.state.page}`);
+                    window.scrollTo(0,0);
+                    this.fetchNewList();
+                })
                 break;
             case 'prev':
                 if(this.state.prevPage == null) return;
                 this.setState((prevState) => ({
                     page: prevState.page - 1
-                }), this.fetchNewList)
+                }), () => {
+                    window.history.pushState('', '', `/explore/?page=${this.state.page}`);
+                    window.scrollTo(0,0);
+                    this.fetchNewList();
+                })
                 break;
             default:
                 break;

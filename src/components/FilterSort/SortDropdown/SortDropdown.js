@@ -68,7 +68,7 @@ const SortDrop = (props) => {
                 >Paid-up Capital (low to high)</div>
                 <div 
                     id="dropdownOption"
-                    onClick={(e) => handleSort(6)}
+                    onClick={(e) => handleSort(e, 6)}
                     className={ currVal == 6 ? styles.active : ""}
                 >Paid-up Capital (high to low)</div>
                 <div 

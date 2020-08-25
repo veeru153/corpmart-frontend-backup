@@ -129,7 +129,10 @@ const Verification = (props) => {
                                 }
                             }
                             if (cookies.get('userToken')) {
-                                props.history.push('/success');
+                                if(prevState == "signup")
+                                    props.history.push('/success');
+                                else
+                                    props.history.push('/dashboard');
                             }
                         }
                     }}
