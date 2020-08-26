@@ -8,6 +8,7 @@
     grid-template-columns: 7fr 3fr;
     width: 100%;
     margin: 1px auto;
+    cursor: pointer;
 }
 
 .header p {
@@ -45,6 +46,7 @@
     width: 100%;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 .option div {
     display: flex;

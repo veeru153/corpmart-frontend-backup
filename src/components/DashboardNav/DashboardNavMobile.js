@@ -68,6 +68,7 @@ const DashboardNavMobile = (props) => {
                     expanded={expanded} 
                     type={type} 
                     handleSort={props.handleSort}
+                    selectedSort={props.selectedSort}
                 />
             </div>
         </div>

@@ -8,11 +8,15 @@ import Button from '../../components/UI/Button/Button';
 import DashboardNavMobile from '../../components/DashboardNav/DashboardNavMobile';
 import Axios from '../../axios';
 import Cookies from 'universal-cookie';
+import Spinner from '../../components/UI/Spinner/Spinner';
+import SortDropdown from './SortDropdown/SortDropdown';
 
 class UserDashboard extends Component {
     state = {
         currPanel: 'yourListings',
         businessList: [],
+        loading: true,
+        sortQuery: 0,
     }
 
     getBusinesses = async (request) => {
@@ -25,7 +29,8 @@ class UserDashboard extends Component {
         });
         let tempList = await res.data;
         this.setState({
-            businessList: tempList
+            businessList: tempList,
+            loading: false,
         })
     }
 
@@ -42,17 +47,23 @@ class UserDashboard extends Component {
     }
 
     handleSort = async (query) => {
+        this.setState({ loading: true, sortQuery: query, })
+
+        const cookies = new Cookies();
         let endpoint = this.state.currPanel == 'yourListings' ? 'user-business' : 'view-history';
         let sortQuery = query == 0 ? "" : `&sort_by=${query}`
-        let res = await Axios.get(`/${endpoint}/?format=json${sortQuery}`, {
-            headers: {
-                'Authorization': `Token ${this.state.token}`
-            }
-        });
-        let tempList = await res.data;
-        this.setState({
-            businessList: tempList
-        })
+        try {
+            let res = await Axios.get(`/${endpoint}/?format=json${sortQuery}`, {
+                headers: {
+                    'Authorization': `Token ${cookies.get('userToken')}`
+                }
+            });
+            let tempList = await res.data;
+            this.setState({
+                businessList: tempList,
+                loading: false,
+            })
+        } catch (e) { console.log(e.response); }
     }
 
     render() {
@@ -101,8 +112,17 @@ class UserDashboard extends Component {
                             <p className={styles.title}>My Dashboard</p>
                             <p className={styles.subtitle}>Fron here you can manage your business listings and balancesheet requests.</p>
                         </div>
+                        <div className={styles.sortDropdownContainer}>
+                            <SortDropdown
+                                updateQuery={this.handleSort}
+                                currVal={this.state.sortQuery}
+                            />
+                        </div>
                         <div className={styles.showcase}>
-                            {this.state.businessList.map(b => (
+                            {this.state.loading
+                                ? <div className={styles.loading}><Spinner /></div>
+                                : 
+                                this.state.businessList.map(b => (
                                 <BusinessSlide
                                     key={!b.viewed_at ? b.id : b.business.id}
                                     id={!b.viewed_at ? b.id : b.business.id}
@@ -123,6 +143,7 @@ class UserDashboard extends Component {
                 <DashboardNavMobile
                     changePanel={this.changePanel} 
                     handleSort={this.handleSort}
+                    selectedSort={this.state.sortQuery}
                 />
                 <Footer />
             </div>

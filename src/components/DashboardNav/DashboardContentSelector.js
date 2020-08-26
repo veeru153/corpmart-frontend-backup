@@ -13,13 +13,13 @@ const DashboardContentSelector = (props) => {
             }}
         >
             <p 
-                style={{ color: panel == 'yourListings' ? '#4AB9CA' : 'black'}}
+                style={{ color: panel == 'yourListings' ? '#4AB9CA' : 'black', cursor: 'pointer' }}
                 onClick={() => {
                     changePanel('yourListings');
                     setPanel('yourListings')
             }}>Your Listings</p>
             <p 
-                style={{ color: panel == 'recentlyViewed' ? '#4AB9CA' : 'black'}}
+                style={{ color: panel == 'recentlyViewed' ? '#4AB9CA' : 'black', cursor: 'pointer' }}
                 onClick={() => {
                     changePanel('recentlyViewed');
                     setPanel('recentlyViewed');

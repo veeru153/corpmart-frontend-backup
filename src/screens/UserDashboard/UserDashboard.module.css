@@ -56,6 +56,14 @@
     margin: 2.5px 0;
 }
 
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    height: 360px;
+}
+
 .showcase {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -65,6 +73,13 @@
 
 .card {
     justify-self: center;
+}
+
+.sortDropdownContainer {
+    margin: 30px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 @media only screen and (min-width: 1024px) {

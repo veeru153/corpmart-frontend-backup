@@ -15,39 +15,39 @@ const SortContent = (props) => {
         >
             <p 
                 onClick={() =>  updateQuery('sort', 0)}
-                style={{ color: selectedSort.length == 0 ? '#4AB9CA' : 'black' }}    
+                style={{ color: selectedSort.length == 0 ? '#4AB9CA' : 'black', cursor: 'pointer' }}    
             >Recently Listed</p>
             <p 
                 onClick={() =>  updateQuery('sort', 1)}
-                style={{ color: selectedSort.length != 0 && selectedSort.substring(8) == '1' ? '#4AB9CA' : 'black' }}    
+                style={{ color: selectedSort.length != 0 && selectedSort.substring(8) == '1' ? '#4AB9CA' : 'black', cursor: 'pointer' }}    
             >Year of Establishment (newest first)</p>
             <p 
                 onClick={() =>  updateQuery('sort', 2)}
-                style={{ color: selectedSort.length != 0 && selectedSort.substring(8) == '2' ? '#4AB9CA' : 'black' }}    
+                style={{ color: selectedSort.length != 0 && selectedSort.substring(8) == '2' ? '#4AB9CA' : 'black', cursor: 'pointer' }}    
             >Year of Establishment (oldest first)</p>
             <p 
                 onClick={() =>  updateQuery('sort', 3)}
-                style={{ color: selectedSort.length != 0 && selectedSort.substring(8) == '3' ? '#4AB9CA' : 'black' }}    
+                style={{ color: selectedSort.length != 0 && selectedSort.substring(8) == '3' ? '#4AB9CA' : 'black', cursor: 'pointer' }}    
             >Authorised Capital (low to high)</p>
             <p 
                 onClick={() =>  updateQuery('sort', 4)}
-                style={{ color: selectedSort.length != 0 && selectedSort.substring(8) == '4' ? '#4AB9CA' : 'black' }}    
+                style={{ color: selectedSort.length != 0 && selectedSort.substring(8) == '4' ? '#4AB9CA' : 'black', cursor: 'pointer' }}    
             >Authorised Capital (high to low)</p>
             <p 
                 onClick={() =>  updateQuery('sort', 5)}
-                style={{ color: selectedSort.length != 0 && selectedSort.substring(8) == '5' ? '#4AB9CA' : 'black' }}    
+                style={{ color: selectedSort.length != 0 && selectedSort.substring(8) == '5' ? '#4AB9CA' : 'black', cursor: 'pointer' }}    
             >Paid-up Capital (low to high)</p>
             <p 
                 onClick={() =>  updateQuery('sort', 6)}
-                style={{ color: selectedSort.length != 0 && selectedSort.substring(8) == '6' ? '#4AB9CA' : 'black' }}    
+                style={{ color: selectedSort.length != 0 && selectedSort.substring(8) == '6' ? '#4AB9CA' : 'black', cursor: 'pointer' }}    
             >Paid-up Capital (high to low)</p>
             <p 
                 onClick={() =>  updateQuery('sort', 7)}
-                style={{ color: selectedSort.length != 0 && selectedSort.substring(8) == '7' ? '#4AB9CA' : 'black' }}    
+                style={{ color: selectedSort.length != 0 && selectedSort.substring(8) == '7' ? '#4AB9CA' : 'black', cursor: 'pointer' }}    
             >Selling price (low to high)</p>
             <p 
                 onClick={() =>  updateQuery('sort', 8)}
-                style={{ color: selectedSort.length != 0 && selectedSort.substring(8) == '8' ? '#4AB9CA' : 'black' }}    
+                style={{ color: selectedSort.length != 0 && selectedSort.substring(8) == '8' ? '#4AB9CA' : 'black', cursor: 'pointer' }}    
             >Selling price (high to low)</p>
         </div>
     )
