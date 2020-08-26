@@ -47,7 +47,7 @@ class Blogs extends Component {
                     <p className={styles.subtitle}>Read our weekly dose of business advice and empower yourself with the right tools!</p>
                 </div>
                 {this.state.loading 
-                    ?  <Spinner />
+                    ?  <div style={{ minHeight: 360, display: 'flex', justifyContent: 'center', alignItems: 'center' }}><Spinner /></div>
                     :  <Carousel
                             className={styles.carousel}
                             style={{ width: this.state.carouselWidth }}

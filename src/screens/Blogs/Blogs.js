@@ -7,19 +7,22 @@ import BlogSlideLarge from './BlogSlideLarge';
 import Footer from '../Landing/Footer/Footer';
 import Axios from '../../axios';
 import moment from 'moment';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 class Blogs extends Component {
     state = {
-        blogCards: []
+        blogCards: [],
+        loading: true,
     }
 
     async componentDidMount() {
         document.title = "Blogs - CorpMart - One Stop Solution for Business Acquisition"
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
         let res = await Axios.get('/blog/');
         let data = await res.data;
         this.setState({
-            blogCards: data
+            blogCards: data,
+            loading: false,
         })
     }
 
@@ -33,11 +36,23 @@ class Blogs extends Component {
                         <p className={styles.title}>Blogs</p>
                         <p className={styles.subtitle}>Read our weekly dose of business advice and empower yourself with the right tools!</p>
                     </div>
-                    <div className={styles.carousel}>
-                        {this.state.blogCards.map(card => (
-                            <>
-                                <div className={styles.mobileCards}>
-                                    <BlogSlide
+                    {this.state.loading
+                        ? <div style={{ height: '50vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}><Spinner /></div>
+                        : <div className={styles.carousel}>
+                            {this.state.blogCards.map(card => (
+                                <>
+                                    <div className={styles.mobileCards}>
+                                        <BlogSlide
+                                            key={card.id}
+                                            id={card.id}
+                                            title={card.blog_title}
+                                            date={moment(card.created_at).format("MMM DD, Y")}
+                                            author={card.posted_by}
+                                            blogText={card.blog_text}
+                                            imgUrl={card.picture}
+                                        />
+                                    </div>
+                                    <BlogSlideLarge
                                         key={card.id}
                                         id={card.id}
                                         title={card.blog_title}
@@ -46,19 +61,10 @@ class Blogs extends Component {
                                         blogText={card.blog_text}
                                         imgUrl={card.picture}
                                     />
-                                </div>
-                                <BlogSlideLarge
-                                    key={card.id}
-                                    id={card.id}
-                                    title={card.blog_title}
-                                    date={moment(card.created_at).format("MMM DD, Y")}
-                                    author={card.posted_by}
-                                    blogText={card.blog_text}
-                                    imgUrl={card.picture}
-                                />
-                            </>
-                        ))}
-                    </div>
+                                </>
+                            ))}
+                        </div>
+                    }
                 </div>
                 <Footer />
             </div>

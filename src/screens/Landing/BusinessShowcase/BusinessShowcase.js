@@ -6,12 +6,14 @@ import BusinessSlide from '../../../components/BusinessSlide/BusinessSlide';
 import { Link } from 'react-router-dom';
 import Axios from '../../../axios';
 import Carousel from 'react-elastic-carousel';
+import Spinner from '../../../components/UI/Spinner/Spinner';
 
 class BusinessForSale extends Component {
     state = {
         businessCards: [],
         itemsToShow: 1,
-        carouselWidth: '100%'
+        carouselWidth: '100%',
+        loading: true,
     }
 
     async componentDidMount() {
@@ -20,6 +22,7 @@ class BusinessForSale extends Component {
             let data = await res.data;
             this.setState({
                 businessCards: data.results.slice(0, 8),
+                loading: false,
             })
         } catch (e) { console.log(e.response); }
 
@@ -43,7 +46,9 @@ class BusinessForSale extends Component {
                     <p className={styles.title}>Businesses for Sale</p>
                     <p className={styles.subtitle}>Explore the extensive range of options across various industries.</p>
                 </div>
-                <Carousel
+                {this.state.loading
+                    ? <div style={{ minHeight: 360, display: 'flex', justifyContent: 'center', alignItems: 'center' }}><Spinner /></div>
+                    : <Carousel
                         className={styles.carousel}
                         style={{ width: this.state.carouselWidth }}
                         itemsToShow={this.state.itemsToShow}
@@ -51,34 +56,35 @@ class BusinessForSale extends Component {
                         renderPagination={() => <div></div>}
                         showArrows={false}
                     >
-                    {
-                                this.state.businessCards.map(b => (
-                                    <div style={{  padding: '10px 0', display: 'flex', justifyContent: 'center', alignItems: 'items', width: '100%' }}>
-                                        <BusinessSlide
-                                            key={b.id}
-                                            id={b.id}
-                                            desc={b.sale_description}
-                                            type={b.company_type}
-                                            subtype={b.sub_type}
-                                            subtypeOther={b.sub_type_others_description}
-                                            industry={b.industry}
-                                            industryOther={b.industries_others_description}
-                                            state={b.state}
-                                            authCapital={b.authorised_capital ?? 0}
-                                            paidCapital={b.paidup_capital ?? 0}
-                                            askingPrice={b.admin_defined_selling_price ?? 0}
-                                            className={styles.card}
-                                        />
-                                    </div>
-                                ))
-                            }
-                </Carousel>
+                        {
+                            this.state.businessCards.map(b => (
+                                <div style={{ padding: '10px 0', display: 'flex', justifyContent: 'center', alignItems: 'items', width: '100%' }}>
+                                    <BusinessSlide
+                                        key={b.id}
+                                        id={b.id}
+                                        desc={b.sale_description}
+                                        type={b.company_type}
+                                        subtype={b.sub_type}
+                                        subtypeOther={b.sub_type_others_description}
+                                        industry={b.industry}
+                                        industryOther={b.industries_others_description}
+                                        state={b.state}
+                                        authCapital={b.authorised_capital ?? 0}
+                                        paidCapital={b.paidup_capital ?? 0}
+                                        askingPrice={b.admin_defined_selling_price ?? 0}
+                                        className={styles.card}
+                                    />
+                                </div>
+                            ))
+                        }
+                    </Carousel>
+                }
                 <div className={styles.btnContainer}>
                     <Link to="/explore">
-                        <Button 
-                            label="View More" 
-                            type="orange" 
-                            style={{ padding: '12px 56px' }} 
+                        <Button
+                            label="View More"
+                            type="orange"
+                            style={{ padding: '12px 56px' }}
                             textStyle={{ margin: 0 }}
                         />
                     </Link>

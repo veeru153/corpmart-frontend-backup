@@ -64,6 +64,7 @@
     min-height: 40px;
     margin: 2.5px 0;
     padding: 2px 10px;
+    font-size: 16px;
     text-align: left;
 }
 
@@ -73,13 +74,13 @@
 
 .query {
     font-family: Arial, Helvetica, sans-serif;
-    padding: 4px 10px;
+    padding: 6px 10px;
     resize: none;
 }
 
 .submitBtn {
     padding: 10px 20px;
-    margin-bottom: 20px;
+    margin: 10px;
 }
 /* FORM STYLES END */
 
@@ -163,6 +164,13 @@
     }
     .ContactDetails {
         height: 564px;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .formFields {
+        width: 80%;
+        margin: 0 auto;
     }
 }
 

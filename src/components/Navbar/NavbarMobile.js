@@ -5,6 +5,11 @@ import { Link, withRouter } from 'react-router-dom';
 import { handleLogout, validateToken } from '../util';
 import { Formik } from 'formik';
 
+import logoWhite from '../../assets/images/CorpMart-logo-white.png';
+import logoWhiteMini from '../../assets/images/CorpMart-white.png';
+import logo from '../../assets/images/CorpMart-logo.png';
+import logoMini from '../../assets/images/CorpMart-icon.png';
+
 // [LOW] TODO: Make Navbar slide inwards (remove black background when navbar is entirely hidden)
 
 const NavbarMobile = (props) => {
@@ -59,12 +64,18 @@ const NavbarMobile = (props) => {
                     />
                 </button>
                 {/* Search Bar */}
-                <div
+                {!showSearchBar
+                    ? <div className={styles.logoContainer}>
+                        {transparent && dynamic
+                            ? <img src={logoWhite} alt="CorpMart Logo" />
+                            : <img src={logo} alt="CorpMart Logo" />
+                        }
+                    </div>
+                    : <div
                     className={[
                         styles.searchBar,
                         transparent && dynamic ? styles.searchBarWhite : styles.searchBarBlack
                     ].join(' ')}
-                    style={{ display: 'flex', opacity: showSearchBar ? '1' : '0' }}
                 >
                     <Formik
                         initialValues={{
@@ -102,7 +113,7 @@ const NavbarMobile = (props) => {
                         </form>
                     )}
                     </Formik>
-                </div>
+                </div>}
                 <div className={styles.navBtn}>
                     <Search
                         color={transparent && dynamic ? "white" : "black"}
@@ -127,6 +138,9 @@ const NavbarMobile = (props) => {
                     }}
                     onClick={(e) => e.stopPropagation()}
                 >
+                    <div className={styles.logoDrawer}>
+                        <img src={logo} alt="CorpMart Logo" />
+                    </div>
                     {
                         loggedIn
                             ? <>

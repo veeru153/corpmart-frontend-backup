@@ -16,6 +16,17 @@
     z-index: 99999;
 }
 
+.logoContainer {
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logoContainer img {
+    max-height: 40%;
+    margin-top: 10px;
+}
+
 .searchBar {
     box-sizing: border-box;
     border-radius: 10px;
@@ -83,6 +94,16 @@
     transition: all 0.4s ease-in;
     text-align: left;
     padding: 20px 0;
+}
+
+.logoDrawer {
+    height: 40px;
+    width: 90%;
+    margin: 20px auto 30px;
+}
+.logoDrawer img {
+    max-height: 100%;
+    max-width: 100%;
 }
 
 .navName {

@@ -82,12 +82,14 @@ class BusinessesForSale extends Component {
     }
 
     fetchNewList = async () => {
+        this.setState({ loaded: false });
         let res = await Axios.get(`/business-list/?format=json&page=${this.state.page}&${this.state.queryParams.filter(p => p != '').join('&')}`);
         let data = await res.data;
         this.setState({
             businessList: data.results,
             nextPage: data.next,
             prevPage: data.previous,
+            loaded: true
         })
     }
 
@@ -179,7 +181,8 @@ class BusinessesForSale extends Component {
         }
 
         this.setState({
-            queryParams: params
+            queryParams: params,
+            loaded: false,
         }, async () => {
             let res = await Axios.get(`/business-list/?format=json&page=${this.state.page}&${params.filter(p => p != '').join('&')}`);
             let data = await res.data;
@@ -187,6 +190,7 @@ class BusinessesForSale extends Component {
                 businessList: data.results,
                 nextPage: data.next,
                 prevPage: data.previous,
+                loaded: true,
             })
         })
     }
@@ -237,7 +241,6 @@ class BusinessesForSale extends Component {
                                 <p className={styles.subtitle} style={{ color: 'red' }}>No matching results.</p>
                                 : <div className={styles.loading}>
                                     <Spinner />
-                                    <p className={styles.subtitle}>Loading...</p>
                                 </div>
                             }
                         </div>

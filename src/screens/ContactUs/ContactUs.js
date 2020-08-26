@@ -104,7 +104,7 @@ const ContactUs = () => {
                                     </div>
                                 </div>
                                 <div>
-                                    <Button label="Submit" type="orange" pressed={props.handleSubmit} className={styles.submitBtn} />
+                                    <Button label="Send" type="orange" pressed={props.handleSubmit} className={styles.submitBtn} />
                                 </div>
                             </form>
                         )}
