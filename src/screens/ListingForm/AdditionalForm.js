@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './ListingForm.module.css'
-import { Formik } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import Button from '../../components/UI/Button/Button';
 import Axios from '../../axios';
 import Cookies from 'universal-cookie';
@@ -13,13 +13,15 @@ import typeList from '../../components/FilterSort/filterOptions/Type/typeList';
 import subTypeList from '../../components/FilterSort/filterOptions/Type/subTypeList';
 import industryList from '../../components/FilterSort/filterOptions/Industry/industryList';
 
+const d = new Date();
+
 const formSchema = yup.object({
     companyType: yup.string().notRequired(),
     subtype: yup.string().notRequired(),
     industry: yup.string().notRequired(),
     saleDesc: yup.string().notRequired(),
-    incorporationYear: yup.mixed().notRequired(),
-    companyAge: yup.mixed().notRequired(),
+    incorporationYear: yup.number().max(parseInt(d.getFullYear()), "Year of Incorporation cannot be greater than the current year."),
+    companyAge: yup.number().positive("Age of Company cannot be negative."),
     gst: yup.boolean(),
     bankAcc: yup.boolean(),
     ieCode: yup.boolean(),
@@ -52,7 +54,7 @@ const AdditionalForm = (props) => {
                 <Formik
                     initialValues={{
                         companyType: '', subtype: '', industry: '', saleDesc: '',
-                        incorporationYear: d.getFullYear(), companyAge: '',
+                        incorporationYear: parseInt(d.getFullYear()), companyAge: 0,
                         gst: false, bankAcc: false, ieCode: false, licenses: false, licenseDetails: '',
                         authCapital: '', paidupCapital: '',
                     }}
@@ -150,10 +152,22 @@ const AdditionalForm = (props) => {
                                 <div className={styles.yearAgeFields}>
                                     <div className={styles.formGroup}>
                                         <p className={styles.inputLabel}>Year of Incorporation</p>
+                                        <ErrorMessage name="incorporationYear">
+                                            {(msg) => {
+                                                return <p
+                                                    className={styles.subtitle}
+                                                    style={{ color: 'red', margin: '2px 0', fontSize: 16 }}
+                                                >{msg}</p>
+                                            }}
+                                        </ErrorMessage>
                                         <input
                                             id="incorporationYear"
-                                            onChange={props.handleChange('incorporationYear')}
-                                            value={props.values.incorporationYear}
+                                            onChange={(e) => {
+                                                let currYear = parseInt(d.getFullYear());
+                                                props.setFieldValue('incorporationYear', e.target.value)
+                                                props.setFieldValue('companyAge', currYear - parseInt(e.target.value))
+                                            }}
+                                            value={isNaN(props.values.incorporationYear) ? "" : props.values.incorporationYear}
                                             className={styles.inputField}
                                             autoComplete="off"
                                         />
@@ -161,10 +175,22 @@ const AdditionalForm = (props) => {
                                     <p className={styles.orText}>OR</p>
                                     <div className={styles.formGroup}>
                                         <p className={styles.inputLabel}>Age of Company</p>
+                                        <ErrorMessage name="companyAge">
+                                            {(msg) => {
+                                                return <p
+                                                    className={styles.subtitle}
+                                                    style={{ color: 'red', margin: '2px 0', fontSize: 16 }}
+                                                >{msg}</p>
+                                            }}
+                                        </ErrorMessage>
                                         <input
                                             id="companyAge"
-                                            onChange={props.handleChange('companyAge')}
-                                            value={props.values.companyAge}
+                                            onChange={(e) => {
+                                                let currYear = parseInt(d.getFullYear());
+                                                props.setFieldValue('incorporationYear', currYear - parseInt(e.target.value))
+                                                props.setFieldValue('companyAge', e.target.value)
+                                            }}
+                                            value={isNaN(props.values.companyAge) ? "" : props.values.companyAge}
                                             className={styles.inputField}
                                             autoComplete="off"
                                         />
