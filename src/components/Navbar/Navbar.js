@@ -74,7 +74,7 @@ const Navbar = (props) => {
                     initialValues={{ 
                         query: document.location.search.match(/\?search=\S{1,}/gmi) 
                                 ? document.location.search.substring(8)
-                                : null
+                                : ""
                     }}
                     onSubmit={(values) => {
                         if(values.query.length == 0 && !props.explorePage) return;

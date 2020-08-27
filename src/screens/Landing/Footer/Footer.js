@@ -78,7 +78,7 @@ const Footer = () => {
                     </p>
                 </div>
                 <div className={styles.company}>
-                    <p className={styles.sectionHeader}>CorpMart</p>
+                    <p className={styles.sectionHeader}>Company</p>
                     <p className={styles.links}>
                         <Link to="/">Home</Link>
                     </p>
@@ -96,7 +96,7 @@ const Footer = () => {
                     </p>
                 </div>
                 <div className={styles.corpmart}>
-                    <p className={styles.sectionHeader}>CorpMart</p>
+                    <p className={styles.sectionHeader}>Company</p>
                     <div className={styles.links}>
                         <a href="https://wa.me/919711600250" target="_blank" rel="noopener noreferrer">
                             <WhatsApp />

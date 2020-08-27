@@ -73,7 +73,7 @@ const Login = (props) => {
                             })
                         } catch (e) {
                             setError(true);
-                            if (e.response.data.startsWith("DoesNotExist")) {
+                            if (e.response.data[0] == "User doesnt exist") {
                                 setErrorMsg("This user does not exist.")
                             } else {
                                 setErrorMsg("An Error Occurred.")

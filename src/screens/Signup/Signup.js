@@ -19,7 +19,7 @@ const signupSchema = yup.object({
 
 const Signup = (props) => {
     const [error, setError] = useState(false);
-    const [errorMsg, setErrorMsg] = useState(false);
+    const [errorMsg, setErrorMsg] = useState('');
     const [disableBtn, setDisableBtn] = useState(false);
     const [loggedIn, setLoggedIn] = useState(false);
 
@@ -61,29 +61,32 @@ const Signup = (props) => {
                         }
                         try {
                             let req = await Axios.post('/signup/?format=json', payload);
-                        } catch (e) { 
-                            if(e.response.data.includes("email address already exists")) {
-                                setErrorMsg('User with this Email ID already exists');
-                                setError(true);
-                            } else if(e.response.data.includes("mobile already exists")) {
-                                setErrorMsg('User with this Mobile Number already exists');
-                                setError(true);
-                            }
-                        }
 
-                        try {
-                            let otp = await Axios.post('/generate_otp/?format=json', {
-                                email: values.email
-                            })
-                            props.history.push('/verification', {
-                                payload: payload,
-                                type: 'signup',
-                                mobile: payload.mobile,
-                            });
-                        } catch (e) {
+                            try {
+                                let otp = await Axios.post('/generate_otp/?format=json', {
+                                    email: values.email
+                                })
+                                props.history.push('/verification', {
+                                    payload: payload,
+                                    type: 'signup',
+                                    mobile: payload.mobile,
+                                });
+                            } catch (e) {
+                                setError(true);
+                                setErrorMsg("An Error Occurred");
+                                setDisableBtn(false);
+                            }
+
+                        } catch (e) { 
                             console.log(e.response);
+                            if(e.response.data.mobile) {
+                                setErrorMsg('User with this Mobile Number already exists');
+                            } else if(e.response.data.email) {
+                                setErrorMsg('User with this Email ID already exists');
+                            } else {
+                                setErrorMsg('An error occureed');
+                            }
                             setError(true);
-                            setErrorMsg("An Error Occurred");
                             setDisableBtn(false);
                         }
                     }}

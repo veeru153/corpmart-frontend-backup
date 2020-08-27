@@ -43,10 +43,10 @@ class BusinessesForSale extends Component {
                 page: document.location.search.substring(6)
             })
         }
-        let res = await Axios.get('/max-value?format=json');
-        let data = await res.data;
-
+        
         try {
+            let res = await Axios.get('/max-value?format=json');
+            let data = await res.data;
             let res2 = await Axios.get(`/business-list/?format=json&page=${this.state.page}&${this.state.queryParams.filter(p => p != '').join('&')}`);
             let data2 = await res2.data;
             this.setState({
