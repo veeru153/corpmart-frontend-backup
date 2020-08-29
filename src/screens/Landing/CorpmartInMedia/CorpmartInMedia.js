@@ -13,10 +13,8 @@ const CorpmartInMedia = () => {
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <div className={styles.mediaShowcase}>
-                    <div className={styles.mediaRow}>
-                        <div className={styles.imgContainer}><img src={isoCert} /></div>
-                        <div className={styles.imgContainer}><img src={startupIndia} /></div>
-                    </div>
+                    <div className={styles.imgContainer}><img src={isoCert} /></div>
+                    <div className={styles.imgContainer}><img src={startupIndia} /></div>
                     <div className={styles.imgContainer}><img src={msme} /></div>
                 </div>
             </div>

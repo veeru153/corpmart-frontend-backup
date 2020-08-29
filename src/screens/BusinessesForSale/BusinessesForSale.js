@@ -69,15 +69,17 @@ class BusinessesForSale extends Component {
         let params = [...this.state.queryParams];
         params[14] = query ? `search=${query}` : '';
         this.setState({
-            queryParams: params
+            queryParams: params,
+            loaded: false,
         })
-        let res2 = await Axios.get(`/business-list/?format=json&page=${this.state.page}&${this.state.queryParams.filter(p => p != '').join('&')}`);
+        let res2 = await Axios.get(`/business-list/?format=json&page=1&${this.state.queryParams.filter(p => p != '').join('&')}`);
         let data2 = await res2.data;
 
         this.setState({
             businessList: data2.results,
             nextPage: data2.next,
             prevPage: data2.prev,
+            loaded: true,
         })
     }
 
@@ -184,7 +186,7 @@ class BusinessesForSale extends Component {
             queryParams: params,
             loaded: false,
         }, async () => {
-            let res = await Axios.get(`/business-list/?format=json&page=${this.state.page}&${params.filter(p => p != '').join('&')}`);
+            let res = await Axios.get(`/business-list/?format=json&page=1&${params.filter(p => p != '').join('&')}`);
             let data = await res.data;
             this.setState({
                 businessList: data.results,
