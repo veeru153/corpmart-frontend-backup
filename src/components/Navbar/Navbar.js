@@ -53,13 +53,15 @@ const Navbar = (props) => {
                 style={{ color: transparent && dynamic ? 'white' : 'black' }}
             >
                 <div className={[styles.navBtn, styles.logo].join(' ')}>
-                    {transparent && dynamic
-                        ?  <img src={logoWhite} style={{ maxWidth: '100%', maxHeight: '100%' }}/>
-                        :  <img src={logo} style={{ maxWidth: '100%', maxHeight: '100%' }}/>
-                    }
+                    <Link to="/">
+                        {transparent && dynamic
+                            ?  <img src={logoWhite} style={{ maxWidth: '100%', maxHeight: '100%' }}/>
+                            :  <img src={logo} style={{ maxWidth: '100%', maxHeight: '100%' }}/>
+                        }
+                    </Link>
                 </div>
                 <div className={[styles.navBtn, styles.homeBtn].join(' ')}>
-                    <Link to="/" className={styles.logoMini} >
+                    <Link to="/" className={styles.logoMini}>
                         {transparent && dynamic
                             ?  <img src={logoWhiteMini} />
                             :  <img src={logoMini} />
@@ -68,7 +70,13 @@ const Navbar = (props) => {
                     <Link to="/" className={styles.homeLink}>Home</Link>
                 </div>
                 <div className={styles.navBtn}>
-                    <Link to="/explore">Businesses for Sale</Link>
+                    {/* <Link to="/explore">Businesses for Sale</Link> */}
+                    <div style={{ cursor: 'pointer' }} 
+                        onClick={() => {
+                            let reload = window.location.pathname == '/explore' ? true : false;
+                            props.history.push('/explore');
+                            reload && window.location.reload();
+                        }}>Businesses for Sale</div>
                 </div>
                 <Formik
                     initialValues={{ 

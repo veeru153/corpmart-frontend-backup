@@ -20,6 +20,12 @@ import FAQ from './screens/FAQ/FAQ';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Admin from './screens/Admin/Admin';
 
+/* TODO:
+ * - T&C policy / link  is not displayed. While submiting form
+ * - Name will not show notice must be there (wat?)
+ * - A large logo should be present somewhere on the website (umm..)
+ */
+
 function App() {
     return (
         <BrowserRouter>

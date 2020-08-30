@@ -5,6 +5,7 @@ import NavbarMobile from '../../components/Navbar/NavbarMobile';
 import Footer from '../Landing/Footer/Footer';
 import Axios from '../../axios';
 import moment from 'moment';
+import ReactMarkdown from 'react-markdown';
 
 class BlogExpanded extends Component {
     state = {
@@ -64,7 +65,10 @@ class BlogExpanded extends Component {
                     {!this.state.imgUrl || this.state.imgUrl.length == 0
                     ? null
                     : <div className={styles.image}><img src={this.state.imgUrl} alt="Blog Image" /></div>}
-                    <div className={styles.text}>{this.state.blogText}</div>
+                    {/* <div className={styles.text}>{this.state.blogText}</div> */}
+                    <div className={styles.text}>
+                        <ReactMarkdown source={this.state.blogText}/>
+                    </div>
                 </div>
                 <Footer />
             </div>

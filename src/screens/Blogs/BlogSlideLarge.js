@@ -17,7 +17,7 @@ const BlogSlideLarge = (props) => {
                     blogText: blogText
                 }
             }} 
-            style={{ display: 'flex', justifyContent: 'center' }}
+            className={styles.BlogSlideLarge}
         >
             <div className={styles.slide}>
                 <div className={styles.imgPreview}>
