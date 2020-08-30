@@ -111,6 +111,13 @@
     font-size: 12px;
     margin: 15px 8.8%;
 }
+.tos a {
+    color: #4AB9CA;
+    text-decoration: none;
+}
+.tos a:hover {
+    text-decoration: underline;
+}
 
 .submitBtn {
     padding: 10px 20px;

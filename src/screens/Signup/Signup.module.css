@@ -72,7 +72,7 @@
 
 .mobileNoFields {
     display: grid;
-    grid-template-columns: 3fr 7fr;
+    grid-template-columns: 2fr 8fr;
     column-gap: 2px;
 }
 
@@ -83,7 +83,7 @@
 
 @media only screen and (min-width: 425px) {
     .mobileNoFields {
-        grid-template-columns: 1fr 9fr;
+        grid-template-columns: 1.5fr 8.5fr;
     }
 }
 
@@ -100,7 +100,7 @@
         grid-template-columns: repeat(2, 1fr);
     }
     .mobileNoFields {
-        grid-template-columns: 1.5fr 8.5fr;
+        grid-template-columns: 2fr 8fr;
     }
 }
 
@@ -127,5 +127,7 @@
     .form {
         grid-template-rows: 0.4fr 0.4fr 0.5fr;
     }
-
+    .mobileNoFields {
+        grid-template-columns: 1.5fr 8.5fr;
+    }
 }

@@ -332,7 +332,7 @@ const ListingForm = (props) => {
                                 </div>
                             </div>
                             <div className={styles.tos} style={{ display: previewMode ? 'block' : 'none' }}>
-                                <p>By submitting this form, you agree to our Terms and Conditions and Privacy Policy.</p>
+                                <p>By submitting this form, you agree to our <a href="/terms-of-service">Terms of Service</a>.</p>
                             </div>
                             {
                                 previewMode

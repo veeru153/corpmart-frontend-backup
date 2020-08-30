@@ -157,7 +157,7 @@ const Signup = (props) => {
                                                 id="countryCode"
                                                 value={props.values.countryCode}
                                                 className={styles.inputField}
-                                                style={{ width: '100%' }}
+                                                style={{ width: '100%', textAlign: 'center', padding: 0 }}
                                                 autoComplete="off"
                                                 contentEditable="false"
                                                 disabled="true"
@@ -214,6 +214,9 @@ const Signup = (props) => {
                                 <p className={styles.subtitle}>
                                     Already have an account? <Link to="/login">Log In</Link>.
                             </p>
+                            <div className={styles.subtitle}>
+                                <p>By signing up, you agree to our <a href="/terms-of-service">Terms of Service</a>.</p>
+                            </div>
                                 <Button
                                     label="Next"
                                     type={disableBtn ? "#DADEE4" : "orange"}
