@@ -54,7 +54,7 @@
 
 .sortDropdownContainer {
     margin: 30px;
-    display: flex;
+    display: none;
     justify-content: flex-end;
     align-items: center;
 }
@@ -70,4 +70,5 @@
         -ms-overflow-style: none;
     }
     .content::-webkit-scrollbar { display: none; }
+    .sortDropdownContainer { display: flex; }
 }

@@ -35,7 +35,6 @@ const TnC = () => {
                             <br />2. You may also choose to opt out, via sending your email address to: corpmartinfo@gmail.com.
                             <br />3. You may send a written remove request to
                             <br />CorpMart
-                            <br />(a unit of M/s Priash Tradecorp)
                             <br />Corporate Office:- G5.2/11, SF, Vatika India Next,
                             <br />Sector 82, Gurugram, Haryana India, PIN:- 122004
                         </p>

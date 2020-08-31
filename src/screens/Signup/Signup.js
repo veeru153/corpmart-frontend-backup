@@ -157,7 +157,7 @@ const Signup = (props) => {
                                                 id="countryCode"
                                                 value={props.values.countryCode}
                                                 className={styles.inputField}
-                                                style={{ width: '100%', textAlign: 'center', padding: 0 }}
+                                                style={{ width: '96%', textAlign: 'center', padding: 0, marginRight: 0 }}
                                                 autoComplete="off"
                                                 contentEditable="false"
                                                 disabled="true"
@@ -167,7 +167,7 @@ const Signup = (props) => {
                                                 onChange={props.handleChange('mobile')}
                                                 value={props.values.mobile}
                                                 className={styles.inputField}
-                                                style={{ width: '100%' }}
+                                                style={{ width: '96%' }}
                                                 autoComplete="off"
                                             />
                                         </div>

@@ -46,10 +46,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-top: 55px;
-    margin-bottom: 80px;
-    margin-left: clamp(30px, 8vw, 240px);
-    margin-right: clamp(30px, 8vw, 240px);
+    align-items: center;
+    margin: 55px 20px 80px;
 }
 
 .inputLabel {
@@ -66,6 +64,7 @@
     text-align: center;
     font-size: 16px;
     font-family: "Poppins";
+    width: 92%;
 }
 
 .inputField:focus {

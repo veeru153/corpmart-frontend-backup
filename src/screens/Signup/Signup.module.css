@@ -46,13 +46,15 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 7.5px 30px;
+    align-items: center;
+    margin: 7.5px 16px;
     text-align: left;
 }
 
 .inputLabel {
     font-size: clamp(14px, 3.8vw, 18px);
     margin: 2.5px 0;
+    width: 96%;
 }
 
 .inputField {
@@ -64,6 +66,7 @@
     padding-left: 8px;
     font-size: 16px;
     font-family: "Poppins";
+    width: 96%;
 }
 
 .inputField:focus {
@@ -72,8 +75,13 @@
 
 .mobileNoFields {
     display: grid;
-    grid-template-columns: 2fr 8fr;
+    grid-template-columns: 1.6fr 8.4fr;
     column-gap: 2px;
+    width: 98%;
+}
+
+.mobileNoFields input {
+    margin: 0 auto;
 }
 
 .submitBtn {

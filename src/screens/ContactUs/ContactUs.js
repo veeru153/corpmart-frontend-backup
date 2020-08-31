@@ -8,6 +8,7 @@ import { Facebook, LinkedIn, Twitter, Instagram } from '@material-ui/icons';
 import Footer from '../Landing/Footer/Footer';
 import Axios from '../../axios';
 import * as yup from 'yup';
+import logo from '../../assets/images/CorpMart-logo.png'
 
 const contactSchema = yup.object({
     name: yup.string().required('Please eneter your name.'),
@@ -112,11 +113,10 @@ const ContactUs = () => {
                 </div>
                 <div className={styles.ContactDetails}>
                     <div className={styles.header}>
-                        <p className={styles.title}>Company</p>
+                        {/* <p className={styles.title}>Company</p> */}
+                        <img src={logo} alt="CorpMart"/>
                     </div>
                     <div className={styles.address}>
-                        <p>CorpMart</p>
-                        <p>(a unit of M/s Priash Tradecorp)</p>
                         <p>Corporate Office:- G5.2/11, SF, Vatika India Next,</p>
                         <p>Sector 82, Gurugram, Haryana India, PIN:- 122004</p>
                     </div>

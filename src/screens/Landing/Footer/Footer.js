@@ -94,9 +94,12 @@ const Footer = () => {
                     <p className={styles.links}>
                         <Link to="/faq">FAQs</Link>
                     </p>
+                    <p className={styles.links}>
+                        <Link to="/terms-of-service">Terms of Service</Link>
+                    </p>
                 </div>
                 <div className={styles.corpmart}>
-                    <p className={styles.sectionHeader}>Company</p>
+                    <p className={styles.sectionHeader}>CorpMart</p>
                     <div className={styles.links}>
                         <a href="https://wa.me/919711600250" target="_blank" rel="noopener noreferrer">
                             <WhatsApp />

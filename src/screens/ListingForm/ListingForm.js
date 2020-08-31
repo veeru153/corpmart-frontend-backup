@@ -173,7 +173,7 @@ const ListingForm = (props) => {
                                     }
                                 </p>
                             </div>
-                            <div style={{ padding: '0 48px'}}>
+                            <div className={styles.formContent}>
                                 {
                                     !previewMode && loggedIn
                                         ? null
@@ -277,6 +277,9 @@ const ListingForm = (props) => {
                                         className={styles.inputField}
                                         autoComplete="off"
                                     />
+                                    <p className={styles.subtitle}>
+                                        Business Name will not be visible to the users without your permission.
+                                    </p>
                                 </div>
                                 <div className={styles.formGroup}>
                                     <p className={styles.inputLabel}>State*</p>

@@ -97,6 +97,14 @@
 
 .ContactDetails .header {
     margin-bottom: 0;
+    width: 88%;
+    height: 100%;
+}
+
+.ContactDetails .header img {
+    max-width: 80%;
+    max-height: 100%;
+    margin: 16px auto;
 }
 
 .address {
