@@ -116,7 +116,7 @@ class BusinessDetails extends Component {
             let res = await Axios.get(`/business-list/?format=json&page=1`);
             let data = await res.data;
             this.setState({
-                other: data.results
+                other: data.results.filter(b => b.id != this.state.currBusiness.id)
             });
         } catch (e) { console.log(e.response); }
     }
