@@ -18,7 +18,7 @@ class UserDashboard extends Component {
         loading: true,
         sortQuery: 0,
     }
-
+    
     getBusinesses = async (request) => {
         const cookies = new Cookies();
         let endpoint = request == 'yourListings' ? 'user-business' : 'view-history';
@@ -35,6 +35,9 @@ class UserDashboard extends Component {
     }
 
     componentDidMount() {
+        const cookies = new Cookies();
+        let token = cookies.get('userToken');
+        if(!token) this.props.history.push('/');
         document.title = "User Dashboard - CorpMart - One Stop Solution for Business Acquisition";
         window.scrollTo(0,0);
         this.getBusinesses(this.state.currPanel);
