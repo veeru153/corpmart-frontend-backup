@@ -13,6 +13,7 @@ class Testimonials extends Component {
 
     async componentDidMount() {
         document.title = "Testimonials - CorpMart - One Stop Solution for Business Acquisition";
+        document.querySelector('#meta-desc').setAttribute('content', "Trusted platform for acquiring pre-verified businesses, selling businesses at a profit across India within few clicks.");
         window.scrollTo(0,0);
         let res = await Axios.get('/testimonial/');
         let data = await res.data;

@@ -38,7 +38,16 @@
     flex-direction: column;
     text-align: left;
     margin-top: 16px;
-    margin-bottom: 36px;
+    /* margin-bottom: 36px; */
+}
+
+.socialBtns {
+    margin: 6px 0 24px 0;
+    display: flex !important;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
 }
 
 .image {

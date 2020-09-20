@@ -6,6 +6,7 @@ import Footer from '../Landing/Footer/Footer';
 
 const FAQ = () => {
     document.title = "Frequently Asked Questions - CorpMart - One Stop Solution for Business Acquisition";
+    document.querySelector('#meta-desc').setAttribute('content', "Trusted platform for acquiring pre-verified businesses, selling businesses at a profit across India within few clicks.");
     useEffect(() => window.scrollTo(0,0), []);
 
     return (

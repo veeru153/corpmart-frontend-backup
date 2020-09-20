@@ -31,7 +31,7 @@ const NavbarMobile = (props) => {
     }
 
     useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll, { passive: true });
     })
 
     useEffect(() => {

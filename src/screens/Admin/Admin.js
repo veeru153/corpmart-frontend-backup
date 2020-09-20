@@ -12,6 +12,7 @@ const styles = {
 }
 
 const Admin = () => {
+    document.querySelector('#meta-desc').setAttribute('content', "Trusted platform for acquiring pre-verified businesses, selling businesses at a profit across India within few clicks.");
     useEffect(() => {
         setTimeout(() => {
             window.location.href ='https://db.corpmart.in/admin/';

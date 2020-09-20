@@ -18,7 +18,7 @@ class BlogExpanded extends Component {
     }
 
     async componentDidMount() {
-        document.title = "Blog - CorpMart - One Stop Solution for Business Acquisition";
+        // document.title = "Blog - CorpMart - One Stop Solution for Business Acquisition";
         if (!this.props.location.pathname.match(/\/blog\/.*/)) this.props.history.push('/blogs/');
         window.scrollTo(0,0);
         if(this.props.location.state != undefined) {
@@ -50,6 +50,8 @@ class BlogExpanded extends Component {
     // const { id, title, date, author, blogText, imgUrl } = props.location.state;
 
     render() {
+        document.title = `${this.state.title} - CorpMart`;
+        document.querySelector('#meta-desc').setAttribute('content', this.state.blogText);
         return (
             <div>
                 <Navbar />
@@ -69,6 +71,7 @@ class BlogExpanded extends Component {
                     <div className={styles.text}>
                         <ReactMarkdown source={this.state.blogText}/>
                     </div>
+                    <div className={["sharethis-inline-share-buttons", styles.socialBtns].join(' ')}></div>
                 </div>
                 <Footer />
             </div>

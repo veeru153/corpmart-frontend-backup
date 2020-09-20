@@ -24,6 +24,7 @@ const Signup = (props) => {
     const [loggedIn, setLoggedIn] = useState(false);
 
     document.title = "Sign Up - CorpMart - One Stop Solution for Business Acquisition";
+    document.querySelector('#meta-desc').setAttribute('content', "Trusted platform for acquiring pre-verified businesses, selling businesses at a profit across India within few clicks.");
     useEffect(() => window.scrollTo(0,0), []);
 
     useEffect(() => {

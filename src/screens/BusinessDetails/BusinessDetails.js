@@ -45,6 +45,7 @@ class BusinessDetails extends Component {
 
     async componentDidMount() {
         document.title = "Business Details - CorpMart - One Stop Solution for Business Acquisition";
+        document.querySelector('#meta-desc').setAttribute('content', "Trusted platform for acquiring pre-verified businesses, selling businesses at a profit across India within few clicks.");
         window.scrollTo(0, 0);
 
         let validity = await validateToken();
@@ -301,7 +302,7 @@ class BusinessDetails extends Component {
                                 />
                             </div>
                             <div className={styles.bsDiv2}>
-                                <p>Interseted in acquiring this business?</p>
+                                <p>Interested in acquiring this business?</p>
                                 {this.state.currBusiness.hasContacted
                                     ? <p style={{ color: 'red' }}>We have already received your Contact Request.</p>
                                     : null}

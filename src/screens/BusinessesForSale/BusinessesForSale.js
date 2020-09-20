@@ -30,6 +30,7 @@ class BusinessesForSale extends Component {
 
     async componentDidMount() {
         document.title = "Businesses For Sale - CorpMart - One Stop Solution for Business Acquisition";
+        document.querySelector('#meta-desc').setAttribute('content', "Trusted platform for acquiring pre-verified businesses, selling businesses at a profit across India within few clicks.");
         window.scrollTo(0,0);
         if(document.location.search.match(/\?search=\S{1,}/gmi)) {
             let params = [...this.state.queryParams];
