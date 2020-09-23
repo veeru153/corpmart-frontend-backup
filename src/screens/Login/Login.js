@@ -122,7 +122,7 @@ const Login = (props) => {
                                 <Button
                                     label="Submit"
                                     type={disableBtn ? "#DADEE4" : "orange"}
-                                    color={disableBtn ? "black" : "white"}
+                                    color={disableBtn ? "#676767" : "white"}
                                     pressed={props.handleSubmit}
                                     className={styles.submitBtn}
                                     disabled={disableBtn}

@@ -127,6 +127,9 @@
     padding: 10px 20px;
     margin: 15px 0; 
 }
+.submittingText {
+    margin: 10px 0 20px !important;
+}
 
 @media only screen and (min-width: 768px) {
     .nameFields {

@@ -29,7 +29,7 @@ class BusinessDetails extends Component {
             askingPrice: 0,
             gst: false,
             bankAcc: false,
-            ieCode: false,
+            roc: false,
             otherLicenses: false,
             balancesheet: false,
             balancesheetId: null,
@@ -87,6 +87,7 @@ class BusinessDetails extends Component {
                 res = await Axios.get(`/business-detail/?format=json&business_id=${id}`);
             }
             let data = await res.data[0];
+            console.log(data);
             this.setState((prevState) => ({
                 ...prevState,
                 currBusiness: {
@@ -95,13 +96,15 @@ class BusinessDetails extends Component {
                     type: data.company_type,
                     subtype: data.sub_type,
                     industry: data.industry,
+                    industryOther: data.industries_others_description,
                     yearOfIncorporation: data.year_of_incorporation,
                     state: data.state,
+                    askingPrice: data.admin_defined_selling_price,
                     authCapital: data.authorised_capital,
                     paidupCapital: data.paidup_capital,
                     gst: data.has_gst_number,
                     bankAcc: data.has_bank_account,
-                    ieCode: data.has_import_export_code,
+                    roc: data.roc_up_to_date,
                     otherLicenses: data.has_other_license,
                     balancesheet: data.balancesheet_available,
                     balancesheetId: data.balancesheet_id,
@@ -187,7 +190,12 @@ class BusinessDetails extends Component {
                                 </div>
                                 <div className={styles.businessInfoRow}>
                                     <div className={styles.businessInfoLabel}>Industry</div>
-                                    <div className={styles.businessInfoValue} style={{ textTransform: 'capitalize' }}>{this.state.currBusiness.industry ? this.state.currBusiness.industry.toLowerCase() : "Available after contact"}</div>
+                                    <div className={styles.businessInfoValue} style={{ textTransform: 'capitalize' }}>
+                                        {this.state.currBusiness.industry ? 
+                                            this.state.currBusiness.industry.toLowerCase() == "others" ?
+                                            this.state.currBusiness.industryOther.toLowerCase() :
+                                            this.state.currBusiness.industry.toLowerCase()
+                                        : "Available after contact"}</div>
                                 </div>
                                 <div className={styles.businessInfoRow}>
                                     <div className={styles.businessInfoLabel}>State</div>
@@ -204,8 +212,8 @@ class BusinessDetails extends Component {
                                 <div className={styles.businessInfoRow}>
                                     <div className={styles.businessInfoLabel}>Paid-Up Capital</div>
                                     <div className={styles.businessInfoValue} style={{ fontWeight: 'normal' }}>
-                                        {this.state.currBusiness.paidCapital
-                                            ? <p style={{ margin: 0 }}><span style={{ fontFamily: "Arial" }}>₹</span>{this.state.currBusiness.paidCapital}</p>
+                                        {this.state.currBusiness.paidupCapital
+                                            ? <p style={{ margin: 0 }}><span style={{ fontFamily: "Arial" }}>₹</span>{this.state.currBusiness.paidupCapital}</p>
                                             : "Available After Contact"}
                                     </div>
                                 </div>
@@ -242,14 +250,14 @@ class BusinessDetails extends Component {
                                     }
                                 </div>
                                 <div className={styles.businessRegRow}>
-                                    {this.state.currBusiness.ieCode
+                                    {this.state.currBusiness.roc
                                         ? <>
                                             <CheckCircleIcon style={{ fontSize: 16, color: '#55B546' }} />
-                                            <p className={styles.regAvailable}>Import/Export code available</p>
+                                            <p className={styles.regAvailable}>ROC Filing is up to date</p>
                                         </>
                                         : <>
                                             <CancelRoundedIcon style={{ fontSize: 16, color: '#FF3232' }} />
-                                            <p className={styles.regNotAvailable}>Import/Export code not available</p>
+                                            <p className={styles.regNotAvailable}>ROC Filing not up to date</p>
                                         </>
                                     }
                                 </div>

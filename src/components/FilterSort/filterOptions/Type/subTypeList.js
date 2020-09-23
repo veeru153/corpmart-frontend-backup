@@ -7,6 +7,7 @@ const subTypeList = [
     { name: 'Micro Finance Company', checked: false},
     { name: 'Insurance Company', checked: false},
     { name: 'Direct Selling Company', checked: false},
+    { name: 'Pvt. Ltd.', checked: false},
     { name: 'Others', checked: false},
 ]
 

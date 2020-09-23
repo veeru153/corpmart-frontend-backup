@@ -24,7 +24,7 @@ const formSchema = yup.object({
     companyAge: yup.number().positive("Age of Company cannot be negative."),
     gst: yup.boolean(),
     bankAcc: yup.boolean(),
-    ieCode: yup.boolean(),
+    roc: yup.boolean(),
     licenses: yup.boolean(),
     licenseDetails: yup.string().notRequired(),
     authCapital: yup.string().notRequired().matches(/^[0-9]*$/g, "Authorised Capital can only contain numbers."),
@@ -32,15 +32,16 @@ const formSchema = yup.object({
 })
 
 const AdditionalForm = (props) => {
-    if (!props.location.state || props.location.state == undefined) {
-        props.history.push('/list-your-business');
-    }
+    // if (!props.location.state || props.location.state == undefined) {
+    //     props.history.push('/list-your-business');
+    // }
 
     document.title = "List Your Business - CorpMart - One Stop Solution for Business Acquisition";
     useEffect(() => window.scrollTo(0, 0), []);
 
     const [error, setError] = useState(false);
     const [errorMsg, setErrorMsg] = useState('');
+    const [submitting, setSubmitting] = useState(false);
 
     let d = new Date();
     const cookies = new Cookies();
@@ -53,14 +54,15 @@ const AdditionalForm = (props) => {
             <div className={styles.ListingForm}>
                 <Formik
                     initialValues={{
-                        companyType: '', subtype: '', industry: '', saleDesc: '',
+                        companyType: '', subtype: '', industry: '', industryOther: '', saleDesc: '',
                         incorporationYear: parseInt(d.getFullYear()), companyAge: 0,
-                        gst: false, bankAcc: false, ieCode: false, licenses: false, licenseDetails: '',
+                        gst: false, bankAcc: false, roc: false, licenses: false, licenseDetails: '',
                         authCapital: '', paidupCapital: '',
                     }}
                     validationSchema={formSchema}
                     validateOnBlur
                     onSubmit={async (values, actions) => {
+                        setSubmitting(true);
                         let { formPayload } = props.location.state;
                         let applicationData = {
                             verified_by: "",
@@ -70,14 +72,14 @@ const AdditionalForm = (props) => {
                             company_type: values.companyType,
                             company_type_others_description: "",
                             sub_type: values.subtype,
-                            sub_type_others_description: "",
+                            sub_type_others_description: values.subtype,
                             industry: values.industry,
-                            industries_others_description: "",
+                            industries_others_description: values.industryOther,
                             sale_description: values.saleDesc,
                             year_of_incorporation: parseInt(values.incorporationYear),
                             has_gst_number: values.gst,
                             has_bank_account: values.bankAcc,
-                            has_import_export_code: values.ieCode,
+                            roc_up_to_date: values.roc,
                             has_other_license: values.licenses,
                             other_license: "",
                             authorised_capital: parseInt(values.authCapital),
@@ -136,6 +138,18 @@ const AdditionalForm = (props) => {
                                         onChange={props.handleChange('industry')}
                                         value={props.values.industry}
                                         options={industryList}
+                                    />
+                                </div>
+                                <div className={styles.formGroup}>
+                                    <p className={styles.inputLabel}>If Industry is of type "Other", describe: </p>
+                                    <input
+                                        id="industryOther"
+                                        onChange={props.handleChange('industryOther')}
+                                        value={props.values.industryOther}
+                                        className={styles.inputField}
+                                        autoComplete="off"
+                                        disabled={props.values.industry.toLowerCase() != "others"}
+                                        style={{ cursor: props.values.industry.toLowerCase() != "others" ? 'not-allowed' : 'text' }}
                                     />
                                 </div>
                                 <div className={styles.formGroup}>
@@ -251,15 +265,15 @@ const AdditionalForm = (props) => {
                                     </div>
                                 </div>
                                 <div className={[styles.formGroup, styles.optionGroups].join(' ')}>
-                                    <div><p>Do you have an Import/Export Code?</p></div>
+                                    <div><p>Is ROC Filing up to date?</p></div>
                                     <div>
                                         {<Button
                                             label="Yes"
-                                            type={props.values.ieCode ? "blue" : "white"}
-                                            color={props.values.ieCode ? "white" : "black"}
+                                            type={props.values.roc ? "blue" : "white"}
+                                            color={props.values.roc ? "white" : "black"}
                                             pressed={(e) => {
                                                 e.preventDefault();
-                                                props.setFieldValue('ieCode', true)
+                                                props.setFieldValue('roc', true)
                                             }}
                                             className={styles.optionBtn}
                                         />}
@@ -267,11 +281,11 @@ const AdditionalForm = (props) => {
                                     <div>
                                         {<Button
                                             label="No"
-                                            type={props.values.ieCode ? "white" : "orange"}
-                                            color={props.values.ieCode ? "black" : "white"}
+                                            type={props.values.roc ? "white" : "orange"}
+                                            color={props.values.roc ? "black" : "white"}
                                             pressed={(e) => {
                                                 e.preventDefault();
-                                                props.setFieldValue('ieCode', false)
+                                                props.setFieldValue('roc', false)
                                             }}
                                             className={styles.optionBtn}
                                         />}
@@ -337,7 +351,19 @@ const AdditionalForm = (props) => {
                                     />
                                 </div>
                             </div>
-                            <Button label="Submit" type="orange" pressed={props.handleSubmit} className={styles.submitBtn} />
+                            <Button 
+                                label="Submit" 
+                                type={submitting ? "#DADEE4" : "orange"}
+                                color={submitting ? "#676767" : "white"}
+                                pressed={props.handleSubmit}
+                                className={styles.submitBtn}
+                                style={{ margin: submitting ? '15px 0 0' : '15px 0'}}
+                                disabled={submitting}
+                            />
+                            {submitting
+                              ? <p className={styles.submittingText}>Submitting...</p>
+                              : null 
+                            }
                         </form>
                     )}
                 </Formik>

@@ -278,7 +278,7 @@ const ListingForm = (props) => {
                                         className={styles.inputField}
                                         autoComplete="off"
                                     />
-                                    <p className={styles.subtitle}>
+                                    <p className={styles.subtitle} style={{ color: 'red' }}>
                                         Business Name will not be visible to the users without your permission.
                                     </p>
                                 </div>

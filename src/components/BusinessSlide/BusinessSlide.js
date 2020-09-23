@@ -28,7 +28,7 @@ const BusinessSlide = (props) => {
                     <div className={styles.businessInfoLabel}>Industry</div>
                     <div className={styles.businessInfoValue}>
                         {industry
-                        ?  (industry.toLowerCase() == "others" ? industryOther.toLowerCase() : industry.toLowerCase())
+                        ?  (industry.toLowerCase() == "others" && industryOther ? industryOther.toLowerCase() : industry.toLowerCase())
                         :  "Available After Contact"}
                     </div>
                 </div>
