@@ -21,7 +21,7 @@ const formSchema = yup.object({
     industry: yup.string().notRequired(),
     saleDesc: yup.string().notRequired(),
     incorporationYear: yup.number().max(parseInt(d.getFullYear()), "Year of Incorporation cannot be greater than the current year."),
-    companyAge: yup.number().positive("Age of Company cannot be negative."),
+    companyAge: yup.number().min(0, "Age of Company cannot be negative."),
     gst: yup.boolean(),
     bankAcc: yup.boolean(),
     roc: yup.boolean(),
