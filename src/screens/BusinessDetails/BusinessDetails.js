@@ -195,7 +195,8 @@ class BusinessDetails extends Component {
                                             this.state.currBusiness.industry.toLowerCase() == "others" ?
                                             this.state.currBusiness.industryOther.toLowerCase() :
                                             this.state.currBusiness.industry.toLowerCase()
-                                        : "Available after contact"}</div>
+                                        : "Available after contact"}
+                                    </div>
                                 </div>
                                 <div className={styles.businessInfoRow}>
                                     <div className={styles.businessInfoLabel}>State</div>

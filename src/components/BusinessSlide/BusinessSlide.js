@@ -21,15 +21,21 @@ const BusinessSlide = (props) => {
                 <div className={styles.businessInfoRow}>
                     <div className={styles.businessInfoLabel}>Sub Type</div>
                     <div className={styles.businessInfoValue}>
-                        {subtype ? (subtype == "Others" ? subtypeOther : subtype) : "Available After Contact"}
+                        {subtype ? 
+                            subtype.toLowerCase() == "others" ?
+                            subtypeOther.toLowerCase() :
+                            subtype.toLowerCase()
+                        : "Available after contact"}
                     </div>
                 </div>
                 <div className={styles.businessInfoRow}>
                     <div className={styles.businessInfoLabel}>Industry</div>
                     <div className={styles.businessInfoValue}>
-                        {industry
-                        ?  (industry.toLowerCase() == "others" && industryOther ? industryOther.toLowerCase() : industry.toLowerCase())
-                        :  "Available After Contact"}
+                        {industry ? 
+                            industry.toLowerCase() == "others" ?
+                            industryOther.toLowerCase() :
+                            industry.toLowerCase()
+                        : "Available after contact"}
                     </div>
                 </div>
                 <div className={styles.businessInfoRow}>

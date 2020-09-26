@@ -114,7 +114,7 @@ class UserDashboard extends Component {
                     <div className={styles.content}>
                         <div className={styles.header}>
                             <p className={styles.title}>My Dashboard</p>
-                            <p className={styles.subtitle}>Fron here you can manage your business listings and balancesheet requests.</p>
+                            <p className={styles.subtitle}>From here you can manage your business listings and balancesheet requests.</p>
                         </div>
                         <div className={styles.sortDropdownContainer}>
                             <SortDropdown
